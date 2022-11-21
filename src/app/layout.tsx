@@ -1,7 +1,7 @@
 'use client'
-import Link from 'next/link'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { Header } from '../components/Header'
 import { GlobalStyles } from '../styles/globals'
 import { defaultTheme } from '../styles/themes/default'
 
@@ -16,9 +16,7 @@ export default function RootLayout({
       <html>
         <body>
           <main>
-            <nav>
-              <Link href="/">Home</Link>
-            </nav>
+            <Header />
             {children}
           </main>
         </body>
