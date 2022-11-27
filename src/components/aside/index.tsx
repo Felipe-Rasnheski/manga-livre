@@ -1,15 +1,16 @@
 import Link from 'next/link'
+import React from 'react'
 import { BiBookmarkAlt, BiBookOpen, BiHome, BiPlus, BiX } from 'react-icons/bi'
 import { FaArrowAltCircleUp, FaCat, FaUserFriends } from 'react-icons/fa'
 import logo from '../../../public/logo.webp'
 import { AsideContainer } from './styles'
 
-export function Aside(element: HTMLElement) {
-  function addClassActive() {
+export function Aside() {
+  function addClassActive(element: React.MouseEvent<HTMLElement>) {
     const link = document.querySelector('a.active')
     link?.classList.remove('active')
 
-    element.classList.add('active')
+    element.currentTarget.classList.add('active')
   }
 
   return (
@@ -35,8 +36,12 @@ export function Aside(element: HTMLElement) {
         </button>
       </header>
       <nav>
-        <button
-          onClick={() => {
+        <Link
+          href="#home"
+          className="home active"
+          onClick={(e) => {
+            addClassActive(e)
+
             const aside = document.querySelector('#aside')
             aside?.setAttribute('data-menu', '')
 
@@ -44,11 +49,9 @@ export function Aside(element: HTMLElement) {
             nav?.setAttribute('data-nav', 'navShow')
           }}
         >
-          <Link href="#home" className="active">
-            <BiHome size={24} />
-            Home
-          </Link>
-        </button>
+          <BiHome size={24} />
+          Home
+        </Link>
         <div>
           <h3>
             <BiBookmarkAlt size={24} /> Follows
@@ -56,10 +59,18 @@ export function Aside(element: HTMLElement) {
           <Link href="/" onClick={addClassActive}>
             updates
           </Link>
-          <Link href="">Library</Link>
-          <Link href="">MDLists</Link>
-          <Link href="">Followed Groups</Link>
-          <Link href="">Reading History</Link>
+          <Link href="/" onClick={addClassActive}>
+            Library
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            MDLists
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Followed Groups
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Reading History
+          </Link>
         </div>
         <div>
           <h3>
@@ -68,33 +79,49 @@ export function Aside(element: HTMLElement) {
               <BiPlus size={24} />
             </span>
           </h3>
-          <Link href="">Advanced Search</Link>
-          <Link href="">Recently added</Link>
-          <Link href="">Latest Updates</Link>
-          <Link href="">Random</Link>
+          <Link href="/" onClick={addClassActive}>
+            Advanced Search
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Recently added
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Latest Updates
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Random
+          </Link>
         </div>
         <div>
           <h3>
             <FaUserFriends size={24} />
             Community
           </h3>
-          <Link href="">
+          <Link href="/" onClick={addClassActive}>
             Groups
             <span>
               <BiPlus size={24} />
             </span>
           </Link>
-          <Link href="">Users</Link>
+          <Link href="/" onClick={addClassActive}>
+            Users
+          </Link>
         </div>
         <div>
           <h3>
             <FaCat size={24} />
             MangaDex
           </h3>
-          <Link href="">About Us</Link>
-          <Link href="">Site Rules</Link>
-          <Link href="">Announcements</Link>
-          <Link href="">
+          <Link href="/" onClick={addClassActive}>
+            About Us
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Site Rules
+          </Link>
+          <Link href="/" onClick={addClassActive}>
+            Announcements
+          </Link>
+          <Link href="/" onClick={addClassActive}>
             Merch Store
             <span>
               <FaArrowAltCircleUp size={14} />

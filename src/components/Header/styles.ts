@@ -66,6 +66,10 @@ export const HeaderContainer = styled.header`
 
         input {
           display: none;
+
+          &::placeholder {
+            color: ${(props) => props.theme['--gray-400']};
+          }
         }
 
         &:hover {

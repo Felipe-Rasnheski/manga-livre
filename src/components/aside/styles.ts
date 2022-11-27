@@ -14,6 +14,28 @@ export const AsideContainer = styled.aside`
 
   &[data-menu='menuShow'] {
     display: block;
+    height: 100vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-600']};
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme['--gray-600']};
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-800']};
   }
 
   .logo {
@@ -40,26 +62,17 @@ export const AsideContainer = styled.aside`
   nav {
     margin: 0.75rem 0;
 
-    button {
-      background: transparent;
+    .home {
       color: ${(props) => props.theme['--gray-100']};
       font-weight: bold;
       font-size: 1.1rem;
-      display: flex;
-      align-items: center;
       gap: 0.5rem;
-      cursor: pointer;
-      width: 100%;
-
-      a {
-        padding: 0.25rem 0;
-        margin: 0;
-        width: 100%;
-      }
+      padding: 0.25rem 0;
+      margin: 0;
     }
 
     h3 {
-      margin-top: 0.75rem;
+      margin: 0.5rem 0;
       display: flex;
       gap: 0.5rem;
       align-items: center;
@@ -103,8 +116,12 @@ export const AsideContainer = styled.aside`
       }
     }
 
-    a.active {
+    a.active,
+    button.active {
+      padding-left: 0.5rem;
       background: ${(props) => props.theme['--khaki-web']};
+      box-shadow: none;
+      font-weight: bold;
     }
   }
 
