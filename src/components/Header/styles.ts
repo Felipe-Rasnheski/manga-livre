@@ -3,151 +3,132 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
-  background: #222221;
+  padding: 0.25rem 1rem;
 
-  .container {
+  nav {
+    height: 3rem;
     display: flex;
     flex: 1;
+    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
 
-    .container-form {
+    &[data-nav='navHidden'] {
+      .menuAndLogo {
+        display: none;
+      }
+    }
+
+    .menuAndLogo {
       display: flex;
       align-items: center;
 
-      button {
-        background: transparent;
-        border: 1px solid transparent;
-        padding: 0.25rem;
-        border-radius: 6px;
-        color: ${(props) => props.theme['--khaki-web']};
+      .menu {
+        background-color: transparent;
+        margin: 0.5rem 0;
+        color: ${(props) => props.theme['--gray-200']};
 
-        svg {
-          line-height: 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .logo {
+        display: inline-block;
+        width: 54px;
+        height: 34px;
+        margin: 0.5rem;
+        background-position: top;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .formAndAvatar {
+      height: 3rem;
+      display: flex;
+      flex: 1;
+      gap: 1rem;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+
+        input {
+          display: none;
         }
 
         &:hover {
           cursor: pointer;
-          border-color: ${(props) => props.theme['--gray-900']};
-          color: ${(props) => props.theme['--grullo']};
         }
       }
     }
-
-    .toggleClose {
-      display: none;
-    }
-  }
-
-  .toggleOpen {
-    nav {
-      flex: 0;
-    }
-
-    .navbar {
-      width: 0;
-      transform: scaleY(0);
-      transform: scaleX(0);
-    }
-
-    .container-form {
-      display: flex;
-      flex: 1;
-      align-items: center;
-
-      form {
-        display: flex;
-        flex: 1;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-      .toggleClose {
-        display: flex;
-        flex: 1;
-        gap: 0.25rem;
-        max-width: 550px;
-        margin: 0 auto;
-
-        button {
-          font-size: 12px;
-          display: flex;
-          align-items: center;
-          gap: 0.15rem;
-        }
-
-        input {
-          height: 1.5rem;
-          flex: 1;
-          border-radius: 6px;
-          padding: 0.25rem 0.5rem;
-          box-shadow: 0px -3px 1px ${(props) => props.theme['--khaki-web']},
-            0px 3px 1px ${(props) => props.theme['--grullo']};
-        }
-      }
-    }
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    height: fit-content;
-    margin-top: auto;
-    flex: 1;
 
     a {
-      font-size: 1.2rem;
-      padding: 0.75rem;
-      text-decoration: none;
-      color: ${(props) => props.theme['--khaki-web']};
-      border: 1px solid transparent;
-
-      &:hover {
-        transition: all 0.2s linear;
-        color: ${(props) => props.theme['--grullo']};
-        border-bottom-color: ${(props) => props.theme['--khaki-web']};
-      }
-    }
-
-    .logo {
-      padding: 0.65rem 0.5rem;
-      border-bottom: 1px solid transparent;
-
-      a {
-        border-right: 1px solid ${(props) => props.theme['--gray-900']};
-        padding: 1rem 4rem 0.8rem 0;
-        display: block;
-        width: 3.5rem;
-        height: 100%;
-        overflow: hidden;
-        background-position: top;
-
-        &:hover {
-          border-bottom-color: transparent;
-          border-right-color: ${(props) => props.theme['--grullo']};
-        }
-      }
-    }
-
-    .navbar {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: space-around;
-      line-height: 160%;
+      height: 2.5rem;
     }
   }
 
-  img {
-    background: transparent;
+  @media (min-width: 576px) {
+    nav {
+      .menuAndLogo {
+        .logo {
+          width: 170px;
+          height: 38px;
+          margin: 0.5rem;
+          background-position: bottom;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 668px) {
+    nav {
+      form {
+        div {
+          background: ${(props) => props.theme['--gray-700']};
+
+          input {
+            display: inline-block;
+            padding: 0.25rem;
+            font-size: 1.1rem;
+            background-color: transparent;
+            box-shadow: none;
+            color: ${(props) => props.theme['--gray-200']};
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+    padding: 1rem 1.25rem;
+  }
+
+  @media (min-width: 1200px) {
   }
 `
 
 export const AvatarContainer = styled(Avatar.Root)`
-  min-width: 3.5rem;
-  height: 3rem;
-  border-radius: 8px 8px 0 0;
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
   overflow: hidden;
-  margin: auto 0.5rem 0 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 export const AvatarImage = styled(Avatar.Image)`
@@ -168,7 +149,7 @@ export const AvatarFallback = styled(Avatar.Fallback)`
   border-radius: 8px 8px 0 0;
 
   svg {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 `

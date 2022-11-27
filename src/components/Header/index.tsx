@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { CaretCircleDoubleDown, MagnifyingGlass, User } from 'phosphor-react'
-import { useState } from 'react'
+import { BiMenuAltLeft, BiSearch, BiUser } from 'react-icons/bi'
 import logo from '../../../public/logo.webp'
 import {
   AvatarContainer,
@@ -11,51 +10,48 @@ import {
 } from './styles'
 
 export function Header() {
-  const [isToggleOpen, setIsToggleOpen] = useState(false)
   return (
     <HeaderContainer>
-      <div className={`container ${isToggleOpen && 'toggleOpen'}`}>
-        <nav>
-          <div className="logo">
-            <Link
-              href="/"
-              style={{ backgroundImage: `url('${logo.src}')` }}
-              title="Home"
-            ></Link>
-          </div>
-          <div className="navbar">
-            <Link href="/">Mangás</Link>
-            <Link href="/">Categorias</Link>
-            <Link href="/">Grupos</Link>
-          </div>
-        </nav>
-        <div className="container-form">
+      <nav data-nav id="nav">
+        <div className="menuAndLogo">
+          <button
+            className="menu"
+            onClick={() => {
+              const aside = document.querySelector('#aside')
+              aside?.setAttribute('data-menu', 'menuShow')
+
+              const nav = document.querySelector('#nav')
+              nav?.setAttribute('data-nav', 'navHidden')
+            }}
+          >
+            <BiMenuAltLeft size={32} />
+          </button>
+          <Link
+            href="/"
+            className="logo"
+            style={{ backgroundImage: `url('${logo.src}')` }}
+            title="Home"
+          />
+        </div>
+
+        <div className="formAndAvatar">
+          <Link href="/">
+            <AvatarContainer>
+              <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
+
+              <AvatarFallback delayMs={600}>
+                <BiUser />
+              </AvatarFallback>
+            </AvatarContainer>
+          </Link>
           <form action="">
-            <div className="toggleClose">
-              <button onClick={(e) => e.preventDefault()}>
-                Mangá Sortido! <CaretCircleDoubleDown size={16} weight="bold" />
-              </button>
-              <input type="text" />
+            <div>
+              <input type="text" placeholder="Search" title="Search" />
+              <BiSearch size={28} />
             </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault()
-                setIsToggleOpen(!isToggleOpen)
-              }}
-            >
-              <MagnifyingGlass size={26} weight="bold" />
-            </button>
           </form>
         </div>
-      </div>
-
-      <AvatarContainer>
-        <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
-
-        <AvatarFallback delayMs={600}>
-          <User />
-        </AvatarFallback>
-      </AvatarContainer>
+      </nav>
     </HeaderContainer>
   )
 }

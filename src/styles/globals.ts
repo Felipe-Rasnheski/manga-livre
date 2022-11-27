@@ -31,4 +31,20 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${lato.style.fontFamily}, sans-serif;
     font-weight: 400;
   }
+
+  .container {
+    display: flex;
+
+    .main {
+      flex: 1;
+    }
+  }
+  
+  .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
 `

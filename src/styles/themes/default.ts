@@ -1,5 +1,7 @@
 export const defaultTheme = {
   blue: '#3294F8',
+  background: '#222221',
+  color: '#DEEFEF',
 
   '--gray-100': '#f8f9faff',
   '--gray-200': '#dee2e6ff',
@@ -7,7 +9,7 @@ export const defaultTheme = {
   '--gray-400': '#adb5bdff',
   '--gray-500': '#6c757dff',
   '--gray-600': '#495057ff',
-  '--gray-700': '#343a40ff',
+  '--gray-700': '#313131',
   '--gray-800': '#0c090ffa',
   '--gray-900': '#0a0908',
 
