@@ -1,10 +1,12 @@
 'use client'
+
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Aside } from '../components/aside'
 import { Header } from '../components/Header'
 import { GlobalStyles } from '../styles/globals'
 import { defaultTheme } from '../styles/themes/default'
+import RootStyleRegistry from './RootStyleRegistry'
 
 export default function RootLayout({
   children,
@@ -20,7 +22,7 @@ export default function RootLayout({
             <Aside />
             <main className="main">
               <Header />
-              {children}
+              <RootStyleRegistry>{children}</RootStyleRegistry>
             </main>
           </div>
         </body>

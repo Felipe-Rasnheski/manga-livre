@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+'use client'
 
 import { Lato } from '@next/font/google'
+import { createGlobalStyle } from 'styled-components'
 
 const lato = Lato({
   weight: ['300', '400', '700'],
@@ -25,6 +26,26 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    &::-webkit-scrollbar {
+    width: 0.65rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme['--gray-700']};
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: ${(props) => props.theme['--gray-600']};
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-800']};
+    }
   }
 
   html, body, input, textarea, button {

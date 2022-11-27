@@ -50,6 +50,12 @@ export const HeaderContainer = styled.header`
       gap: 1rem;
       flex-direction: row-reverse;
       align-items: center;
+
+      a {
+        &:focus {
+          border-radius: 9999px;
+        }
+      }
     }
 
     form {

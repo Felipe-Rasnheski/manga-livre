@@ -6,6 +6,9 @@ const nextConfig = {
   images: {
     domains: ['uploads.mangadex.org', 'github.com'],
   },
+  compiler: {
+    styledComponents: true,
+  },
 }
 
 module.exports = nextConfig

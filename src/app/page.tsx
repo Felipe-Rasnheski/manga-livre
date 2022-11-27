@@ -1,5 +1,5 @@
 import MFA from 'mangadex-full-api'
-import Image from 'next/image'
+import { MangaSlide } from './MangaSlide'
 
 export default async function HomePage() {
   const response = await MFA.Manga.search({ limit: 10 })
@@ -8,13 +8,13 @@ export default async function HomePage() {
 
   // const test = await MFA.Cover.get(response[0].mainCover.id)
 
-  const Mangas = await Promise.all(
+  const mangas = await Promise.all(
     response.map(async (manga) => {
       const cover = await MFA.Cover.get(manga.mainCover.id)
 
       return {
         id: manga.id,
-        cover,
+        cover: cover.image256,
         title: manga.title,
         description: manga.description,
       }
@@ -23,23 +23,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      {Mangas.map((manga) => {
-        return (
-          <div key={manga.id}>
-            <Image
-              src={manga.cover.image512}
-              width={256}
-              height={363}
-              priority
-              alt=""
-            />
-            <div>
-              <h3>{manga.title}</h3>
-              <p>{manga.description}</p>
-            </div>
-          </div>
-        )
-      })}
+      <MangaSlide mangas={mangas} />
     </div>
   )
 }
