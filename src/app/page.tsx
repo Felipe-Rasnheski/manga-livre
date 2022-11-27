@@ -1,5 +1,5 @@
 import MFA from 'mangadex-full-api'
-import { MangaSlide } from './MangaSlide'
+import { MangasCarousel } from './MangasCarousel'
 
 export default async function HomePage() {
   const response = await MFA.Manga.search({ limit: 10 })
@@ -23,7 +23,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      <MangaSlide mangas={mangas} />
+      <MangasCarousel mangas={mangas} />
     </div>
   )
 }

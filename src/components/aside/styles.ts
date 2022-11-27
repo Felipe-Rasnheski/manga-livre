@@ -5,6 +5,7 @@ export const AsideContainer = styled.aside`
   width: 15rem;
   padding: 0.5rem 1rem;
   position: absolute;
+  z-index: 1;
   background: ${(props) => props.theme['--gray-700']};
 
   header {

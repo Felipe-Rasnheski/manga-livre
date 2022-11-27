@@ -1,10 +1,13 @@
-'use client'
-
-import { Lato } from '@next/font/google'
+import { Lato, Poppins } from '@next/font/google'
 import { createGlobalStyle } from 'styled-components'
 
 const lato = Lato({
   weight: ['300', '400', '700'],
+  subsets: ['latin'],
+})
+
+export const poppins = Poppins({
+  weight: ['500', '700'],
   subsets: ['latin'],
 })
 
@@ -59,13 +62,5 @@ export const GlobalStyles = createGlobalStyle`
     .main {
       flex: 1;
     }
-  }
-  
-  .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
   }
 `
