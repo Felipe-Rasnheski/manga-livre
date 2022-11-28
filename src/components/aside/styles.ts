@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const AsideContainer = styled.aside`
   display: none;
   width: 15rem;
+  min-width: 15rem;
   padding: 0.5rem 1rem;
   position: absolute;
   z-index: 1;

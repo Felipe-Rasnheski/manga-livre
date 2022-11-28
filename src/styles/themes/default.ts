@@ -5,13 +5,13 @@ export const defaultTheme = {
 
   '--gray-100': '#f8f9faff',
   '--gray-200': '#dee2e6ff',
-  '--gray-300': '#ced4daff',
+  '--gray-300': '#DAD7D0ff',
   '--gray-400': '#adb5bdff',
   '--gray-500': '#6c757dff',
-  '--gray-600': '#495057ff',
-  '--gray-700': '#313131',
+  '--gray-600': '#212121ff',
+  '--gray-700': '#1A1C21ff',
   '--gray-800': '#0c090ffa',
-  '--gray-900': '#0a0908',
+  '--gray-900': '#121318ff',
 
   '--khaki-web': '#b6af9fff',
   '--grullo': '#E5d5A7',
