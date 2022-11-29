@@ -2,8 +2,12 @@ import styled from 'styled-components'
 import { poppins } from '../globals'
 
 export const CarouselContainer = styled.div`
+  width: 100vw;
+  overflow: hidden;
+  padding: 0 1.5rem;
+
   h1 {
-    margin: 0 0 0.5rem 1.5rem;
+    margin-bottom: 0.3rem;
   }
 
   .root {
@@ -21,7 +25,7 @@ export const CarouselContainer = styled.div`
 
 export const CarouselItem = styled.div`
   max-width: 23.75rem;
-  margin-right: 1.51rem;
+  margin-right: 1.5rem;
   position: relative;
   max-height: 15rem;
   background: ${(props) => props.theme['--gray-700']};
@@ -33,6 +37,7 @@ export const CarouselItem = styled.div`
   }
 
   #carouselImage {
+    display: inline-block;
     object-position: center center;
     min-width: 6rem;
     width: 7rem;
@@ -59,19 +64,42 @@ export const CarouselItem = styled.div`
   }
 
   p {
-    max-width: 17rem;
+    width: auto;
     padding: 0 0.65rem;
     display: -webkit-box;
     -webkit-line-clamp: 9;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    word-break: normal;
+    overflow-wrap: anywhere;
     text-align: start;
-    line-break: break-all;
     line-height: 130%;
-    line-break: auto;
+    line-break: strict;
     font-size: 0.9rem;
     font-family: ${poppins.style.fontFamily}, sans-serif;
     font-weight: 500;
     color: ${(props) => props.theme['--gray-300']};
+  }
+
+  @media (max-width: 541px) {
+    max-width: 21rem;
+  }
+
+  @media (min-width: 580px) {
+    max-width: fit-content;
+    width: 25rem;
+  }
+
+  @media (min-width: 700px) {
+    width: max-content;
+    max-width: fit-content;
+
+    #carouselImage {
+      min-width: 8rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    margin-right: 2rem;
   }
 `

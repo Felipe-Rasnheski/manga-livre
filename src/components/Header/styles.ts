@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 1.3rem;
 
   nav {
     height: 3rem;
@@ -122,7 +122,7 @@ export const HeaderContainer = styled.header`
   }
 
   @media (min-width: 992px) {
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.55rem;
   }
 
   @media (min-width: 1200px) {

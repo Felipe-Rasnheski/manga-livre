@@ -19,20 +19,26 @@ interface IMangaSlideProps {
 export function MangasCarousel({ mangas }: IMangaSlideProps) {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33)
 
-  onresize = () => {
+  onresize = () => onResize()
+
+  const onResize = () => {
     if (window.innerWidth > 1000) {
       setCenterSlidePercentage(33)
     }
 
-    if (window.innerWidth < 1000 && window.innerWidth > 700) {
-      setCenterSlidePercentage(50)
+    if (window.innerWidth < 1001 && window.innerWidth > 800) {
+      setCenterSlidePercentage(45)
     }
 
-    if (window.innerWidth < 701 && window.innerWidth > 500) {
+    if (window.innerWidth < 801 && window.innerWidth > 600) {
       setCenterSlidePercentage(60)
     }
 
-    if (window.innerWidth < 501) {
+    if (window.innerWidth < 601 && window.innerWidth > 550) {
+      setCenterSlidePercentage(70)
+    }
+
+    if (window.innerWidth < 551) {
       setCenterSlidePercentage(80)
     }
   }
@@ -70,7 +76,6 @@ export function MangasCarousel({ mangas }: IMangaSlideProps) {
                     alt=""
                   />
                 </div>
-
                 <div>
                   <h3>{manga.title}</h3>
                   <p>{manga.description}</p>

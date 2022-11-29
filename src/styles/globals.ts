@@ -61,6 +61,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .main {
       flex: 1;
+      width: calc(100vw - 15rem);
     }
   }
 `
