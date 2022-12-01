@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { poppins } from '../globals'
+import { poppins } from '../../styles/globals'
 
 export const CarouselContainer = styled.div`
   width: 100vw;
@@ -24,6 +24,7 @@ export const CarouselContainer = styled.div`
 `
 
 export const CarouselItem = styled.div`
+  min-width: 350px;
   max-width: 23.75rem;
   margin-right: 1.5rem;
   position: relative;
@@ -93,13 +94,8 @@ export const CarouselItem = styled.div`
   @media (min-width: 700px) {
     width: max-content;
     max-width: fit-content;
-
-    #carouselImage {
-      min-width: 8rem;
-    }
   }
 
   @media (min-width: 900px) {
-    margin-right: 2rem;
   }
 `

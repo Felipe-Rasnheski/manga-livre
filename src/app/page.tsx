@@ -1,8 +1,10 @@
 import MFA from 'mangadex-full-api'
-import { MangasCarousel } from './MangasCarousel'
+import { MangasCarousel } from '../components/carousel'
 
 export default async function HomePage() {
-  const response = await MFA.Manga.search({ limit: 10 })
+  const response = await MFA.Manga.search({
+    limit: 10,
+  })
   // https://api.mangadex.org/manga?includes%5B%5D=%27
   // MFA.resolveArray(response[0].mainCover)
 

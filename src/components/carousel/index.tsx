@@ -5,45 +5,46 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { CarouselContainer, CarouselItem } from '../styles/app/carousel'
+import { CarouselContainer, CarouselItem } from './styles'
 
-interface IMangaSlideProps {
+interface IMangaCarouselProps {
   mangas: {
     id: string
-    description: string
     cover: string
     title: string
+    description: string
   }[]
 }
-
-export function MangasCarousel({ mangas }: IMangaSlideProps) {
+export function MangasCarousel({ mangas }: IMangaCarouselProps) {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33)
 
-  onresize = () => onResize()
+  if (typeof window !== 'undefined') {
+    window.onresize = () => {
+      if (window.innerWidth < 1100) {
+        setCenterSlidePercentage(33)
+      }
 
-  const onResize = () => {
-    if (window.innerWidth > 1000) {
-      setCenterSlidePercentage(33)
-    }
+      if (window.innerWidth < 1101 && window.innerWidth > 1000) {
+        setCenterSlidePercentage(40)
+      }
 
-    if (window.innerWidth < 1001 && window.innerWidth > 800) {
-      setCenterSlidePercentage(45)
-    }
+      if (window.innerWidth < 1001 && window.innerWidth > 800) {
+        setCenterSlidePercentage(45)
+      }
 
-    if (window.innerWidth < 801 && window.innerWidth > 600) {
-      setCenterSlidePercentage(60)
-    }
+      if (window.innerWidth < 801 && window.innerWidth > 600) {
+        setCenterSlidePercentage(60)
+      }
 
-    if (window.innerWidth < 601 && window.innerWidth > 550) {
-      setCenterSlidePercentage(70)
-    }
+      if (window.innerWidth < 601 && window.innerWidth > 550) {
+        setCenterSlidePercentage(70)
+      }
 
-    if (window.innerWidth < 551) {
-      setCenterSlidePercentage(80)
+      if (window.innerWidth < 551) {
+        setCenterSlidePercentage(75)
+      }
     }
   }
-
-  console.log(centerSlidePercentage)
 
   return (
     <CarouselContainer>
@@ -66,7 +67,7 @@ export function MangasCarousel({ mangas }: IMangaSlideProps) {
         {mangas.map((manga) => {
           return (
             <CarouselItem key={manga.id}>
-              <Link href="/">
+              <Link href={`/manga/${manga.id}`}>
                 <div id="carouselImage">
                   <Image
                     src={manga.cover}
