@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
-import MFA from 'mangadex-full-api'
+import axios from 'axios'
 import Image from 'next/image'
 import { AiOutlineFlag } from 'react-icons/ai'
 import { BiBookOpen, BiListPlus, BiStar, BiUpload } from 'react-icons/bi'
@@ -13,71 +12,167 @@ type Props = {
   params: Params
 }
 
-interface IManga {
-  id: string
-  attributes: {
-    title: string
-    tags: []
-  }
-  relationships: []
-}
-
-type data = { data: IManga[] }
-
 export default async function Manga({ params }: Props) {
-  const responseManga = await MFA.Manga.get(params.id, true)
-
-  const responseCover = await MFA.Cover.get(responseManga.mainCover.id)
-
-  const responseAuthor = await MFA.Author.get(responseManga.authors[0].id)
-
-  const { data } = await axios.get<any, AxiosResponse<data, any>, any>(
-    'https://api.mangadex.org/manga?limit=10&includedTagsMode=AND&excludedTagsMode=OR&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica&order%5BlatestUploadedChapter%5D=desc&includes%5B%5D=cover_art&includes%5B%5D=author',
+  // 'https://api.mangadex.org/manga?limit=10&includedTagsMode=AND&excludedTagsMode=OR&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica&order%5BlatestUploadedChapter%5D=desc&includes%5B%5D=cover_art&includes%5B%5D=author',
+  const response = await axios.get(
+    `https://api.mangadex.org/manga/${params.id}`,
+    {
+      params: {
+        includes: ['cover_art', 'author', 'artist', 'tag'],
+      },
+    },
   )
+  const { data } = response.data
+
+  const coverData = data.relationships.find(
+    (relation: any) => relation.type === 'cover_art',
+  )
+
+  const { title, altTitles, description, originalLanguage, tags } =
+    data.attributes
+
+  const altTitle = altTitles
+    .reverse()
+    .find(
+      (title: any) =>
+        title.en ||
+        title.ja ||
+        Object.keys(title).toString() === originalLanguage,
+    )
+
+  const author = data.relationships.find(
+    (relation) => relation.type === 'author',
+  )
+
+  const coverUrl = `https://uploads.mangadex.org/covers/${data.id}/${coverData.attributes.fileName}`
 
   return (
     <MangaContainer>
       <div className="bannerBackground">
         <div
           style={{
-            backgroundImage: `url(${responseCover.image512})`,
+            backgroundImage: `url(${coverUrl})`,
           }}
         >
           <span className="gradient" />
         </div>
       </div>
-      <div>
-        <Image src={responseCover.image256} width={200} height={310} alt="" />
-        <div>
-          <div>
-            <span>
-              <h1>{responseManga.title}</h1>
-              {responseManga.localizedTitle.localString}
-            </span>
-            <span>{responseAuthor.name}</span>
+      <div className="mangaInfo">
+        <div className="imageAndTitle">
+          <Image src={coverUrl} width={200} height={310} alt="" />
+          <div className="authorAndTitle">
+            <h1>{title?.en}</h1>
+            <strong>
+              <span>{Object.values(altTitle)}</span>
+              <span>{author.attributes.name}</span>
+            </strong>
           </div>
-          <div>
-            <div>
+        </div>
+        <div className="containerActions">
+          <div className="actions">
+            <div className="buttons">
               <button>Add to library</button>
               <button>
-                <BiStar />
+                <BiStar size={28} />
               </button>
               <button>
-                <BiListPlus />
+                <BiListPlus size={28} />
               </button>
               <button>
-                <BiBookOpen />
+                <BiBookOpen size={28} />
               </button>
               <button>
-                <AiOutlineFlag />
+                <AiOutlineFlag size={28} />
               </button>
               <button>
-                <BiUpload />
+                <BiUpload size={28} />
               </button>
             </div>
-            <div>
-              <span>{data.data[0].attributes.tags[0].attributes.name.en}</span>
+            <div className="tags">
+              {tags.map((tag: any) => {
+                return (
+                  <span key={tag.id}>{Object.values(tag.attributes.name)}</span>
+                )
+              })}
             </div>
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
+            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
+            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Rem at cupiditate similique corporis eaque, impedit magnam
+            voluptatibus totam incidunt repellat porro facilis explicabo
+            distinctio debitis ex ratione provident repudiandae minima. Lorem
+            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
+            officia, provident quo consequuntur dolorum animi debitis veniam
+            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
+            assumenda eius, ad consequatur doloremque explicabo?
           </div>
         </div>
       </div>

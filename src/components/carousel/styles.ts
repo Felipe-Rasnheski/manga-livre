@@ -38,6 +38,7 @@ export const CarouselItem = styled.div`
   }
 
   #carouselImage {
+    position: relative;
     display: inline-block;
     object-position: center center;
     min-width: 6rem;

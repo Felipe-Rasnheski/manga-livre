@@ -14,26 +14,30 @@ export default async function HomePage() {
     params: {
       title: '',
       limit: 10,
-      includes: ['cover_art', 'author'],
+      includes: ['cover_art'],
     },
   })
 
-  const mangas = response.data.data.map((manga: any) => {
-    return {
-      id: manga.id,
-      cover: response.data.data[0].relationships[2].attributes.fileName,
-      title: manga,
-      description: manga.attributes.description,
-    }
-  })
+  const mangas = await Promise.all(
+    response.data.data.map(async (manga: any) => {
+      const coverData = manga.relationships.find(
+        (relation: any) => relation.type === 'cover_art',
+      )
 
-  // const mangas = await Promise.all(
-  //   response.map(async (manga) => {
-  //     const cover = await MFA.Cover.get(manga.mainCover.id)
+      const cover = `https://uploads.mangadex.org/covers/${manga.id}/${coverData.attributes.fileName}`
+
+      return {
+        id: manga.id,
+        cover,
+        title: manga.attributes.title.en,
+        description: manga.attributes.description.en,
+      }
+    }),
+  )
 
   return (
     <div>
-      <MangasCarousel mangas={mangas} />
+      <MangasCarousel mangas={mangas} />{' '}
     </div>
   )
 }
