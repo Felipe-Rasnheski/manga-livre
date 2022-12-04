@@ -5,6 +5,7 @@ export const CarouselContainer = styled.div`
   width: 100vw;
   overflow: hidden;
   padding: 0 1.5rem;
+  margin-top: 4rem;
 
   h1 {
     margin-bottom: 0.3rem;

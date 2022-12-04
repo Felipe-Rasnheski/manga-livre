@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Image from 'next/image'
-import { AiOutlineFlag } from 'react-icons/ai'
 import { BiBookOpen, BiListPlus, BiStar, BiUpload } from 'react-icons/bi'
+import { DialogReport } from '../../../components/Dialogs/DialogReport'
 import { MangaContainer } from './styles'
 
 type Params = {
@@ -41,11 +41,10 @@ export default async function Manga({ params }: Props) {
     )
 
   const author = data.relationships.find(
-    (relation) => relation.type === 'author',
+    (relation: any) => relation.type === 'author',
   )
 
   const coverUrl = `https://uploads.mangadex.org/covers/${data.id}/${coverData.attributes.fileName}`
-
   return (
     <MangaContainer>
       <div className="bannerBackground">
@@ -59,7 +58,7 @@ export default async function Manga({ params }: Props) {
       </div>
       <div className="mangaInfo">
         <div className="imageAndTitle">
-          <Image src={coverUrl} width={200} height={310} alt="" />
+          <Image src={coverUrl} width={200} height={310} priority alt="" />
           <div className="authorAndTitle">
             <h1>{title?.en}</h1>
             <strong>
@@ -73,19 +72,23 @@ export default async function Manga({ params }: Props) {
             <div className="buttons">
               <button>Add to library</button>
               <button>
-                <BiStar size={28} />
+                <BiStar size={28} title="Rate" />
               </button>
               <button>
-                <BiListPlus size={28} />
+                <BiListPlus size={28} title="Add to list" />
               </button>
               <button>
-                <BiBookOpen size={28} />
+                <BiBookOpen size={28} title="Read" />
               </button>
+
+              <DialogReport
+                mangaId={data.id}
+                imageUrl={coverUrl}
+                title={title.en}
+              />
+
               <button>
-                <AiOutlineFlag size={28} />
-              </button>
-              <button>
-                <BiUpload size={28} />
+                <BiUpload size={28} title="Upload" />
               </button>
             </div>
             <div className="tags">

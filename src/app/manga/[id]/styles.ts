@@ -3,6 +3,8 @@
 import styled from 'styled-components'
 
 export const MangaContainer = styled.div`
+  margin-top: 5rem;
+
   .bannerBackground {
     position: fixed;
     z-index: -1;
@@ -29,8 +31,6 @@ export const MangaContainer = styled.div`
   }
 
   .mangaInfo {
-    margin-top: 0.5rem;
-
     .imageAndTitle {
       padding: 0 1.6rem;
       display: flex;
@@ -48,7 +48,14 @@ export const MangaContainer = styled.div`
         height: auto;
 
         h1 {
+          color: ${(props) => props.theme['--gray-100']};
           font-size: 4.5rem;
+          line-height: 110%;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         strong {
@@ -58,6 +65,15 @@ export const MangaContainer = styled.div`
           justify-content: space-between;
           padding-bottom: 0.75rem;
           font-size: 1.2rem;
+          color: ${(props) => props.theme['--gray-200']};
+
+          span {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
       }
     }
@@ -109,7 +125,7 @@ export const MangaContainer = styled.div`
           span {
             background: ${(props) => props.theme['--gray-900']};
             border-radius: 4px;
-            padding: 0 0.25rem 0.25rem 0.25rem;
+            padding: 0.25rem;
             font-size: 0.9rem;
 
             &:nth-child(1) {
@@ -118,6 +134,7 @@ export const MangaContainer = styled.div`
 
             &:hover {
               cursor: pointer;
+              opacity: 0.9;
             }
           }
         }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { MangasCarousel } from '../components/carousel'
+import { MangasCarousel } from '../components/Carousel'
 
 export default async function HomePage() {
   // const response = await MFA.Manga.search({
@@ -37,7 +37,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      <MangasCarousel mangas={mangas} />{' '}
+      <MangasCarousel mangas={mangas} />
     </div>
   )
 }

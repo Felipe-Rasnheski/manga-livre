@@ -10,8 +10,26 @@ import {
 } from './styles'
 
 export function Header() {
+  if (typeof window !== 'undefined') {
+    window.onscroll = () => {
+      const header = document.getElementById('header')
+
+      if (window.scrollY === 0) {
+        header?.setAttribute('data-scrolly', '')
+      }
+
+      if (window.scrollY > 0 && window.scrollY < 55) {
+        header?.setAttribute('data-scrolly', 'scrollDown')
+      }
+
+      if (window.scrollY > 54) {
+        header?.setAttribute('data-scrolly', 'scrollDownDown')
+      }
+    }
+  }
+
   return (
-    <HeaderContainer>
+    <HeaderContainer data-scrolly="" id="header">
       <nav data-nav id="nav">
         <div className="menuAndLogo">
           <button

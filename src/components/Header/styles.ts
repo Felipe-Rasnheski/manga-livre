@@ -2,8 +2,22 @@ import * as Avatar from '@radix-ui/react-avatar'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
+  width: 100vw;
+  position: fixed;
+  z-index: 2;
   display: flex;
   padding: 0.5rem 1.3rem;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &[data-scrollY='scrollDown'] {
+    background-color: ${(props) => props.theme['--gray-900']};
+    border-bottom: 1px solid ${(props) => props.theme['--khaki-web']};
+  }
+
+  &[data-scrollY='scrollDownDown'] {
+    background-color: ${(props) => props.theme['--gray-800']};
+    border-bottom: 1px solid ${(props) => props.theme['--grullo']};
+  }
 
   nav {
     height: 3rem;
