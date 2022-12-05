@@ -11,8 +11,8 @@ interface IMangaCarouselProps {
   mangas: {
     id: string
     cover: string
-    title: string
-    description: string
+    mangaTitle: string
+    mangaDescription: string
   }[]
 }
 export function MangasCarousel({ mangas }: IMangaCarouselProps) {
@@ -78,8 +78,8 @@ export function MangasCarousel({ mangas }: IMangaCarouselProps) {
                   />
                 </div>
                 <div>
-                  <h3>{manga.title}</h3>
-                  <p>{manga.description}</p>
+                  <h3>{manga.mangaTitle}</h3>
+                  <p>{manga.mangaDescription}</p>
                 </div>
               </Link>
             </CarouselItem>

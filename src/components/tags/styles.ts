@@ -1,6 +1,7 @@
 'use client'
 
 import styled from 'styled-components'
+import { poppins } from '../../styles/globals'
 
 export const TagsContainer = styled.div`
   margin-top: 0.75rem;
@@ -39,6 +40,7 @@ export const TagsContainer = styled.div`
   }
 
   span {
+    font-family: ${poppins.style.fontFamily}, sans-serif;
     background: ${(props) => props.theme['--gray-900']};
     border-radius: 4px;
     padding: 0.25rem;
@@ -59,7 +61,7 @@ export const TagsContainer = styled.div`
 
   .more {
     &::after {
-      content: 'More';
+      content: 'More...';
       color: ${(props) => props.theme['--khaki-web']};
       border-bottom: 1px solid ${(props) => props.theme['--khaki-web']};
     }

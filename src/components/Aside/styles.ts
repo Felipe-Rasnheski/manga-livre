@@ -120,7 +120,6 @@ export const AsideContainer = styled.aside`
 
     a.active,
     button.active {
-      padding-left: 0.5rem;
       background: ${(props) => props.theme['--khaki-web']};
       box-shadow: none;
       font-weight: bold;

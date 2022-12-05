@@ -1,10 +1,18 @@
 import axios from 'axios'
 import Image from 'next/image'
-import { BiBookOpen, BiListPlus, BiUpload } from 'react-icons/bi'
+import { AiOutlineEye } from 'react-icons/ai'
+import {
+  BiBookmark,
+  BiBookOpen,
+  BiListPlus,
+  BiStar,
+  // eslint-disable-next-line prettier/prettier
+  BiUpload
+} from 'react-icons/bi'
 import { DialogReport } from '../../../components/Dialogs/DialogReport'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/tags'
-import { MangaContainer } from './styles'
+import { MangaContainer, Status } from './styles'
 
 type Params = {
   id: string
@@ -30,8 +38,15 @@ export default async function Manga({ params }: Props) {
     (relation: any) => relation.type === 'cover_art',
   )
 
-  const { title, altTitles, description, originalLanguage, tags } =
-    data.attributes
+  const {
+    title,
+    altTitles,
+    description,
+    originalLanguage,
+    tags,
+    status,
+    createdAt,
+  } = data.attributes
 
   const altTitle = altTitles
     .reverse()
@@ -46,7 +61,11 @@ export default async function Manga({ params }: Props) {
     (relation: any) => relation.type === 'author',
   )
 
+  const mangaTitle = title.en ? title.en : title[originalLanguage]
   const coverUrl = `https://uploads.mangadex.org/covers/${data.id}/${coverData.attributes.fileName}`
+  const mangaDescription = description.en
+    ? description.en
+    : description[originalLanguage]
 
   return (
     <MangaContainer>
@@ -63,7 +82,7 @@ export default async function Manga({ params }: Props) {
         <div className="imageAndTitle">
           <Image src={coverUrl} width={200} height={310} priority alt="" />
           <div className="authorAndTitle">
-            <h1>{title?.en}</h1>
+            <h1>{mangaTitle}</h1>
             <strong>
               <span>{Object.values(altTitle)}</span>
               <span>{author.attributes.name}</span>
@@ -85,7 +104,7 @@ export default async function Manga({ params }: Props) {
               <DialogReport
                 mangaId={data.id}
                 imageUrl={coverUrl}
-                title={title.en}
+                title={mangaTitle}
               />
 
               <button>
@@ -93,85 +112,35 @@ export default async function Manga({ params }: Props) {
               </button>
             </div>
             <Tags tags={tags} />
+            <div className="statusContainer">
+              <div className="publicationStatus">
+                {status === 'completed' && <Status statusColor="blue" />}
+                {status === 'ongoing' && <Status statusColor="green" />}
+                {status === 'hiatus' && <Status statusColor="yellow" />}
+                {status === 'cancelled' && <Status statusColor="red" />}
+                <strong>
+                  publication: {new Date(createdAt).getFullYear()} ,{status}
+                </strong>
+              </div>
+              <div className="statistics">
+                <span className="stars">
+                  <BiStar size={20} />
+                  9.51
+                </span>
+                <span className="marks">
+                  <BiBookmark size={20} />
+                  98k
+                </span>
+                <span className="eye">
+                  <AiOutlineEye size={20} />
+                  N/A
+                </span>
+              </div>
+            </div>
           </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            molestias laboriosam reprehenderit quibusdam, animi ea delectus est
-            vero. Ea enim quam ad maxime perspiciatis harum? Obcaecati eos
-            maiores et ea. Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Rem at cupiditate similique corporis eaque, impedit magnam
-            voluptatibus totam incidunt repellat porro facilis explicabo
-            distinctio debitis ex ratione provident repudiandae minima. Lorem
-            ipsum dolor sit amet consectetur, adipisicing elit. Corporis
-            officia, provident quo consequuntur dolorum animi debitis veniam
-            inventore autem tenetur asperiores perferendis. Ipsum repudiandae
-            assumenda eius, ad consequatur doloremque explicabo?
-          </div>
+        </div>
+        <div>
+          <p>{mangaDescription}</p>
         </div>
       </div>
     </MangaContainer>

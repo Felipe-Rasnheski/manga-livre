@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { TagsContainer } from './styles'
 
 type attributes = {
@@ -35,6 +36,33 @@ export function Tags({ tags }: TagsProps) {
       more?.setAttribute('data-more', 'hidden')
     }
   }
+
+  function isOverflown() {
+    const tagsParagraph = document.getElementById('tagsParagraph')
+
+    let isOverflowing: boolean = false
+
+    if (
+      tagsParagraph?.clientHeight !== undefined &&
+      tagsParagraph?.clientWidth !== undefined
+    ) {
+      isOverflowing =
+        tagsParagraph?.scrollHeight > tagsParagraph?.clientHeight ||
+        tagsParagraph?.scrollWidth > tagsParagraph?.clientWidth
+    }
+
+    const more = document.getElementById('more')
+
+    if (isOverflowing) {
+      tagsParagraph?.setAttribute('data-paragraph', '')
+      more?.setAttribute('data-more', '')
+    } else {
+      more?.setAttribute('data-more', 'hidden')
+    }
+  }
+
+  useEffect(() => isOverflown(), [])
+  window.onresize = () => isOverflown()
 
   return (
     <TagsContainer>
