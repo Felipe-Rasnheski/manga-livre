@@ -5,17 +5,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { MangaBasic } from '../../types/types'
 import { CarouselContainer, CarouselItem } from './styles'
 
-interface IMangaCarouselProps {
-  mangas: {
-    id: string
-    cover: string
-    mangaTitle: string
-    mangaDescription: string
-  }[]
-}
-export function MangasCarousel({ mangas }: IMangaCarouselProps) {
+type MangasCarouselProps = { mangas: MangaBasic[] }
+
+export function MangasCarousel({ mangas }: MangasCarouselProps) {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33)
 
   if (typeof window !== 'undefined') {
@@ -70,7 +65,7 @@ export function MangasCarousel({ mangas }: IMangaCarouselProps) {
               <Link href={`/manga/${manga.id}`}>
                 <div id="carouselImage">
                   <Image
-                    src={manga.cover}
+                    src={manga.coverUrl}
                     width={256}
                     height={300}
                     priority
@@ -78,8 +73,8 @@ export function MangasCarousel({ mangas }: IMangaCarouselProps) {
                   />
                 </div>
                 <div>
-                  <h3>{manga.mangaTitle}</h3>
-                  <p>{manga.mangaDescription}</p>
+                  <h3>{manga.title}</h3>
+                  <p>{manga.description}</p>
                 </div>
               </Link>
             </CarouselItem>

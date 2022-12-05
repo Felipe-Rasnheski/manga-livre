@@ -129,6 +129,7 @@ export const MangaContainer = styled.div`
 
   .statusContainer {
     padding: 0.25rem 0;
+    cursor: default;
 
     .publicationStatus {
       display: flex;

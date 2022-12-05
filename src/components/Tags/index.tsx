@@ -1,24 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
+import { tag } from '../../types/types'
 import { TagsContainer } from './styles'
 
-type attributes = {
-  name: {}
-  version: number
-  group: string
-  description: {}
-}
-
-interface TagProps {
-  id: string
-  type: 'tag'
-  attributes: attributes
-  relationships: []
-}
-
 type TagsProps = {
-  tags: TagProps[]
+  tags: tag[]
 }
 
 export function Tags({ tags }: TagsProps) {
@@ -62,7 +49,10 @@ export function Tags({ tags }: TagsProps) {
   }
 
   useEffect(() => isOverflown(), [])
-  window.onresize = () => isOverflown()
+
+  if (typeof window !== 'undefined') {
+    window.onresize = () => isOverflown()
+  }
 
   return (
     <TagsContainer>

@@ -15,12 +15,14 @@ export function RateManga() {
     }
   }
 
-  window.onclick = () => {
-    const rateOptions = document.getElementById('rateOptions')
-    const dataRate = rateOptions?.getAttribute('data-rate-options')
+  if (typeof window !== 'undefined') {
+    window.onclick = () => {
+      const rateOptions = document.getElementById('rateOptions')
+      const dataRate = rateOptions?.getAttribute('data-rate-options')
 
-    if (dataRate === 'show') {
-      rateOptions?.setAttribute('data-rate-options', '')
+      if (dataRate === 'show') {
+        rateOptions?.setAttribute('data-rate-options', '')
+      }
     }
   }
 

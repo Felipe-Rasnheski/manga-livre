@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Image from 'next/image'
 import { AiOutlineEye } from 'react-icons/ai'
 import {
@@ -10,8 +9,10 @@ import {
   BiUpload
 } from 'react-icons/bi'
 import { DialogReport } from '../../../components/Dialogs/DialogReport'
+import { FeedManga } from '../../../components/FeedManga'
 import { RateManga } from '../../../components/RateManga'
-import { Tags } from '../../../components/tags'
+import { Tags } from '../../../components/Tags'
+import { getManga } from '../../../utils/getManga'
 import { MangaContainer, Status } from './styles'
 
 type Params = {
@@ -23,56 +24,14 @@ type Props = {
 }
 
 export default async function Manga({ params }: Props) {
-  // 'https://api.mangadex.org/manga?limit=10&includedTagsMode=AND&excludedTagsMode=OR&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica&order%5BlatestUploadedChapter%5D=desc&includes%5B%5D=cover_art&includes%5B%5D=author',
-  const response = await axios.get(
-    `https://api.mangadex.org/manga/${params.id}`,
-    {
-      params: {
-        includes: ['cover_art', 'author', 'artist', 'tag'],
-      },
-    },
-  )
-  const { data } = response.data
-
-  const coverData = data.relationships.find(
-    (relation: any) => relation.type === 'cover_art',
-  )
-
-  const {
-    title,
-    altTitles,
-    description,
-    originalLanguage,
-    tags,
-    status,
-    createdAt,
-  } = data.attributes
-
-  const altTitle = altTitles
-    .reverse()
-    .find(
-      (title: any) =>
-        title.en ||
-        title.ja ||
-        Object.keys(title).toString() === originalLanguage,
-    )
-
-  const author = data.relationships.find(
-    (relation: any) => relation.type === 'author',
-  )
-
-  const mangaTitle = title.en ? title.en : title[originalLanguage]
-  const coverUrl = `https://uploads.mangadex.org/covers/${data.id}/${coverData.attributes.fileName}`
-  const mangaDescription = description.en
-    ? description.en
-    : description[originalLanguage]
+  const manga = await getManga(params.id)
 
   return (
     <MangaContainer>
       <div className="bannerBackground">
         <div
           style={{
-            backgroundImage: `url(${coverUrl})`,
+            backgroundImage: `url(${manga.coverUrl})`,
           }}
         >
           <span className="gradient" />
@@ -80,12 +39,18 @@ export default async function Manga({ params }: Props) {
       </div>
       <div className="mangaInfo">
         <div className="imageAndTitle">
-          <Image src={coverUrl} width={200} height={310} priority alt="" />
+          <Image
+            src={manga.coverUrl}
+            width={200}
+            height={310}
+            priority
+            alt=""
+          />
           <div className="authorAndTitle">
-            <h1>{mangaTitle}</h1>
+            <h1>{manga.title}</h1>
             <strong>
-              <span>{Object.values(altTitle)}</span>
-              <span>{author.attributes.name}</span>
+              <span>{Object.values(manga.altTitle)}</span>
+              <span>{manga.authorName}</span>
             </strong>
           </div>
         </div>
@@ -102,24 +67,25 @@ export default async function Manga({ params }: Props) {
               </button>
 
               <DialogReport
-                mangaId={data.id}
-                imageUrl={coverUrl}
-                title={mangaTitle}
+                mangaId={manga.id}
+                imageUrl={manga.coverUrl}
+                title={manga.title}
               />
 
               <button>
                 <BiUpload size={28} title="Upload" />
               </button>
             </div>
-            <Tags tags={tags} />
+            <Tags tags={manga.tags} />
             <div className="statusContainer">
               <div className="publicationStatus">
-                {status === 'completed' && <Status statusColor="blue" />}
-                {status === 'ongoing' && <Status statusColor="green" />}
-                {status === 'hiatus' && <Status statusColor="yellow" />}
-                {status === 'cancelled' && <Status statusColor="red" />}
+                {manga.status === 'completed' && <Status statusColor="blue" />}
+                {manga.status === 'ongoing' && <Status statusColor="green" />}
+                {manga.status === 'hiatus' && <Status statusColor="yellow" />}
+                {manga.status === 'cancelled' && <Status statusColor="red" />}
                 <strong>
-                  publication: {new Date(createdAt).getFullYear()} ,{status}
+                  publication: {new Date(manga.createdAt).getFullYear()} ,
+                  {manga.status}
                 </strong>
               </div>
               <div className="statistics">
@@ -140,9 +106,10 @@ export default async function Manga({ params }: Props) {
           </div>
         </div>
         <div>
-          <p>{mangaDescription}</p>
+          <p>{manga.description}</p>
         </div>
       </div>
+      <FeedManga mangaId={manga.id} />
     </MangaContainer>
   )
 }

@@ -23,7 +23,6 @@ export function Select() {
 
     const options = document.getElementById('options')
     options?.setAttribute('data-select', 'close')
-    console.log(options)
 
     if (newValueSelected) {
       setValueSelected(newValueSelected)
