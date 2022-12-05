@@ -15,21 +15,28 @@ export function Select() {
 
     lastSelected.push(itemId.id)
 
+    const selected = document.getElementById(
+      lastSelected[lastSelected.length - 2],
+    )
+
+    selected?.removeAttribute('data-option')
+
+    const options = document.getElementById('options')
+    options?.setAttribute('data-select', 'close')
+    console.log(options)
+
     if (newValueSelected) {
       setValueSelected(newValueSelected)
       e.currentTarget.setAttribute('data-option', 'active')
     }
-
-    if (lastSelected.length > 1) {
-      const selected = document.getElementById(
-        lastSelected[lastSelected.length - 1],
-      )
-
-      selected?.removeAttribute('data-option')
-    }
   }
 
   function handleSelect() {
+    const reportReason = document.getElementById('reportReason')
+    reportReason?.setAttribute('data-report-reason', 'show')
+    const valueSelected = document.getElementById('valueSelected')
+    valueSelected?.setAttribute('data-report-reason', 'show')
+
     const options = document.getElementById('options')
 
     const dataSelect = options?.getAttribute('data-select')
@@ -40,10 +47,14 @@ export function Select() {
     if (dataSelect === 'close') {
       options?.setAttribute('data-select', 'open')
 
+      valueSelected?.setAttribute('data-select', 'open')
+
       iconChevronDown?.setAttribute('data-icon', '')
       iconChevronUp?.setAttribute('data-icon', 'hidden')
     } else {
       options?.setAttribute('data-select', 'close')
+
+      valueSelected?.setAttribute('data-select', '')
 
       iconChevronDown?.setAttribute('data-icon', 'hidden')
       iconChevronUp?.setAttribute('data-icon', '')
@@ -52,16 +63,23 @@ export function Select() {
 
   return (
     <SelectContainer>
-      <span data-select="close" className="floatMsg">
+      <span className="reportReason" id="reportReason" data-report-reason="">
         Report Reason
       </span>
-      <div className="select" onClick={handleSelect}>
-        <span>{valueSelected}</span>
+      <button className="select" onClick={handleSelect}>
+        <span
+          className="valueSelected"
+          id="valueSelected"
+          data-select=""
+          data-report-reason=""
+        >
+          {valueSelected}
+        </span>
         <span>
           <BiChevronDown size={26} id="ChevronDown" data-icon="" />
           <BiChevronUp size={26} id="ChevronUp" data-icon="hidden" />
         </span>
-      </div>
+      </button>
       <div data-select="close" className="options" id="options">
         <span
           onClick={(e) => handleSetSelected(e, { id: 'option1' })}

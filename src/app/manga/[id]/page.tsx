@@ -1,7 +1,9 @@
 import axios from 'axios'
 import Image from 'next/image'
-import { BiBookOpen, BiListPlus, BiStar, BiUpload } from 'react-icons/bi'
+import { BiBookOpen, BiListPlus, BiUpload } from 'react-icons/bi'
 import { DialogReport } from '../../../components/Dialogs/DialogReport'
+import { RateManga } from '../../../components/RateManga'
+import { Tags } from '../../../components/tags'
 import { MangaContainer } from './styles'
 
 type Params = {
@@ -45,6 +47,7 @@ export default async function Manga({ params }: Props) {
   )
 
   const coverUrl = `https://uploads.mangadex.org/covers/${data.id}/${coverData.attributes.fileName}`
+
   return (
     <MangaContainer>
       <div className="bannerBackground">
@@ -70,10 +73,8 @@ export default async function Manga({ params }: Props) {
         <div className="containerActions">
           <div className="actions">
             <div className="buttons">
-              <button>Add to library</button>
-              <button>
-                <BiStar size={28} title="Rate" />
-              </button>
+              <button className="library">Add to library</button>
+              <RateManga />
               <button>
                 <BiListPlus size={28} title="Add to list" />
               </button>
@@ -91,13 +92,7 @@ export default async function Manga({ params }: Props) {
                 <BiUpload size={28} title="Upload" />
               </button>
             </div>
-            <div className="tags">
-              {tags.map((tag: any) => {
-                return (
-                  <span key={tag.id}>{Object.values(tag.attributes.name)}</span>
-                )
-              })}
-            </div>
+            <Tags tags={tags} />
           </div>
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid

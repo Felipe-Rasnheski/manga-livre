@@ -43,8 +43,9 @@ export function DialogReport({ mangaId, imageUrl, title }: DialogReportProps) {
                 <span>Reason</span>
                 <Select />
                 <textarea
-                  name=""
-                  id=""
+                  name="additional"
+                  id="textarea"
+                  className="textarea"
                   cols={30}
                   rows={10}
                   placeholder="Additional Explanation"
@@ -52,11 +53,11 @@ export function DialogReport({ mangaId, imageUrl, title }: DialogReportProps) {
               </div>
             </div>
           </Dialog.Description>
-          <div>
+          <div className="closeAndSend">
+            <button className="send">Send Report</button>
             <Dialog.Close asChild>
-              <button>Cancel</button>
+              <button className="cancel">Cancel</button>
             </Dialog.Close>
-            <button>Send Report</button>
           </div>
         </DialogContent>
       </Dialog.Portal>

@@ -12,6 +12,8 @@ export const DialogOverlay = styled(Dialog.Overlay)`
   z-index: 2;
 `
 
+export const ContainerDialog = styled.div``
+
 export const DialogContent = styled(Dialog.Content)`
   position: fixed;
   top: 50%;
@@ -23,6 +25,14 @@ export const DialogContent = styled(Dialog.Content)`
   box-shadow: none;
   width: 50vw;
   border-radius: 4px;
+  padding: 3rem;
+  height: 100vh;
+  overflow-y: auto;
+  margin: 2rem;
+
+  .content {
+    padding-bottom: 4rem;
+  }
 
   .title {
     font-size: 1.5rem;
@@ -65,7 +75,68 @@ export const DialogContent = styled(Dialog.Content)`
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
+      .textarea {
+        padding: 1rem;
+        background: ${(props) => props.theme['--gray-700']};
+        color: ${(props) => props.theme['--gray-200']};
+        font-size: 1.1rem;
+
+        &::placeholder {
+          color: ${(props) => props.theme['--gray-400']};
+        }
+      }
     }
+  }
+
+  .closeAndSend {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+
+    button {
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: ${(props) => props.theme['--gray-100']};
+
+      &:hover {
+        transition: background-color 0.2s;
+        cursor: pointer;
+        background: ${(props) => props.theme['--gray-900']};
+      }
+    }
+
+    .send {
+      background: ${(props) => props.theme.background};
+    }
+
+    .cancel {
+      background: ${(props) => props.theme['--gray-700']};
+
+      &:hover {
+        background: ${(props) => props.theme['--gray-700']};
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-600']};
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: ${(props) => props.theme['--gray-600']};
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-800']};
   }
 `
 

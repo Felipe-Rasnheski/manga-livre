@@ -85,6 +85,7 @@ export const MangaContainer = styled.div`
         padding: 0.75rem 0;
         margin-left: 15.2rem;
         margin-bottom: 2rem;
+        margin-right: 1.6rem;
 
         div {
           display: flex;
@@ -99,44 +100,22 @@ export const MangaContainer = styled.div`
             background: ${(props) => props.theme['--gray-600']};
             border-radius: 4px;
 
-            &:nth-child(1) {
-              background: ${(props) => props.theme['--gray-900']};
-              font-size: 1.2rem;
-              width: 15rem;
-            }
-
             &:hover {
               cursor: pointer;
               color: ${(props) => props.theme['--gray-100']};
               opacity: 0.7;
             }
           }
+
+          .library {
+            background: ${(props) => props.theme['--gray-900']};
+            font-size: 1.2rem;
+            width: 15rem;
+          }
         }
 
         .buttons {
           height: 3rem;
-        }
-
-        .tags {
-          display: flex;
-          margin-top: 0.75rem;
-          gap: 0.5rem;
-
-          span {
-            background: ${(props) => props.theme['--gray-900']};
-            border-radius: 4px;
-            padding: 0.25rem;
-            font-size: 0.9rem;
-
-            &:nth-child(1) {
-              background: ${(props) => props.theme.background};
-            }
-
-            &:hover {
-              cursor: pointer;
-              opacity: 0.9;
-            }
-          }
         }
       }
 

@@ -8,21 +8,42 @@ export const SelectContainer = styled.div`
   width: 16rem;
   border-radius: 4px 4px 0 0;
 
-  .floatMsg {
+  .reportReason {
     position: absolute;
     top: 0;
     left: 1rem;
+    opacity: 0;
 
-    &[data-select='close'] {
-      opacity: 0;
+    &[data-report-reason='show'] {
+      font-weight: 500;
+      opacity: 1;
     }
   }
 
   .select {
-    padding: 0.5rem 1rem;
+    width: 100%;
+    padding: 1rem 0.5rem 0.5rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    color: ${(props) => props.theme['--gray-100']};
+
+    &:focus {
+      border: 1px solid ${(props) => props.theme['--grullo']};
+    }
+
+    .valueSelected {
+      font-weight: 500;
+    }
+
+    &:has(.valueSelected[data-select='open']) {
+      transition: all 0.2s;
+      align-items: baseline;
+      opacity: 0.6;
+    }
 
     span {
       svg {
@@ -47,6 +68,8 @@ export const SelectContainer = styled.div`
     padding-bottom: 0.5rem;
 
     span {
+      transition: all 0.2s;
+      font-weight: 500;
       display: block;
       padding: 0.5rem 1rem;
 
