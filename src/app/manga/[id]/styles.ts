@@ -32,9 +32,8 @@ export const MangaContainer = styled.div`
   }
 
   .mangaInfo {
-    padding: 0 1.6rem;
-
     .imageAndTitle {
+      padding: 0 1.6rem;
       display: flex;
       height: 13.3rem;
 
@@ -84,6 +83,7 @@ export const MangaContainer = styled.div`
 
     .containerActions {
       background: ${(props) => props.theme['--gray-800']};
+      padding: 0 1.6rem;
 
       .actions {
         padding: 0.75rem 0;
@@ -165,6 +165,10 @@ export const MangaContainer = styled.div`
         color: ${(props) => props.theme['--gray-500']};
       }
     }
+  }
+
+  .description {
+    padding: 0 1.6rem;
   }
 `
 

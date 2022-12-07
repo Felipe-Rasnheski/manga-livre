@@ -26,3 +26,22 @@ export interface Manga extends MangaBasic {
   createdAt: string
   authorName: string
 }
+
+export interface MangaChapter {
+  id: string
+  type: 'chapter'
+  attributes: {
+    volume: string
+    chapter: string
+    title: string
+    translatedLanguage: string
+    externalUrl: string | null
+    publishAt: string
+    readableAt: string
+    createdAt: string
+    updatedAt: string
+    pages: number
+    version: number
+  }
+  relationships: any
+}

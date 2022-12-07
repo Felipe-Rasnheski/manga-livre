@@ -2,4 +2,4 @@
 
 import styled from 'styled-components'
 
-export const FeedMangaContainer = styled.div``
+export const MangaRelatedContainer = styled.div``

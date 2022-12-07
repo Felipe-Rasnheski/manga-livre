@@ -9,9 +9,10 @@ import {
   BiUpload
 } from 'react-icons/bi'
 import { DialogReport } from '../../../components/Dialogs/DialogReport'
-import { FeedManga } from '../../../components/FeedManga'
+import { MangaTabs } from '../../../components/MangaTabs'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/Tags'
+import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
 import { MangaContainer, Status } from './styles'
 
@@ -24,7 +25,12 @@ type Props = {
 }
 
 export default async function Manga({ params }: Props) {
-  const manga = await getManga(params.id)
+  const mangaPromise = getManga(params.id)
+  const chaptersPromise = getChapters(params.id)
+
+  const [manga, chapters] = await Promise.all([mangaPromise, chaptersPromise])
+
+  console.log(chapters)
 
   return (
     <MangaContainer>
@@ -37,6 +43,7 @@ export default async function Manga({ params }: Props) {
           <span className="gradient" />
         </div>
       </div>
+
       <div className="mangaInfo">
         <div className="imageAndTitle">
           <Image
@@ -105,11 +112,11 @@ export default async function Manga({ params }: Props) {
             </div>
           </div>
         </div>
-        <div>
+        <div className="description">
           <p>{manga.description}</p>
         </div>
+        <MangaTabs mangaId={manga.id} />
       </div>
-      <FeedManga mangaId={manga.id} />
     </MangaContainer>
   )
 }
