@@ -8,12 +8,17 @@ import {
   // eslint-disable-next-line prettier/prettier
   BiUpload
 } from 'react-icons/bi'
-import { DialogReport } from '../../../components/Dialogs/DialogReport'
-import { MangaTabs } from '../../../components/MangaTabs'
+import { uuid as uuidv4 } from 'uuidv4'
+import { DialogReport } from '../../../components/DialogReport'
+import { MangaArt } from '../../../components/MangaArt'
+import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/Tags'
+import { codes } from '../../../mangadexLanguages'
+import { getAllCovers } from '../../../utils/getAllCovers'
+import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
-import { MangaContainer, Status } from './styles'
+import { ChaptersContainer, MangaContainer, Status } from './styles'
 
 type Params = {
   id: string
@@ -25,8 +30,14 @@ type Props = {
 
 export default async function Manga({ params }: Props) {
   const mangaPromise = getManga(params.id)
+  const chaptersPromise = getChapters(params.id)
+  const allCoversPromise = getAllCovers(params.id)
 
-  const [manga] = await Promise.all([mangaPromise])
+  const [manga, chapters, allCovers] = await Promise.all([
+    mangaPromise,
+    chaptersPromise,
+    allCoversPromise,
+  ])
 
   return (
     <MangaContainer>
@@ -114,7 +125,23 @@ export default async function Manga({ params }: Props) {
           <div className="description">
             <p>{manga.description}</p>
           </div>
-          <MangaTabs mangaId={manga.id} />
+          <ChaptersContainer>
+            <MangaChapters mangaChapters={chapters} />
+            <div>
+              <div>
+                <h3>Available languages</h3>
+                {manga.availableTranslatedLanguages.map((language: string) => {
+                  const index = codes.findIndex(
+                    (code) => Object.keys(code)[0] === language,
+                  )
+                  return (
+                    <span key={uuidv4()}>{Object.values(codes[index])}</span>
+                  )
+                })}
+              </div>
+              <MangaArt covers={allCovers} />
+            </div>
+          </ChaptersContainer>
         </div>
       </div>
     </MangaContainer>

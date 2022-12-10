@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Manga } from '../types/types'
 
 export async function getManga(mangaId: string) {
-  const mangaData = await axios
+  const mangaResponse = await axios
     .get(`https://api.mangadex.org/manga/${mangaId}`, {
       params: {
         includes: ['cover_art', 'author', 'artist', 'tag'],
@@ -10,7 +10,7 @@ export async function getManga(mangaId: string) {
     })
     .then((response) => response.data.data)
 
-  const coverData = mangaData.relationships.find(
+  const coverData = mangaResponse.relationships.find(
     (relation: any) => relation.type === 'cover_art',
   )
 
@@ -22,7 +22,8 @@ export async function getManga(mangaId: string) {
     altTitles,
     description,
     originalLanguage,
-  } = mangaData.attributes
+    availableTranslatedLanguages,
+  } = mangaResponse.attributes
 
   const altTitle = altTitles
     .reverse()
@@ -33,7 +34,7 @@ export async function getManga(mangaId: string) {
         Object.keys(title).toString() === originalLanguage,
     )
 
-  const author = mangaData.relationships.find(
+  const author = mangaResponse.relationships.find(
     (relation: any) => relation.type === 'author',
   )
 
@@ -53,6 +54,7 @@ export async function getManga(mangaId: string) {
     createdAt,
     id: mangaId,
     title: mangaTitle,
+    availableTranslatedLanguages,
     description: mangaDescription,
     authorName: author.attributes.name,
   }

@@ -5,7 +5,7 @@ export interface MangaBasic {
   description: string
 }
 
-export type tag = {
+export interface tag {
   id: string
   type: string
   attributes: {
@@ -16,6 +16,7 @@ export type tag = {
   }
   relationships: []
 }
+
 type altTitle = { en: string } | any
 
 export interface Manga extends MangaBasic {
@@ -25,6 +26,7 @@ export interface Manga extends MangaBasic {
   altTitle: altTitle
   createdAt: string
   authorName: string
+  availableTranslatedLanguages: string[]
 }
 
 export interface MangaChapter {
@@ -44,4 +46,15 @@ export interface MangaChapter {
     version: number
   }
   relationships: any
+}
+
+type Relation = { id: string; type: string }
+
+export interface CoverArt {
+  id: string
+  attributes: {
+    volume: string
+    fileName: string
+  }
+  relationships: Relation[]
 }

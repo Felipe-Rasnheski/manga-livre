@@ -1,6 +1,7 @@
+import { CoverArt } from '../../types/types'
 import { MangaArtContainer } from './styles'
 
-export function MangaArt() {
+export function MangaArt({ covers }: { covers: CoverArt[] }) {
   return (
     <MangaArtContainer>
       <h1>Art</h1>

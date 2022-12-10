@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { AiOutlineFlag } from 'react-icons/ai'
 import { BiX } from 'react-icons/bi'
 import { Select } from '../Select'
-import { DialogClose, DialogContent, DialogOverlay } from './Dialog'
+import { DialogClose, DialogContent, DialogOverlay } from './styles'
 
 interface DialogReportProps {
   mangaId: string
