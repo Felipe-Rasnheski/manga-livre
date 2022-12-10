@@ -170,6 +170,10 @@ export const MangaContainer = styled.div`
   .description {
     padding: 0 1.6rem;
   }
+
+  .background {
+    background: ${(props) => props.theme['--gray-800']};
+  }
 `
 
 const STATUS_COLORS = {

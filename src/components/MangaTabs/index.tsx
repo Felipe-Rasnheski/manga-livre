@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { MangaArt } from '../MangaArt'
 import { MangaFeed } from '../MangaFeed'
 import { MangaRelated } from '../MangaRelated'
@@ -9,30 +10,34 @@ import { MangaTabsContainer } from './styles'
 type MangaTabsProps = { mangaId: string }
 
 export function MangaTabs({ mangaId }: MangaTabsProps) {
-  const [tab, setTab] = useState('chapters')
+  const searchParams = useSearchParams()
+
+  const router = useRouter()
+  const tab = searchParams.get('tab')
 
   return (
     <MangaTabsContainer>
       <header>
-        <button
-          onClick={() => setTab('chapters')}
-          className={`${tab === 'chapters' && 'active'}`}
+        <Link
+          href={{ pathname: `/manga/${mangaId}`, query: { tab: 'chapters' } }}
+          className={`${tab === 'chapters' || tab === null ? 'active' : ''}`}
         >
           Chapters
-        </button>
-        <button
-          onClick={() => setTab('art')}
-          className={`${tab === 'art' && 'active'}`}
+        </Link>
+        <Link
+          href={{ pathname: `/manga/${mangaId}`, query: { tab: 'art' } }}
+          className={`${tab === 'art' ? 'active' : ''}`}
         >
           Art
-        </button>
-        <button
-          onClick={() => setTab('related')}
-          className={`${tab === 'related' && 'active'}`}
+        </Link>
+        <Link
+          href={{ pathname: `/manga/${mangaId}`, query: { tab: 'related' } }}
+          className={`${tab === 'related' ? 'active' : ''}`}
         >
           Related
-        </button>
+        </Link>
       </header>
+      {tab === null && <MangaFeed mangaId={mangaId} />}
       {tab === 'chapters' && <MangaFeed mangaId={mangaId} />}
       {tab === 'art' && <MangaArt />}
       {tab === 'related' && <MangaRelated />}

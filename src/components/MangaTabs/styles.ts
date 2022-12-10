@@ -13,7 +13,8 @@ export const MangaTabsContainer = styled.div`
     display: flex;
     gap: 0.5rem;
 
-    button {
+    a {
+      text-decoration: none;
       border: none;
       font-size: 1.1rem;
       font-weight: bold;
@@ -22,15 +23,15 @@ export const MangaTabsContainer = styled.div`
       color: ${(props) => props.theme['--gray-500']};
       padding: 0.25rem;
 
-      &.active {
-        transition: all 0.2s ease;
-        color: ${(props) => props.theme['--gray-100']};
-        background: ${(props) => props.theme['--gray-500']};
-      }
-
       &:hover {
         cursor: pointer;
       }
+    }
+
+    .active {
+      transition: all 0.2s ease;
+      color: ${(props) => props.theme['--gray-100']};
+      background: ${(props) => props.theme['--gray-500']};
     }
   }
 `
