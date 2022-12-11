@@ -5,7 +5,7 @@ export async function getManga(mangaId: string) {
   const mangaResponse = await axios
     .get(`https://api.mangadex.org/manga/${mangaId}`, {
       params: {
-        includes: ['cover_art', 'author', 'artist', 'tag'],
+        includes: ['cover_art', 'author', 'artist', 'tag', 'group'],
       },
     })
     .then((response) => response.data.data)

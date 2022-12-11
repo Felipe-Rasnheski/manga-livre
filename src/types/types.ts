@@ -29,6 +29,8 @@ export interface Manga extends MangaBasic {
   availableTranslatedLanguages: string[]
 }
 
+type Relation = { id: string; type: string }
+
 export interface MangaChapter {
   id: string
   type: 'chapter'
@@ -45,10 +47,12 @@ export interface MangaChapter {
     pages: number
     version: number
   }
-  relationships: any
+  relationships: Relation[]
+  scanlation: {
+    id: string
+    name: string
+  }
 }
-
-type Relation = { id: string; type: string }
 
 export interface CoverArt {
   id: string

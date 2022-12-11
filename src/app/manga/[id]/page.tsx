@@ -8,7 +8,7 @@ import {
   // eslint-disable-next-line prettier/prettier
   BiUpload
 } from 'react-icons/bi'
-import { uuid as uuidv4 } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid'
 import { DialogReport } from '../../../components/DialogReport'
 import { MangaArt } from '../../../components/MangaArt'
 import { MangaChapters } from '../../../components/MangaChapters'
