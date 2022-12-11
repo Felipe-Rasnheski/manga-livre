@@ -1,17 +1,17 @@
 import axios from 'axios'
-import { Manga } from '../types/types'
+import { AltTitle, Manga, Relation } from '../types/types'
 
 export async function getManga(mangaId: string) {
   const mangaResponse = await axios
     .get(`https://api.mangadex.org/manga/${mangaId}`, {
       params: {
-        includes: ['cover_art', 'author', 'artist', 'tag', 'group'],
+        includes: ['cover_art', 'author', 'tag', 'group'],
       },
     })
     .then((response) => response.data.data)
 
   const coverData = mangaResponse.relationships.find(
-    (relation: any) => relation.type === 'cover_art',
+    (relation: Relation) => relation.type === 'cover_art',
   )
 
   const {
@@ -28,14 +28,14 @@ export async function getManga(mangaId: string) {
   const altTitle = altTitles
     .reverse()
     .find(
-      (title: any) =>
+      (title: AltTitle) =>
         title.en ||
         title.ja ||
         Object.keys(title).toString() === originalLanguage,
     )
 
   const author = mangaResponse.relationships.find(
-    (relation: any) => relation.type === 'author',
+    (relation: Relation) => relation.type === 'author',
   )
 
   const coverUrl = `https://uploads.mangadex.org/covers/${mangaId}/${coverData.attributes.fileName}`

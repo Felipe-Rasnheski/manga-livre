@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { MangaBasic } from '../types/types'
+import { MangaBasic, Relation } from '../types/types'
 
 export async function getPopular() {
   const mangasResponse = await axios
     .get('https://api.mangadex.org/manga', {
       params: {
-        limit: 10,
+        limit: 15,
         includes: ['cover_art'],
       },
     })
@@ -14,7 +14,7 @@ export async function getPopular() {
   const mangas: MangaBasic[] = await Promise.all(
     mangasResponse.map((manga: any) => {
       const coverData = manga.relationships.find(
-        (relation: any) => relation.type === 'cover_art',
+        (relation: Relation) => relation.type === 'cover_art',
       )
 
       const { title, description, originalLanguage } = manga.attributes

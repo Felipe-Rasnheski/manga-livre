@@ -2,6 +2,7 @@ import axios from 'axios'
 import { MangaChapter } from '../types/types'
 import { FilterRepeatedChapters } from './filterRepeatedChapters'
 import { getScanlationGroup } from './getScanlationGroup'
+import { getUserWhoPostedChapter } from './getUserWhoPostedChapter'
 
 export async function getChapters(mangaId: string) {
   const chaptersResponse: MangaChapter[] = await axios
@@ -18,11 +19,15 @@ export async function getChapters(mangaId: string) {
     })
     .then((response) => response.data.data)
 
-  const chapters = FilterRepeatedChapters(chaptersResponse)
+  const chaptersFiltered = FilterRepeatedChapters(chaptersResponse)
 
   const chaptersWhithScanlationGroup: MangaChapter[] = await getScanlationGroup(
-    chapters,
+    chaptersFiltered,
   )
 
-  return chaptersWhithScanlationGroup
+  const chapters: MangaChapter[] = await getUserWhoPostedChapter(
+    chaptersWhithScanlationGroup,
+  )
+
+  return chapters
 }

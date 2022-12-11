@@ -17,19 +17,19 @@ export interface tag {
   relationships: []
 }
 
-type altTitle = { en: string } | any
+export type AltTitle = { en: string } | any
 
 export interface Manga extends MangaBasic {
   tags: tag[]
   title: string
   status: string
-  altTitle: altTitle
+  altTitle: AltTitle
   createdAt: string
   authorName: string
   availableTranslatedLanguages: string[]
 }
 
-type Relation = { id: string; type: string }
+export type Relation = { id: string; type: string }
 
 export interface MangaChapter {
   id: string
@@ -52,6 +52,10 @@ export interface MangaChapter {
     id: string
     name: string
   }
+  whoPosted: {
+    id: string
+    name: string
+  }
 }
 
 export interface CoverArt {
@@ -59,6 +63,17 @@ export interface CoverArt {
   attributes: {
     volume: string
     fileName: string
+  }
+  relationships: Relation[]
+}
+
+export interface CustomList {
+  id: string
+  type: string
+  attributes: {
+    name: string
+    visibility: string
+    version: number
   }
   relationships: Relation[]
 }

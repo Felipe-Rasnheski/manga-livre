@@ -1,8 +1,8 @@
 import { MangasCarousel } from '../components/Carousel'
-import { getPopular } from '../utils/getPopular'
+import { getListSeasonal } from '../utils/getListSeasonal'
 
 export default async function HomePage() {
-  const mangas = await getPopular()
+  const mangas = await getListSeasonal()
 
   return (
     <div>
