@@ -14,7 +14,7 @@ export function MangaChapters({
     <MangaChaptersContainer>
       {mangaChapters.map((chapter) => {
         return (
-          <div key={chapter.id}>
+          <div key={chapter.id} className="chapter">
             <div>
               <strong>
                 <AiOutlineEye size={18} />

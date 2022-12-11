@@ -19,6 +19,10 @@ export async function getUserWhoPostedChapter(chapters: MangaChapter[]) {
           (relation) => relation.type === 'user',
         )
 
+        if (!userWhoPosted) {
+          return chapter
+        }
+
         const userResponse = await axios
           .get(`https://api.mangadex.org/user/${userWhoPosted?.id}`)
           .then((response) => response.data.data)

@@ -127,7 +127,7 @@ export default async function Manga({ params }: Props) {
           </div>
           <ChaptersContainer>
             <MangaChapters mangaChapters={chapters} />
-            <div>
+            <div className="languageAndArt">
               <div>
                 <h3>Available languages</h3>
                 {manga.availableTranslatedLanguages.map((language: string) => {

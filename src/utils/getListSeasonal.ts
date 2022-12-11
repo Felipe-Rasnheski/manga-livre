@@ -1,16 +1,10 @@
 import axios from 'axios'
 import { CustomList, MangaBasic, Relation } from '../types/types'
-import { getPopular } from './getPopular'
 
 export async function getListSeasonal() {
   const listMangas: CustomList = await axios
     .get('https://api.mangadex.org/list/4be9338a-3402-4f98-b467-43fb56663927')
     .then((response) => response.data.data)
-    .catch(() => undefined)
-
-  if (!listMangas) {
-    return await getPopular()
-  }
 
   const onlyMangas = listMangas.relationships.filter(
     (manga) => manga.type === 'manga',

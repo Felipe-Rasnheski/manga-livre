@@ -19,6 +19,7 @@ export async function getChapters(mangaId: string) {
     })
     .then((response) => response.data.data)
 
+  console.log('is hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
   const chaptersFiltered = FilterRepeatedChapters(chaptersResponse)
 
   const chaptersWhithScanlationGroup: MangaChapter[] = await getScanlationGroup(

@@ -203,4 +203,10 @@ export const Status = styled.span<StatusProps>`
 
 export const ChaptersContainer = styled.div`
   padding: 1.6rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  .languageAndArt {
+  }
 `

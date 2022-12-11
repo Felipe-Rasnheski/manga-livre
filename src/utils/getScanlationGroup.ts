@@ -20,6 +20,10 @@ export async function getScanlationGroup(chapters: MangaChapter[]) {
           (relation) => relation.type === 'scanlation_group',
         )
 
+        if (!scan) {
+          return chapter
+        }
+
         const scanlationResponse = await axios
           .get(`https://api.mangadex.org/group/${scan?.id}`)
           .then((response) => response.data.data)
