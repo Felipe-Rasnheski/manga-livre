@@ -8,6 +8,21 @@ export const MangaChaptersContainer = styled.div`
   width: 100%;
   flex: 2;
 
+  .hiddenOverflow {
+    max-height: 153vh;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 1.6rem;
+
+    &[data-overflowing='true'] {
+      border-bottom: 2px solid ${(props) => props.theme.blue};
+    }
+
+    &[data-overflow='showall'] {
+      max-height: fit-content;
+    }
+  }
+
   .chapter {
     display: flex;
     flex-direction: row;
@@ -54,6 +69,10 @@ export const MangaChaptersContainer = styled.div`
       }
     }
 
+    .timeAndUser {
+      min-width: 10rem;
+    }
+
     .linkTitle {
       font-family: ${poppins.style.fontFamily}, sans-serif;
       text-decoration: none;
@@ -62,6 +81,35 @@ export const MangaChaptersContainer = styled.div`
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+
+  .showAll {
+    text-align: center;
+
+    button {
+      padding: 0.5rem;
+      background: transparent;
+      border-radius: 4px;
+      color: ${(props) => props.theme.blue};
+      font-size: 1rem;
+      font-family: ${poppins.style.fontFamily}, sans-serif;
+      border: none;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: inset 0 0 4px ${(props) => props.theme.blue};
+        cursor: pointer;
+        background: ${(props) => props.theme['--gray-700']};
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 4px ${(props) => props.theme.blue};
+      }
+    }
+
+    &[data-show='hidden'] {
+      display: none;
     }
   }
 `

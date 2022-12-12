@@ -4,7 +4,9 @@ import styled from 'styled-components'
 import { poppins } from '../../styles/globals'
 
 export const TagsContainer = styled.div`
+  display: flex;
   margin-top: 0.75rem;
+  align-items: baseline;
   overflow-wrap: break-word;
 
   p {
@@ -60,6 +62,8 @@ export const TagsContainer = styled.div`
   }
 
   .more {
+    height: fit-content;
+
     &::after {
       content: 'More...';
       color: ${(props) => props.theme['--khaki-web']};

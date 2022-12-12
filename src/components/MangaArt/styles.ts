@@ -23,14 +23,20 @@ export const ContainerImage = styled.div`
   border-radius: 4px;
   position: relative;
 
-  .background {
-    position: absolute;
-    inset: 0;
-    background-color: transparent;
-
-    &:hover {
+  &:hover {
+    .background {
+      transition: all 0.2s ease-in-out;
+      bottom: 0;
       background-color: rgba(0, 0, 0, 0.2);
     }
+  }
+
+  .background {
+    top: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    background-color: transparent;
   }
 
   #carouselImage {

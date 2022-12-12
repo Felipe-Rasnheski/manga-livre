@@ -211,6 +211,7 @@ export const ChaptersContainer = styled.div`
     .language {
       h2 {
         margin-bottom: 0.5rem;
+        font-family: ${poppins.style.fontFamily}, sans-serif;
       }
 
       .links {
