@@ -8,9 +8,9 @@ export async function getAllCovers(mangaId: string) {
         limit: 100,
         manga: [mangaId],
         order: {
-          volume: 'desc',
-          createdAt: 'desc',
-          updatedAt: 'desc',
+          volume: 'asc',
+          createdAt: 'asc',
+          updatedAt: 'asc',
         },
       },
     })

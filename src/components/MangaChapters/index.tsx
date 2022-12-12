@@ -14,30 +14,33 @@ export function MangaChapters({
     <MangaChaptersContainer>
       {mangaChapters.map((chapter) => {
         return (
-          <div key={chapter.id} className="chapter">
+          <Link href="/" key={chapter.id} className="chapter">
             <div>
               <strong>
-                <AiOutlineEye size={18} />
-                <Link href="/">
+                <AiOutlineEye size={18} className="marginRight" />
+                <Link href="/" className="linkTitle">
                   Ch.{chapter.attributes.chapter} - {chapter.attributes.title}
                 </Link>
               </strong>
 
-              <span>
-                <BiGroup size={18} /> {chapter.scanlation.name}
-              </span>
+              <strong>
+                <BiGroup size={18} />
+                <button className="scanlation">
+                  #{chapter.scanlation.name}
+                </button>
+              </strong>
             </div>
             <div>
-              <span>
-                <BiTime size={18} />
+              <strong>
+                <BiTime size={18} className="marginRight" />
                 {distanceToNow(chapter.attributes.publishAt)}
-              </span>
-              <span>
+              </strong>
+              <strong>
                 <BiUser size={18} />
-                {chapter.whoPosted.name}
-              </span>
+                <button className="scanlation">{chapter.whoPosted.name}</button>
+              </strong>
             </div>
-          </div>
+          </Link>
         )
       })}
     </MangaChaptersContainer>

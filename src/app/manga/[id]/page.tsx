@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { AiOutlineEye } from 'react-icons/ai'
 import {
   BiBookmark,
@@ -15,8 +16,8 @@ import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
+import { MangaChapter } from '../../../types/types'
 import { getAllCovers } from '../../../utils/getAllCovers'
-import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
 import { ChaptersContainer, MangaContainer, Status } from './styles'
 
@@ -30,14 +31,129 @@ type Props = {
 
 export default async function Manga({ params }: Props) {
   const mangaPromise = getManga(params.id)
-  const chaptersPromise = getChapters(params.id)
+  // const chaptersPromise = getChapters(params.id)
   const allCoversPromise = getAllCovers(params.id)
 
-  const [manga, chapters, allCovers] = await Promise.all([
-    mangaPromise,
-    chaptersPromise,
-    allCoversPromise,
-  ])
+  const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
+
+  const chapters: MangaChapter[] = [
+    {
+      id: uuidv4(),
+      type: 'chapter',
+      attributes: {
+        volume: '',
+        chapter: '2',
+        title: 'string testing',
+        translatedLanguage: 'en',
+        externalUrl: null,
+        publishAt: `${new Date()}`,
+        readableAt: `${new Date()}`,
+        createdAt: `${new Date()}`,
+        updatedAt: `${new Date()}`,
+        pages: 10,
+        version: 1,
+      },
+      relationships: [
+        { id: uuidv4(), type: '' },
+        { id: uuidv4(), type: '' },
+      ],
+      scanlation: {
+        id: uuidv4(),
+        name: 'paradase is in the dark',
+      },
+      whoPosted: {
+        id: uuidv4(),
+        name: 'power',
+      },
+    },
+    {
+      id: uuidv4(),
+      type: 'chapter',
+      attributes: {
+        volume: '',
+        chapter: '2',
+        title: 'string testing',
+        translatedLanguage: 'en',
+        externalUrl: null,
+        publishAt: `${new Date()}`,
+        readableAt: `${new Date()}`,
+        createdAt: `${new Date()}`,
+        updatedAt: `${new Date()}`,
+        pages: 10,
+        version: 1,
+      },
+      relationships: [
+        { id: uuidv4(), type: '' },
+        { id: uuidv4(), type: '' },
+      ],
+      scanlation: {
+        id: uuidv4(),
+        name: 'paradase is in the dark',
+      },
+      whoPosted: {
+        id: uuidv4(),
+        name: 'power',
+      },
+    },
+    {
+      id: uuidv4(),
+      type: 'chapter',
+      attributes: {
+        volume: '',
+        chapter: '2',
+        title: 'string testing',
+        translatedLanguage: 'en',
+        externalUrl: null,
+        publishAt: `${new Date()}`,
+        readableAt: `${new Date()}`,
+        createdAt: `${new Date()}`,
+        updatedAt: `${new Date()}`,
+        pages: 10,
+        version: 1,
+      },
+      relationships: [
+        { id: uuidv4(), type: '' },
+        { id: uuidv4(), type: '' },
+      ],
+      scanlation: {
+        id: uuidv4(),
+        name: 'paradase is in the dark',
+      },
+      whoPosted: {
+        id: uuidv4(),
+        name: 'power',
+      },
+    },
+    {
+      id: uuidv4(),
+      type: 'chapter',
+      attributes: {
+        volume: '',
+        chapter: '2',
+        title: 'string testing',
+        translatedLanguage: 'en',
+        externalUrl: null,
+        publishAt: `${new Date()}`,
+        readableAt: `${new Date()}`,
+        createdAt: `${new Date()}`,
+        updatedAt: `${new Date()}`,
+        pages: 10,
+        version: 1,
+      },
+      relationships: [
+        { id: uuidv4(), type: '' },
+        { id: uuidv4(), type: '' },
+      ],
+      scanlation: {
+        id: uuidv4(),
+        name: 'paradase is in the dark',
+      },
+      whoPosted: {
+        id: uuidv4(),
+        name: 'power',
+      },
+    },
+  ]
 
   return (
     <MangaContainer>
@@ -63,7 +179,7 @@ export default async function Manga({ params }: Props) {
           <div className="authorAndTitle">
             <h1>{manga.title}</h1>
             <strong>
-              <span>{Object.values(manga.altTitle)}</span>
+              <span>{manga.altTitle && Object.values(manga.altTitle)}</span>
               <span>{manga.authorName}</span>
             </strong>
           </div>
@@ -128,18 +244,24 @@ export default async function Manga({ params }: Props) {
           <ChaptersContainer>
             <MangaChapters mangaChapters={chapters} />
             <div className="languageAndArt">
-              <div>
-                <h3>Available languages</h3>
-                {manga.availableTranslatedLanguages.map((language: string) => {
-                  const index = codes.findIndex(
-                    (code) => Object.keys(code)[0] === language,
-                  )
-                  return (
-                    <span key={uuidv4()}>{Object.values(codes[index])}</span>
-                  )
-                })}
+              <div className="language">
+                <h2>Available languages</h2>
+                <div className="links">
+                  {manga.availableTranslatedLanguages.map(
+                    (language: string) => {
+                      const index = codes.findIndex(
+                        (code) => Object.keys(code)[0] === language,
+                      )
+                      return (
+                        <Link href="/" key={uuidv4()}>
+                          {Object.values(codes[index])}
+                        </Link>
+                      )
+                    },
+                  )}
+                </div>
               </div>
-              <MangaArt covers={allCovers} />
+              <MangaArt allCovers={allCovers} mangaId={manga.id} />
             </div>
           </ChaptersContainer>
         </div>

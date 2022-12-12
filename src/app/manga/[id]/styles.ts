@@ -202,11 +202,36 @@ export const Status = styled.span<StatusProps>`
 `
 
 export const ChaptersContainer = styled.div`
-  padding: 1.6rem;
   display: flex;
-  gap: 1rem;
-  flex-direction: column;
 
   .languageAndArt {
+    flex: 1;
+    padding: 1.6rem;
+
+    .language {
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      .links {
+        display: flex;
+        gap: 0.25rem;
+        flex-wrap: wrap;
+      }
+
+      a {
+        font-family: ${poppins.style.fontFamily}, sans-serif;
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+        color: ${(props) => props.theme['--gray-300']};
+        background: ${(props) => props.theme['--gray-700']};
+        border-radius: 4px;
+        border: 1px solid transparent;
+
+        &:hover {
+          border: 1px solid ${(props) => props.theme['--khaki-web']};
+        }
+      }
+    }
   }
 `

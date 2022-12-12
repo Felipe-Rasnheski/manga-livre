@@ -1,16 +1,49 @@
-import { CoverArt } from '../../types/types'
-import { MangaArtContainer } from './styles'
+'use client'
 
-export function MangaArt({ covers }: { covers: CoverArt[] }) {
+import Image from 'next/image'
+import Link from 'next/link'
+import { Carousel } from 'react-responsive-carousel'
+import { CoverArt } from '../../types/types'
+import { ContainerImage, MangaArtContainer } from './styles'
+
+export function MangaArt({
+  allCovers,
+  mangaId,
+}: {
+  allCovers: CoverArt[]
+  mangaId: string
+}) {
   return (
     <MangaArtContainer>
-      <h1>Art</h1>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui corrupti
-        consequatur, est odit perspiciatis dolores voluptate repellendus nulla,
-        architecto mollitia et. Vero magni sunt, quis odit vitae autem ullam
-        expedita.
-      </div>
+      <Link href="/">Art...</Link>
+      <Carousel
+        autoPlay
+        swipeable
+        infiniteLoop
+        emulateTouch
+        interval={4000}
+        showThumbs={false}
+        dynamicHeight={false}
+        showIndicators={false}
+        centerSlidePercentage={100}
+        className="carousel"
+      >
+        {allCovers.map((cover) => {
+          return (
+            <ContainerImage key={cover.id} className="cover">
+              <div className="background"></div>
+              <Image
+                src={`https://uploads.mangadex.org/covers/${mangaId}/${cover.attributes.fileName}`}
+                width={256}
+                height={512}
+                alt=""
+                id="carouselImage"
+              />
+              <footer>Volume {cover.attributes.volume}</footer>
+            </ContainerImage>
+          )
+        })}
+      </Carousel>
     </MangaArtContainer>
   )
 }
