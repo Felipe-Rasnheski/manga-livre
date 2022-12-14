@@ -21,6 +21,7 @@ export function Aside() {
           className="logo"
           style={{ backgroundImage: `url('${logo.src}')` }}
           title="Home"
+          prefetch={false}
         />
         <button
           className="close"
@@ -37,6 +38,7 @@ export function Aside() {
       </header>
       <nav>
         <Link
+          prefetch={false}
           href="#home"
           className="home active"
           onClick={(e) => {
@@ -56,19 +58,19 @@ export function Aside() {
           <h3>
             <BiBookmarkAlt size={24} /> Follows
           </h3>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             updates
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Library
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             MDLists
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Followed Groups
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Reading History
           </Link>
         </div>
@@ -79,16 +81,16 @@ export function Aside() {
               <BiPlus size={24} />
             </span>
           </h3>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Advanced Search
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Recently added
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Latest Updates
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Random
           </Link>
         </div>
@@ -97,13 +99,13 @@ export function Aside() {
             <FaUserFriends size={24} />
             Community
           </h3>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Groups
             <span>
               <BiPlus size={24} />
             </span>
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Users
           </Link>
         </div>
@@ -112,16 +114,16 @@ export function Aside() {
             <FaCat size={24} />
             MangaDex
           </h3>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             About Us
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Site Rules
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Announcements
           </Link>
-          <Link href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/" onClick={addClassActive}>
             Merch Store
             <span>
               <FaArrowAltCircleUp size={14} />

@@ -16,6 +16,14 @@ export const MangaArtContainer = styled.div`
       opacity: 0.7;
     }
   }
+
+  .carousel.carousel-slider .control-arrow {
+    z-index: 1;
+  }
+
+  .carousel .carousel-status {
+    right: 2rem;
+  }
 `
 
 export const ContainerImage = styled.div`

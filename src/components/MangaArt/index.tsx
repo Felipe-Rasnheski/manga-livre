@@ -15,7 +15,9 @@ export function MangaArt({
 }) {
   return (
     <MangaArtContainer>
-      <Link href="/">Art...</Link>
+      <Link prefetch={false} href="/">
+        Art...
+      </Link>
       <Carousel
         autoPlay
         swipeable
@@ -26,7 +28,6 @@ export function MangaArt({
         dynamicHeight={false}
         showIndicators={false}
         centerSlidePercentage={100}
-        className="carousel"
       >
         {allCovers.map((cover) => {
           return (

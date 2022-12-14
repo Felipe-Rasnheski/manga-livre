@@ -45,6 +45,7 @@ export function Header() {
             <BiMenuAltLeft size={32} />
           </button>
           <Link
+            prefetch={false}
             href="/"
             className="logo"
             style={{ backgroundImage: `url('${logo.src}')` }}
@@ -53,7 +54,7 @@ export function Header() {
         </div>
 
         <div className="formAndAvatar">
-          <Link href="/">
+          <Link prefetch={false} href="/">
             <AvatarContainer>
               <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
 

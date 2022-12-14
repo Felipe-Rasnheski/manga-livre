@@ -14,7 +14,7 @@ export const MangaChaptersContainer = styled.div`
     border-radius: 4px;
     margin-bottom: 1.6rem;
 
-    &[data-overflowing='true'] {
+    &[data-overflow='hidden'] {
       border-bottom: 2px solid ${(props) => props.theme.blue};
     }
 
@@ -34,6 +34,7 @@ export const MangaChaptersContainer = styled.div`
     text-decoration: none;
     border-left: 2px solid ${(props) => props.theme['--grullo']};
     border-radius: 4px;
+    cursor: pointer;
 
     & > div {
       display: flex;
@@ -46,12 +47,9 @@ export const MangaChaptersContainer = styled.div`
         align-items: center;
       }
 
-      button {
-        background: transparent;
+      span {
         padding: 0 0.25rem 0.25rem 0.25rem;
         color: ${(props) => props.theme['--gray-200']};
-        font-size: 1rem;
-        border: none;
         border-radius: 4px;
 
         &:hover {

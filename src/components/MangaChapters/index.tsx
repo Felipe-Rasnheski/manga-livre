@@ -30,10 +30,10 @@ export function MangaChapters({
     const showAll = document.getElementById('showAll')
 
     if (isOverflowing) {
-      hiddenOverflow?.setAttribute('data-overflowing', 'true')
+      hiddenOverflow?.setAttribute('data-overflow', 'hidden')
       showAll?.setAttribute('data-show', 'all')
     } else {
-      hiddenOverflow?.removeAttribute('data-overflowing')
+      hiddenOverflow?.setAttribute('data-overflow', '')
       showAll?.setAttribute('data-show', 'hidden')
     }
   }
@@ -44,7 +44,6 @@ export function MangaChapters({
     hiddenOverflow?.setAttribute('data-overflow', 'showall')
 
     const showAll = document.getElementById('showAll')
-
     showAll?.setAttribute('data-show', 'hidden')
   }
 
@@ -56,23 +55,21 @@ export function MangaChapters({
 
   return (
     <MangaChaptersContainer>
-      <div className="hiddenOverflow" id="hiddenOverflow">
+      <div className="hiddenOverflow" id="hiddenOverflow" data-overflow="">
         {mangaChapters.map((chapter) => {
           return (
-            <Link href="/" key={chapter.id} className="chapter">
+            <div key={chapter.id} className="chapter">
               <div>
                 <strong>
                   <AiOutlineEye size={18} className="marginRight" />
-                  <Link href="/" className="linkTitle">
+                  <Link prefetch={false} href="/" className="linkTitle">
                     Ch.{chapter.attributes.chapter} - {chapter.attributes.title}
                   </Link>
                 </strong>
 
                 <strong>
                   <BiGroup size={18} />
-                  <button className="scanlation">
-                    #{chapter.scanlation.name}
-                  </button>
+                  <span className="scanlation">#{chapter.scanlation.name}</span>
                 </strong>
               </div>
               <div className="timeAndUser">
@@ -82,16 +79,14 @@ export function MangaChapters({
                 </strong>
                 <strong>
                   <BiUser size={18} />
-                  <button className="scanlation">
-                    {chapter.whoPosted.name}
-                  </button>
+                  <span className="scanlation">{chapter.whoPosted.name}</span>
                 </strong>
               </div>
-            </Link>
+            </div>
           )
         })}
       </div>
-      <div className="showAll" id="showAll">
+      <div className="showAll" id="showAll" data-show="">
         <button onClick={handleShowOverflow}>Show All</button>
       </div>
     </MangaChaptersContainer>
