@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { BiMenuAltLeft, BiSearch, BiUser } from 'react-icons/bi'
 import logo from '../../../public/logo.webp'
@@ -11,19 +13,23 @@ import {
 
 export function Header() {
   if (typeof window !== 'undefined') {
-    window.onscroll = () => {
-      const header = document.getElementById('header')
+    const content = document.getElementById('content')
 
-      if (window.scrollY === 0) {
-        header?.setAttribute('data-scrolly', '')
-      }
+    if (content !== null) {
+      content.onscroll = () => {
+        const header = document.getElementById('header')
 
-      if (window.scrollY > 0 && window.scrollY < 55) {
-        header?.setAttribute('data-scrolly', 'scrollDown')
-      }
+        if (content.scrollTop === 0) {
+          header?.setAttribute('data-scrolly', '')
+        }
 
-      if (window.scrollY > 54) {
-        header?.setAttribute('data-scrolly', 'scrollDownDown')
+        if (content.scrollTop > 0 && content.scrollTop < 55) {
+          header?.setAttribute('data-scrolly', 'scrollDown')
+        }
+
+        if (content.scrollTop > 54) {
+          header?.setAttribute('data-scrolly', 'scrollDownDown')
+        }
       }
     }
   }
@@ -40,6 +46,15 @@ export function Header() {
 
               const nav = document.querySelector('#nav')
               nav?.setAttribute('data-nav', 'navHidden')
+
+              const header = document.getElementById('header')
+              header?.setAttribute('data-width', 'shink')
+
+              const content = document.getElementById('content')
+              content?.setAttribute('data-width', 'shink')
+
+              const carousel = document.getElementById('carouselContainer')
+              carousel?.setAttribute('data-width', 'shink')
             }}
           >
             <BiMenuAltLeft size={32} />

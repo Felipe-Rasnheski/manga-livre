@@ -42,7 +42,7 @@ export function MangasCarousel({ mangas }: MangasCarouselProps) {
   }
 
   return (
-    <CarouselContainer>
+    <CarouselContainer id="carouselContainer">
       <h1>Most Famous</h1>
       <Carousel
         autoPlay
@@ -53,7 +53,6 @@ export function MangasCarousel({ mangas }: MangasCarouselProps) {
         showStatus={false}
         showArrows={false}
         showThumbs={false}
-        width={'100vw'}
         centerMode
         centerSlidePercentage={centerSlidePercentage}
         dynamicHeight={false}

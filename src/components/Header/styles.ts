@@ -9,6 +9,10 @@ export const HeaderContainer = styled.header`
   padding: 0.5rem 1.3rem;
   transition: background-color 0.2s, border-color 0.2s;
 
+  &[data-width='shink'] {
+    max-width: calc(100vw - 15rem);
+  }
+
   &[data-scrollY='scrollDown'] {
     background-color: ${(props) => props.theme['--gray-900']};
     border-bottom: 1px solid ${(props) => props.theme['--khaki-web']};

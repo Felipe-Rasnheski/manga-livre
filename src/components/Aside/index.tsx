@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import { BiBookmarkAlt, BiBookOpen, BiHome, BiPlus, BiX } from 'react-icons/bi'
@@ -31,6 +33,15 @@ export function Aside() {
 
             const nav = document.querySelector('#nav')
             nav?.setAttribute('data-nav', 'navShow')
+
+            const header = document.getElementById('header')
+            header?.removeAttribute('data-width')
+
+            const content = document.getElementById('content')
+            content?.removeAttribute('data-width')
+
+            const carousel = document.getElementById('carouselContainer')
+            carousel?.removeAttribute('data-width')
           }}
         >
           <BiX size={32} />

@@ -1,8 +1,6 @@
-'use client'
-
 import React from 'react'
-import { Aside } from '../components/Aside'
-import { Header } from '../components/Header'
+import { Layout } from '../components/Layout'
+import '../styles/global.css'
 import StyledComponentsRegistry from './registry'
 
 export default function RootLayout({
@@ -15,13 +13,7 @@ export default function RootLayout({
       <head />
       <body>
         <StyledComponentsRegistry>
-          <div className="container">
-            <Aside />
-            <main className="main">
-              <Header />
-              {children}
-            </main>
-          </div>
+          <Layout>{children}</Layout>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -2,16 +2,22 @@ import styled from 'styled-components'
 import { poppins } from '../../styles/globals'
 
 export const CarouselContainer = styled.div`
-  width: 100vw;
+  width: calc(100vw - 1.5rem);
   overflow: hidden;
   padding: 0 1.5rem;
   margin-top: 4rem;
+
+  &[data-width='shink'] {
+    width: calc(100vw - 1.5rem - 15rem);
+  }
 
   h1 {
     margin-bottom: 0.3rem;
   }
 
   .root {
+    width: inherit;
+
     ul.control-dots {
       margin-top: 50px;
       position: relative;

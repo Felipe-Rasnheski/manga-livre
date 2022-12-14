@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0; margin: 0; border: 0;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #E5d5A7;
+}
+
+body {
+  background-color: #0c090f;
+  color: #DAD7D0ff;
+  font-size: 1rem;
+  overflow: hidden;
+}
+
+html, body, input, textarea, button {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+.main {
+  width: calc(100vw - 15rem);
+}
