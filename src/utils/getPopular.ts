@@ -5,7 +5,7 @@ export async function getPopular() {
   const mangasResponse = await axios
     .get('https://api.mangadex.org/manga', {
       params: {
-        limit: 15,
+        limit: 12,
         includes: ['cover_art'],
       },
     })
@@ -36,5 +36,9 @@ export async function getPopular() {
     }),
   )
 
-  return mangas
+  const mangasFiltered = mangas.filter(
+    (manga) => manga.coverUrl && manga.coverUrl && manga.description,
+  )
+
+  return mangasFiltered
 }

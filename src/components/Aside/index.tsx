@@ -37,11 +37,11 @@ export function Aside() {
             const header = document.getElementById('header')
             header?.removeAttribute('data-width')
 
-            const content = document.getElementById('content')
-            content?.removeAttribute('data-width')
+            const page = document.getElementById('pageContainer')
+            page?.removeAttribute('data-width')
 
-            const carousel = document.getElementById('carouselContainer')
-            carousel?.removeAttribute('data-width')
+            const recommendations = document.getElementById('recommendations')
+            recommendations?.removeAttribute('data-width')
           }}
         >
           <BiX size={32} />

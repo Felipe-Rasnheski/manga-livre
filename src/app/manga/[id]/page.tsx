@@ -833,7 +833,7 @@ export default async function Manga({ params }: Props) {
                         (code) => Object.keys(code)[0] === language,
                       )
                       return (
-                        <Link href="/" key={uuidv4()} prefetch={false}>
+                        <Link href="/" key={uuidv4()}>
                           {Object.values(codes[index])}
                         </Link>
                       )

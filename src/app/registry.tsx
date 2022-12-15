@@ -2,13 +2,7 @@
 
 import { useServerInsertedHTML } from 'next/navigation'
 import React, { useState } from 'react'
-import {
-  ServerStyleSheet,
-  StyleSheetManager,
-  // eslint-disable-next-line prettier/prettier
-  ThemeProvider
-} from 'styled-components'
-import { defaultTheme } from '../styles/themes/default'
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 export default function StyledComponentsRegistry({
   children,
@@ -29,10 +23,8 @@ export default function StyledComponentsRegistry({
   if (typeof window !== 'undefined') return <>{children}</>
 
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-        {children}
-      </StyleSheetManager>
-    </ThemeProvider>
+    <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      {children}
+    </StyleSheetManager>
   )
 }

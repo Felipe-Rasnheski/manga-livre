@@ -77,3 +77,21 @@ export interface CustomList {
   }
   relationships: Relation[]
 }
+
+export interface DirectoryItem {
+  s: string
+  i: string
+  o: string
+  ss: string
+  ps: string
+  t: string
+  v: string
+  vm: string
+  y: string
+  a: string[]
+  al: string[]
+  l: string
+  lt: number
+  g: string[]
+  h: boolean
+}

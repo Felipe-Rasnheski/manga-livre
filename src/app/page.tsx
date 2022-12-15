@@ -1,12 +1,22 @@
-import { MangasCarousel } from '../components/Carousel'
+import { Popular } from '../components/Popular'
+import { Recommendations } from '../components/Recommendations'
 import { getPopular } from '../utils/getPopular'
+import { getRecommendations } from '../utils/getRecommendations'
+import { PageContainer } from './styles'
 
 export default async function HomePage() {
-  const mangas = await getPopular()
+  const popularPromise = getPopular()
+  const recomendationsPromise = getRecommendations()
+
+  const [popular, recommendations] = await Promise.all([
+    popularPromise,
+    recomendationsPromise,
+  ])
 
   return (
-    <div>
-      <MangasCarousel mangas={mangas} />
-    </div>
+    <PageContainer id="pageContainer">
+      <Recommendations mangas={recommendations} />
+      <Popular mangas={popular} />
+    </PageContainer>
   )
 }

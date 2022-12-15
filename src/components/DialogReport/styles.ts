@@ -12,16 +12,14 @@ export const DialogOverlay = styled(Dialog.Overlay)`
   z-index: 2;
 `
 
-export const ContainerDialog = styled.div``
-
 export const DialogContent = styled(Dialog.Content)`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background: #0c090f;
   z-index: 3;
   padding: 1rem;
-  background: ${(props) => props.theme['--gray-800']};
   box-shadow: none;
   width: 50vw;
   border-radius: 4px;
@@ -29,10 +27,6 @@ export const DialogContent = styled(Dialog.Content)`
   height: 100vh;
   overflow-y: auto;
   margin: 2rem;
-
-  .content {
-    padding-bottom: 4rem;
-  }
 
   .title {
     font-size: 1.5rem;
@@ -50,7 +44,7 @@ export const DialogContent = styled(Dialog.Content)`
       display: flex;
       gap: 1rem;
       padding: 0.5rem;
-      background: ${(props) => props.theme['--gray-700']};
+      background: #1a1c21ff;
 
       img {
         border-radius: 4px;
@@ -67,7 +61,7 @@ export const DialogContent = styled(Dialog.Content)`
       display: block;
       height: 1px;
       width: 100%;
-      background: ${(props) => props.theme['--gray-700']};
+      background: #1a1c21ff;
     }
 
     .reason {
@@ -78,12 +72,12 @@ export const DialogContent = styled(Dialog.Content)`
 
       .textarea {
         padding: 1rem;
-        background: ${(props) => props.theme['--gray-700']};
-        color: ${(props) => props.theme['--gray-200']};
+        background: #1a1c21ff;
+        color: #dee2e6ff;
         font-size: 1.1rem;
 
         &::placeholder {
-          color: ${(props) => props.theme['--gray-400']};
+          color: #adb5bdff;
         }
       }
     }
@@ -99,24 +93,24 @@ export const DialogContent = styled(Dialog.Content)`
       padding: 0.5rem 1rem;
       font-size: 1.2rem;
       font-weight: bold;
-      color: ${(props) => props.theme['--gray-100']};
+      color: #f8f9faff;
 
       &:hover {
         transition: background-color 0.2s;
         cursor: pointer;
-        background: ${(props) => props.theme['--gray-900']};
+        background: #121318ff;
       }
     }
 
     .send {
-      background: ${(props) => props.theme.background};
+      background: #222221;
     }
 
     .cancel {
-      background: ${(props) => props.theme['--gray-700']};
+      background: #1a1c21ff;
 
       &:hover {
-        background: ${(props) => props.theme['--gray-700']};
+        background: #1a1c21ff;
       }
     }
   }
@@ -126,17 +120,17 @@ export const DialogContent = styled(Dialog.Content)`
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-600']};
+    box-shadow: inset 0 0 2px #212121ff;
     border-radius: 2px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme['--gray-600']};
+    background: #212121ff;
     border-radius: 2px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-800']};
+    box-shadow: inset 0 0 2px #0c090f;
   }
 `
 
@@ -144,13 +138,13 @@ export const DialogClose = styled(Dialog.Close)`
   position: absolute;
   right: 1rem;
   background: transparent;
-  color: ${(props) => props.theme['--gray-100']};
+  color: #f8f9faff;
   border-radius: 50%;
   line-height: 0;
   padding: 0.25rem;
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme['--gray-900']};
+    background-color: #121318ff;
   }
 `

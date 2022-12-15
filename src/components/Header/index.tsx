@@ -50,17 +50,16 @@ export function Header() {
               const header = document.getElementById('header')
               header?.setAttribute('data-width', 'shink')
 
-              const content = document.getElementById('content')
-              content?.setAttribute('data-width', 'shink')
+              const page = document.getElementById('pageContainer')
+              page?.setAttribute('data-width', 'shink')
 
-              const carousel = document.getElementById('carouselContainer')
-              carousel?.setAttribute('data-width', 'shink')
+              const recommendations = document.getElementById('recommendations')
+              recommendations?.setAttribute('data-width', 'shink')
             }}
           >
             <BiMenuAltLeft size={32} />
           </button>
           <Link
-            prefetch={false}
             href="/"
             className="logo"
             style={{ backgroundImage: `url('${logo.src}')` }}
@@ -69,7 +68,7 @@ export function Header() {
         </div>
 
         <div className="formAndAvatar">
-          <Link prefetch={false} href="/">
+          <Link href="/">
             <AvatarContainer>
               <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
 

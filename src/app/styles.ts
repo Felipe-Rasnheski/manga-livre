@@ -1,10 +1,22 @@
+'use client'
+
 import styled from 'styled-components'
+
+export const PageContainer = styled.div`
+  width: calc(100vw - 1.5rem);
+  overflow: hidden;
+  padding: 0 0 0 1.5rem;
+  margin-top: 4rem;
+
+  &[data-width='shink'] {
+    max-width: calc(100vw - 15rem - 1.5rem);
+  }
+`
 
 export const LayoutContainer = styled.div`
   display: flex;
 
-  .contant {
-    position: relative;
+  .content {
     display: block;
     height: 100vh;
     overflow: scroll;
@@ -17,21 +29,21 @@ export const LayoutContainer = styled.div`
     }
 
     &::-webkit-scrollbar {
-      width: 0.65rem;
+      width: 0.5rem;
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #1a1c21ff;
+      box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-600']};
       border-radius: 2px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: #212121ff;
+      background: ${(props) => props.theme['--gray-600']};
       border-radius: 2px;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-      box-shadow: inset 0 0 2px #0c090f;
+      box-shadow: inset 0 0 2px ${(props) => props.theme['--gray-800']};
     }
   }
 `

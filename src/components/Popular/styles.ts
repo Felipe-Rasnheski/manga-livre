@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 import { poppins } from '../../styles/globals'
 
-export const CarouselContainer = styled.div`
-  width: calc(100vw - 1.5rem);
-  overflow: hidden;
-  padding: 0 1.5rem;
-  margin-top: 4rem;
+export const PopularContainer = styled.div`
+  width: inherit;
 
   &[data-width='shink'] {
     width: calc(100vw - 1.5rem - 15rem);

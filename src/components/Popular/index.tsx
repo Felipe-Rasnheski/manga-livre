@@ -6,11 +6,11 @@ import { useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { MangaBasic } from '../../types/types'
-import { CarouselContainer, CarouselItem } from './styles'
+import { CarouselItem, PopularContainer } from './styles'
 
-type MangasCarouselProps = { mangas: MangaBasic[] }
+type PopularProps = { mangas: MangaBasic[] }
 
-export function MangasCarousel({ mangas }: MangasCarouselProps) {
+export function Popular({ mangas }: PopularProps) {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33)
 
   if (typeof window !== 'undefined') {
@@ -42,7 +42,7 @@ export function MangasCarousel({ mangas }: MangasCarouselProps) {
   }
 
   return (
-    <CarouselContainer id="carouselContainer">
+    <PopularContainer id="carouselContainer">
       <h1>Most Famous</h1>
       <Carousel
         autoPlay
@@ -61,7 +61,7 @@ export function MangasCarousel({ mangas }: MangasCarouselProps) {
         {mangas.map((manga) => {
           return (
             <CarouselItem key={manga.id}>
-              <Link prefetch={false} href={`/manga/${manga.id}`}>
+              <Link href={`/manga/${manga.id}`}>
                 <div id="carouselImage">
                   <Image
                     src={manga.coverUrl}
@@ -80,6 +80,6 @@ export function MangasCarousel({ mangas }: MangasCarouselProps) {
           )
         })}
       </Carousel>
-    </CarouselContainer>
+    </PopularContainer>
   )
 }

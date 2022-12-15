@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const SelectContainer = styled.div`
   position: relative;
-  background: ${(props) => props.theme['--gray-700']};
+  background: #1a1c21ff;
   width: 16rem;
   border-radius: 4px 4px 0 0;
 
@@ -29,10 +29,10 @@ export const SelectContainer = styled.div`
     border: 1px solid transparent;
     background-color: transparent;
     box-shadow: none;
-    color: ${(props) => props.theme['--gray-100']};
+    color: #f8f9faff;
 
     &:focus {
-      border: 1px solid ${(props) => props.theme['--grullo']};
+      border: 1px solid #e5d5a7;
     }
 
     .valueSelected {
@@ -62,7 +62,7 @@ export const SelectContainer = styled.div`
 
   .options {
     position: absolute;
-    background: ${(props) => props.theme['--gray-700']};
+    background: #1a1c21ff;
     width: inherit;
     border-radius: 0 0 4px 4px;
     padding-bottom: 0.5rem;
@@ -75,11 +75,11 @@ export const SelectContainer = styled.div`
 
       &:hover {
         cursor: pointer;
-        background: ${(props) => props.theme['--gray-900']};
+        background: #121318ff;
       }
 
       &[data-option='active'] {
-        background: ${(props) => props.theme['--gray-900']};
+        background: #121318ff;
       }
     }
 
