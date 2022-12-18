@@ -1,11 +1,11 @@
 'use client'
 
 import { useEffect } from 'react'
-import { tag } from '../../types/types'
+import { Tag } from '../../types/types'
 import { TagsContainer } from './styles'
 
 type TagsProps = {
-  tags: tag[]
+  tags: Tag[]
 }
 
 export function Tags({ tags }: TagsProps) {

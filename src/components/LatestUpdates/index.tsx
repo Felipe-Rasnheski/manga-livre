@@ -11,6 +11,7 @@ export function LatestUpdates({ mangas }: { mangas: ILatestUpdates[] }) {
       {mangas.map((manga) => {
         return (
           <Link
+            prefetch={false}
             href={`/manga/${manga.id}`}
             key={manga.chapter.id}
             className="chapter"

@@ -61,7 +61,7 @@ export function Popular({ mangas }: PopularProps) {
         {mangas.map((manga) => {
           return (
             <CarouselItem key={manga.id}>
-              <Link href={`/manga/${manga.id}`}>
+              <Link prefetch={false} href={`/manga/${manga.id}`}>
                 <div id="carouselImage">
                   <Image
                     src={manga.coverUrl}

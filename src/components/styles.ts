@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components'
-import { poppins } from '../../../styles/globals'
+import { poppins } from '../styles/globals'
 
 export const MangaContainer = styled.div`
   margin-top: 5rem;
@@ -207,8 +207,11 @@ export const ChaptersContainer = styled.div`
   .languageAndArt {
     flex: 1;
     padding: 1.6rem;
+    max-width: fit-content;
 
     .language {
+      max-width: fit-content;
+
       h2 {
         margin-bottom: 0.5rem;
         font-family: ${poppins.style.fontFamily}, sans-serif;

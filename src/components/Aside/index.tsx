@@ -50,7 +50,7 @@ export function Aside() {
       <nav>
         <Link
           prefetch={false}
-          href="#home"
+          href="/"
           className="home active"
           onClick={(e) => {
             addClassActive(e)

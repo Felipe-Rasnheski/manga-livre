@@ -30,14 +30,14 @@ export function Recommendations({ mangas }: { mangas: Manga[] }) {
               style={{ backgroundImage: `url(${manga.coverUrl})` }}
             >
               <div className="background">
-                <Link href={`/manga/${manga.id}`}>
+                <Link href={`/manga/${manga.id}`} prefetch={false}>
                   <div id="carouselImage">
                     <Image
                       src={manga.coverUrl}
+                      className="image"
                       width={256}
                       height={300}
                       priority
-                      className="image"
                       alt=""
                     />
                   </div>

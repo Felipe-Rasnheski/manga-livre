@@ -62,7 +62,7 @@ export function MangaChapters({
               <div>
                 <strong>
                   <AiOutlineEye size={18} className="marginRight" />
-                  <Link href="/" className="linkTitle">
+                  <Link prefetch={false} href="/" className="linkTitle">
                     Ch.{chapter.attributes.chapter} - {chapter.attributes.title}
                   </Link>
                 </strong>

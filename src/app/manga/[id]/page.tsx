@@ -14,13 +14,17 @@ import { DialogReport } from '../../../components/DialogReport'
 import { MangaArt } from '../../../components/MangaArt'
 import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
+import {
+  ChaptersContainer,
+  MangaContainer,
+  // eslint-disable-next-line prettier/prettier
+  Status
+} from '../../../components/styles'
 import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
 import { MangaChapter } from '../../../types/types'
 import { getAllCovers } from '../../../utils/getAllCovers'
-import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
-import { ChaptersContainer, MangaContainer, Status } from './styles'
 
 type Params = {
   id: string
@@ -30,18 +34,21 @@ type Props = {
   params: Params
 }
 
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
+export const revalidate = false
+export const fetchCache = 'default-no-store'
+export const runtime = 'nodejs'
+export const preferredRegion = 'auto'
+
 export default async function Manga({ params }: Props) {
   const mangaPromise = getManga(params.id)
-  const chaptersPromise = getChapters(params.id)
+  // const chaptersPromise = getChapters(params.id)
   const allCoversPromise = getAllCovers(params.id)
 
-  const [manga, allCovers, chapters] = await Promise.all([
-    mangaPromise,
-    allCoversPromise,
-    chaptersPromise,
-  ])
+  const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
 
-  const chapterss: MangaChapter[] = [
+  const chapters: MangaChapter[] = [
     {
       id: uuidv4(),
       type: 'chapter',
@@ -838,7 +845,7 @@ export default async function Manga({ params }: Props) {
                         (code) => Object.keys(code)[0] === language,
                       )
                       return (
-                        <Link href="/" key={uuidv4()}>
+                        <Link prefetch={false} href="/" key={uuidv4()}>
                           {codes[index] && Object.values(codes[index])}
                         </Link>
                       )

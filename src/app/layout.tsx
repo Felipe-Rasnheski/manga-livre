@@ -4,10 +4,10 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { Aside } from '../components/Aside'
 import { Header } from '../components/Header'
+import StyledComponentsRegistry from '../components/registry'
 import '../styles/global.css'
+import { LayoutContainer } from '../styles/styles'
 import { defaultTheme } from '../styles/themes/default'
-import StyledComponentsRegistry from './registry'
-import { LayoutContainer } from './styles'
 
 export default function RootLayout({
   children,

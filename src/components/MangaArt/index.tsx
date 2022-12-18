@@ -15,7 +15,9 @@ export function MangaArt({
 }) {
   return (
     <MangaArtContainer>
-      <Link href="/">Art...</Link>
+      <Link href="/" prefetch={false}>
+        Art...
+      </Link>
       <Carousel
         autoPlay
         swipeable
