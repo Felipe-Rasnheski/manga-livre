@@ -1,6 +1,6 @@
 import { Recommendations } from '../components/Recommendations'
-import { PageContainer } from '../styles/styles'
 import { getRecommendations } from '../utils/getRecommendations'
+import { PageContainer } from './styles'
 
 export default async function HomePage() {
   // const popularPromise = getPopular()

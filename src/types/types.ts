@@ -19,7 +19,7 @@ export interface Tag {
 
 export type AltTitle = { en: string } | any
 
-export interface Manga extends MangaBasic {
+export interface IManga extends MangaBasic {
   tags: Tag[]
   title: string
   status: string

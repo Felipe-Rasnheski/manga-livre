@@ -1,7 +1,7 @@
 'use client'
 
 import styled from 'styled-components'
-import { poppins } from '../styles/globals'
+import { poppins } from '../../../styles/globals'
 
 export const MangaContainer = styled.div`
   margin-top: 5rem;

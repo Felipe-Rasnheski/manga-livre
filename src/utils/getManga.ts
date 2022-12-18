@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { AltTitle, Manga, Relation } from '../types/types'
+import { AltTitle, IManga, Relation } from '../types/types'
 
 export async function getManga(mangaId: string) {
   const mangaResponse = await axios
     .get(`https://api.mangadex.org/manga/${mangaId}`, {
       params: {
-        includes: ['cover_art', 'author', 'tag', 'group'],
+        includes: ['cover_art', 'author', 'tag', 'scanlation_group'],
       },
     })
     .then((response) => response.data.data)
@@ -46,7 +46,7 @@ export async function getManga(mangaId: string) {
     ? description.en
     : description[originalLanguage]
 
-  const manga: Manga = {
+  const manga: IManga = {
     tags,
     status,
     altTitle,

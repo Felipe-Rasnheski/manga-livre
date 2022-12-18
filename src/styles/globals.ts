@@ -15,6 +15,8 @@ export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
     padding: 0; margin: 0; border: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
   }
 
   :focus {
@@ -26,14 +28,12 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme['--gray-800']};
     color: ${(props) => props.theme['--gray-300']};
     font-size: 1rem;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
   }
 
   html {
     &::-webkit-scrollbar {
-    width: 0.65rem;
+      width: 0.65rem;
     }
 
     &::-webkit-scrollbar-track {
@@ -56,12 +56,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
   }
 
-  .container {
-    display: flex;
-
-    .main {
-      flex: 1;
-      width: calc(100vw - 15rem);
-    }
+  .main {
+    width: calc(100vw - 15rem);
   }
 `

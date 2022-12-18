@@ -4,10 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import { Manga } from '../../types/types'
+import { IManga } from '../../types/types'
 import { CarouselItem, RecommendationsContainer } from './styles'
 
-export function Recommendations({ mangas }: { mangas: Manga[] }) {
+export function Recommendations({ mangas }: { mangas: IManga[] }) {
   return (
     <RecommendationsContainer id="recommendations">
       <Carousel

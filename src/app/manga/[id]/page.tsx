@@ -11,20 +11,13 @@ import {
 } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
 import { DialogReport } from '../../../components/DialogReport'
-import { MangaArt } from '../../../components/MangaArt'
 import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
-import {
-  ChaptersContainer,
-  MangaContainer,
-  // eslint-disable-next-line prettier/prettier
-  Status
-} from '../../../components/styles'
 import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
 import { MangaChapter } from '../../../types/types'
-import { getAllCovers } from '../../../utils/getAllCovers'
 import { getManga } from '../../../utils/getManga'
+import { ChaptersContainer, MangaContainer, Status } from './styles'
 
 type Params = {
   id: string
@@ -34,19 +27,19 @@ type Props = {
   params: Params
 }
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'auto'
 export const dynamicParams = true
 export const revalidate = false
-export const fetchCache = 'default-no-store'
+export const fetchCache = 'auto'
 export const runtime = 'nodejs'
 export const preferredRegion = 'auto'
 
 export default async function Manga({ params }: Props) {
-  const mangaPromise = getManga(params.id)
+  const manga = await getManga(params.id)
   // const chaptersPromise = getChapters(params.id)
-  const allCoversPromise = getAllCovers(params.id)
+  // const allCoversPromise = getAllCovers(params.id)
 
-  const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
+  // const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
 
   const chapters: MangaChapter[] = [
     {
@@ -853,7 +846,7 @@ export default async function Manga({ params }: Props) {
                   )}
                 </div>
               </div>
-              <MangaArt allCovers={allCovers} mangaId={manga.id} />
+              {/* <MangaArt allCovers={allCovers} mangaId={manga.id} /> */}
             </div>
           </ChaptersContainer>
         </div>

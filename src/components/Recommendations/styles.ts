@@ -64,6 +64,7 @@ export const CarouselItem = styled.div`
     display: flex;
     text-decoration: none;
     color: ${(props) => props.theme['--gray-100']};
+    box-shadow: none;
   }
 
   #carouselImage {

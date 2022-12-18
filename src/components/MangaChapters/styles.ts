@@ -75,6 +75,7 @@ export const MangaChaptersContainer = styled.div`
       font-family: ${poppins.style.fontFamily}, sans-serif;
       text-decoration: none;
       color: ${(props) => props.theme['--gray-100']};
+      box-shadow: none;
 
       &:hover {
         text-decoration: underline;

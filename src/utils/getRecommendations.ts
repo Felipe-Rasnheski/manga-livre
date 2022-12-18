@@ -1,10 +1,15 @@
-import { AltTitle, DirectoryItem, Manga, Relation } from '../types/types'
+import { AltTitle, DirectoryItem, IManga, Relation } from '../types/types'
 
 export async function getRecommendations() {
   let matchedResults = []
 
   const mangaResponse = await fetch(
     'https://manga4life.com/search/?sort=vm&desc=true',
+    {
+      next: {
+        revalidate: 60 * 60 * 24,
+      },
+    },
   )
 
   const html = await mangaResponse.text()
@@ -25,7 +30,7 @@ export async function getRecommendations() {
     throw new Error('Initial search went wrong')
   }
 
-  const recommendations: Manga[] = await Promise.all(
+  const recommendations: IManga[] = await Promise.all(
     matchedResults.map(async (mangaName: string) => {
       const mangaResponse = await fetch(
         `https://api.mangadex.org/manga?title=${mangaName}&includes[]=cover_art&includes[]=author`,
@@ -77,7 +82,7 @@ export async function getRecommendations() {
         mangaDescription = Object.values(altTitles[0]).toString()
       }
 
-      const manga: Manga = {
+      const manga: IManga = {
         tags,
         status,
         altTitle,
