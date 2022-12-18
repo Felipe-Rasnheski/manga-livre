@@ -5,7 +5,7 @@ export interface MangaBasic {
   description: string
 }
 
-export interface tag {
+export interface Tag {
   id: string
   type: string
   attributes: {
@@ -20,7 +20,7 @@ export interface tag {
 export type AltTitle = { en: string } | any
 
 export interface Manga extends MangaBasic {
-  tags: tag[]
+  tags: Tag[]
   title: string
   status: string
   altTitle: AltTitle
@@ -29,7 +29,7 @@ export interface Manga extends MangaBasic {
   availableTranslatedLanguages: string[]
 }
 
-export type Relation = { id: string; type: string }
+export type Relation = { id: string; type: string } | any
 
 export interface MangaChapter {
   id: string
@@ -76,6 +76,26 @@ export interface CustomList {
     version: number
   }
   relationships: Relation[]
+}
+
+export interface ILatestUpdates {
+  tags: Tag[]
+  status: string
+  altTitle: AltTitle
+  coverUrl: string
+  createdAt: string
+  id: string
+  title: string
+  availableTranslatedLanguages: string[]
+  description: string
+  authorName: string
+  chapter: {
+    id: string
+    title: string
+    chapter: string | null
+    publishAt: string
+    scanlationName: string
+  }
 }
 
 export interface DirectoryItem {

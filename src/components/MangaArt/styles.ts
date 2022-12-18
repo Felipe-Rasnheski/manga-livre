@@ -40,6 +40,7 @@ export const ContainerImage = styled.div`
   }
 
   .background {
+    width: 100%;
     top: 0;
     right: 0;
     left: 0;

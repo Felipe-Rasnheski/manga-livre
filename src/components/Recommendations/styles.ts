@@ -22,6 +22,11 @@ export const RecommendationsContainer = styled.div`
     border-radius: 50%;
     padding: 0.2rem 0.75rem 0.3rem 0.75rem;
     background: ${(props) => props.theme['--gray-800']};
+    opacity: 1;
+
+    &:hover {
+      background: ${(props) => props.theme['--gray-700']};
+    }
   }
 
   .carousel.carousel-slider .control-next {
@@ -41,13 +46,11 @@ export const CarouselItem = styled.div`
   object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 6px;
   height: 100%;
+  overflow: hidden;
 
   .background {
     padding: 1rem;
-    border-radius: 4px;
-    overflow: hidden;
     max-height: 15rem;
 
     background: linear-gradient(

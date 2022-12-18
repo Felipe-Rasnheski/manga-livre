@@ -69,7 +69,9 @@ export function MangaChapters({
 
                 <strong>
                   <BiGroup size={18} />
-                  <span className="scanlation">#{chapter.scanlation.name}</span>
+                  <span className="scanlation">
+                    #{chapter.scanlation.name || 'unknown'}
+                  </span>
                 </strong>
               </div>
               <div className="timeAndUser">

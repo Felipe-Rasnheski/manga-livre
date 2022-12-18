@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { poppins } from '../../styles/globals'
 
 export const PopularContainer = styled.div`
-  width: inherit;
+  width: cac(100vw -1.5rem);
 
   &[data-width='shink'] {
     width: calc(100vw - 1.5rem - 15rem);

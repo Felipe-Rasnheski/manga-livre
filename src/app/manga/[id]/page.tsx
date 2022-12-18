@@ -18,6 +18,7 @@ import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
 import { MangaChapter } from '../../../types/types'
 import { getAllCovers } from '../../../utils/getAllCovers'
+import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
 import { ChaptersContainer, MangaContainer, Status } from './styles'
 
@@ -31,12 +32,16 @@ type Props = {
 
 export default async function Manga({ params }: Props) {
   const mangaPromise = getManga(params.id)
-  // const chaptersPromise = getChapters(params.id)
+  const chaptersPromise = getChapters(params.id)
   const allCoversPromise = getAllCovers(params.id)
 
-  const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
+  const [manga, allCovers, chapters] = await Promise.all([
+    mangaPromise,
+    allCoversPromise,
+    chaptersPromise,
+  ])
 
-  const chapters: MangaChapter[] = [
+  const chapterss: MangaChapter[] = [
     {
       id: uuidv4(),
       type: 'chapter',
@@ -834,7 +839,7 @@ export default async function Manga({ params }: Props) {
                       )
                       return (
                         <Link href="/" key={uuidv4()}>
-                          {Object.values(codes[index])}
+                          {codes[index] && Object.values(codes[index])}
                         </Link>
                       )
                     },
