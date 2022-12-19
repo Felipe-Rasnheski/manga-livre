@@ -4,10 +4,12 @@ import styled from 'styled-components'
 import { poppins } from '../../styles/globals'
 
 export const LatestContainer = styled.div`
-  padding: 0.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 1rem;
+  .grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+  }
 
   a {
     box-shadow: none;

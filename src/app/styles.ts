@@ -7,6 +7,9 @@ export const PageContainer = styled.div`
   overflow: hidden;
   padding: 0 0 0 1.5rem;
   margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
   &[data-width='shink'] {
     max-width: calc(100vw - 15rem - 1.5rem);

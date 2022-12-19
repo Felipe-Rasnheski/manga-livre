@@ -61,7 +61,7 @@ export const HeaderContainer = styled.header`
       }
     }
 
-    .formAndAvatar {
+    .searchAndAvatar {
       height: 3rem;
       display: flex;
       flex: 1;
@@ -72,32 +72,6 @@ export const HeaderContainer = styled.header`
       a {
         &:focus {
           border-radius: 9999px;
-        }
-      }
-    }
-
-    form {
-      display: flex;
-      align-items: center;
-      height: 3rem;
-
-      div {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-
-        input {
-          display: none;
-
-          &::placeholder {
-            color: ${(props) => props.theme['--gray-400']};
-          }
-        }
-
-        &:hover {
-          cursor: pointer;
         }
       }
     }

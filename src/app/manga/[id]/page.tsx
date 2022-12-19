@@ -11,11 +11,14 @@ import {
 } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
 import { DialogReport } from '../../../components/DialogReport'
+import { MangaArt } from '../../../components/MangaArt'
 import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
 import { MangaChapter } from '../../../types/types'
+import { getAllCovers } from '../../../utils/getAllCovers'
+import { getChapters } from '../../../utils/getChapters'
 import { getManga } from '../../../utils/getManga'
 import { ChaptersContainer, MangaContainer, Status } from './styles'
 
@@ -35,13 +38,17 @@ export const runtime = 'nodejs'
 export const preferredRegion = 'auto'
 
 export default async function Manga({ params }: Props) {
-  const manga = await getManga(params.id)
-  // const chaptersPromise = getChapters(params.id)
-  // const allCoversPromise = getAllCovers(params.id)
+  const mangaPromise = getManga(params.id)
+  const chaptersPromise = getChapters(params.id)
+  const allCoversPromise = getAllCovers(params.id)
 
-  // const [manga, allCovers] = await Promise.all([mangaPromise, allCoversPromise])
+  const [manga, chapters, allCovers] = await Promise.all([
+    mangaPromise,
+    chaptersPromise,
+    allCoversPromise,
+  ])
 
-  const chapters: MangaChapter[] = [
+  const chapterss: MangaChapter[] = [
     {
       id: uuidv4(),
       type: 'chapter',
@@ -846,7 +853,7 @@ export default async function Manga({ params }: Props) {
                   )}
                 </div>
               </div>
-              {/* <MangaArt allCovers={allCovers} mangaId={manga.id} /> */}
+              <MangaArt allCovers={allCovers} mangaId={manga.id} />
             </div>
           </ChaptersContainer>
         </div>

@@ -3,6 +3,7 @@ import { poppins } from '../../styles/globals'
 
 export const PopularContainer = styled.div`
   width: cac(100vw -1.5rem);
+  margin-top: 1.5rem;
 
   &[data-width='shink'] {
     width: calc(100vw - 1.5rem - 15rem);
@@ -39,6 +40,13 @@ export const CarouselItem = styled.div`
   a {
     display: flex;
     text-decoration: none;
+    box-shadow: none;
+    border-radius: 4px;
+    border-right: 2px solid transparent;
+
+    &:focus {
+      border-color: ${(props) => props.theme['--grullo']};
+    }
   }
 
   #carouselImage {

@@ -9,7 +9,7 @@ import { CarouselItem, RecommendationsContainer } from './styles'
 
 export function Recommendations({ mangas }: { mangas: IManga[] }) {
   return (
-    <RecommendationsContainer id="recommendations">
+    <RecommendationsContainer id="recommendations" data-width="shink">
       <Carousel
         autoPlay
         interval={4000}

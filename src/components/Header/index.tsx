@@ -1,8 +1,7 @@
-'use client'
-
 import Link from 'next/link'
-import { BiMenuAltLeft, BiSearch, BiUser } from 'react-icons/bi'
+import { BiMenuAltLeft, BiUser } from 'react-icons/bi'
 import logo from '../../../public/logo.webp'
+import { Search } from '../Search'
 import {
   AvatarContainer,
   AvatarFallback,
@@ -34,29 +33,28 @@ export function Header() {
     }
   }
 
+  function handleToggle() {
+    const aside = document.querySelector('#aside')
+    aside?.setAttribute('data-menu', 'menuShow')
+
+    const nav = document.querySelector('#nav')
+    nav?.setAttribute('data-nav', 'navHidden')
+
+    const header = document.getElementById('header')
+    header?.setAttribute('data-width', 'shink')
+
+    const page = document.getElementById('pageContainer')
+    page?.setAttribute('data-width', 'shink')
+
+    const recommendations = document.getElementById('recommendations')
+    recommendations?.setAttribute('data-width', 'shink')
+  }
+
   return (
-    <HeaderContainer data-scrolly="" id="header">
-      <nav data-nav id="nav">
+    <HeaderContainer data-scrolly data-width="shink" id="header">
+      <nav data-nav="navHidden" id="nav">
         <div className="menuAndLogo">
-          <button
-            className="menu"
-            onClick={() => {
-              const aside = document.querySelector('#aside')
-              aside?.setAttribute('data-menu', 'menuShow')
-
-              const nav = document.querySelector('#nav')
-              nav?.setAttribute('data-nav', 'navHidden')
-
-              const header = document.getElementById('header')
-              header?.setAttribute('data-width', 'shink')
-
-              const page = document.getElementById('pageContainer')
-              page?.setAttribute('data-width', 'shink')
-
-              const recommendations = document.getElementById('recommendations')
-              recommendations?.setAttribute('data-width', 'shink')
-            }}
-          >
+          <button className="menu" onClick={handleToggle}>
             <BiMenuAltLeft size={32} />
           </button>
           <Link
@@ -68,22 +66,16 @@ export function Header() {
           />
         </div>
 
-        <div className="formAndAvatar">
+        <div className="searchAndAvatar">
           <Link href="/" prefetch={false}>
             <AvatarContainer>
               <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
-
               <AvatarFallback delayMs={600}>
                 <BiUser />
               </AvatarFallback>
             </AvatarContainer>
           </Link>
-          <form action="">
-            <div>
-              <input type="text" placeholder="Search" title="Search" />
-              <BiSearch size={28} />
-            </div>
-          </form>
+          <Search />
         </div>
       </nav>
     </HeaderContainer>

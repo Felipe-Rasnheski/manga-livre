@@ -1,23 +1,29 @@
-import { Recommendations } from '../components/Recommendations'
-import { getRecommendations } from '../utils/getRecommendations'
 import { PageContainer } from './styles'
 
-export default async function HomePage() {
-  // const popularPromise = getPopular()
-  const recommendationsPromise = await getRecommendations()
-  // const latestUpdatesPromise = getLatestUpdates()
+export const dynamic = 'auto'
+export const revalidate = 60 * 60
+export const fetchCache = 'auto'
 
-  // const [popular, recommendations, latestUpdates] = await Promise.all([
-  //   popularPromise,
-  //   recommendationsPromise,
-  //   latestUpdatesPromise,
+export default async function HomePage() {
+  // const recommendationsPromise = getRecommendations()
+  // const latestUpdatesPromise = getLatestUpdates()
+  // const popularPromise = getPopular()
+  // const recentlyAddedPromise = getRecentlyAdded()
+
+  // const [recommendations, latestUpdates, popular, recentlyAdded] =
+  //   await Promise.all([
+  //     recommendationsPromise,
+  //     latestUpdatesPromise,
+  //     popularPromise,
+  //     recentlyAddedPromise,
   // ])
 
   return (
-    <PageContainer id="pageContainer">
-      <Recommendations mangas={recommendationsPromise} />
-      {/* <LatestUpdates mangas={latestUpdates} />
-      <Popular mangas={popular} /> */}
+    <PageContainer id="pageContainer" data-width="shink">
+      {/* <Recommendations mangas={recommendations} />
+      <LatestUpdates mangas={latestUpdates} />
+      <Popular mangas={popular} />
+      <RecentlyAdded mangas={recentlyAdded} /> */}
     </PageContainer>
   )
 }

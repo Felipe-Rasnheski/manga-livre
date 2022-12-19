@@ -15,8 +15,25 @@ export function Aside() {
     element.currentTarget.classList.add('active')
   }
 
+  function handleToggle() {
+    const aside = document.querySelector('#aside')
+    aside?.setAttribute('data-menu', '')
+
+    const nav = document.querySelector('#nav')
+    nav?.setAttribute('data-nav', 'navShow')
+
+    const header = document.getElementById('header')
+    header?.removeAttribute('data-width')
+
+    const page = document.getElementById('pageContainer')
+    page?.removeAttribute('data-width')
+
+    const recommendations = document.getElementById('recommendations')
+    recommendations?.removeAttribute('data-width')
+  }
+
   return (
-    <AsideContainer data-menu="close" id="aside">
+    <AsideContainer data-menu="menuShow" id="aside">
       <header>
         <Link
           href="/"
@@ -25,25 +42,7 @@ export function Aside() {
           title="Home"
           prefetch={false}
         />
-        <button
-          className="close"
-          onClick={() => {
-            const aside = document.querySelector('#aside')
-            aside?.setAttribute('data-menu', '')
-
-            const nav = document.querySelector('#nav')
-            nav?.setAttribute('data-nav', 'navShow')
-
-            const header = document.getElementById('header')
-            header?.removeAttribute('data-width')
-
-            const page = document.getElementById('pageContainer')
-            page?.removeAttribute('data-width')
-
-            const recommendations = document.getElementById('recommendations')
-            recommendations?.removeAttribute('data-width')
-          }}
-        >
+        <button className="close" onClick={handleToggle}>
           <BiX size={32} />
         </button>
       </header>

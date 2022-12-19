@@ -23,6 +23,7 @@ export const RecommendationsContainer = styled.div`
     padding: 0.2rem 0.75rem 0.3rem 0.75rem;
     background: ${(props) => props.theme['--gray-800']};
     opacity: 1;
+    z-index: 1;
 
     &:hover {
       background: ${(props) => props.theme['--gray-700']};
@@ -48,11 +49,12 @@ export const CarouselItem = styled.div`
   background-repeat: no-repeat;
   height: 100%;
   overflow: hidden;
+  border-radius: 4px 4px 0 0;
 
   .background {
     padding: 1rem;
     max-height: 15rem;
-
+    border-radius: 4px 4px 0 0;
     background: linear-gradient(
       rgba(12, 9, 15, 0.7),
       rgba(12, 9, 15, 0.8),
