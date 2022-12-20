@@ -1,15 +1,21 @@
 'use client'
 
 import * as Dialog from '@radix-ui/react-dialog'
-import { use } from 'react'
+import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
-import { search } from '../../utils/search'
 import { DialogContent, DialogOverlay, SearchContainer } from './styles'
 
-// function handleSearch(query: string) { }
-
 export function Search() {
-  const searchData = use(search('one piece'))
+  const [doingSearch, setDoingSearch] = useState(false)
+  // const test = use(search('one piece'))
+
+  function handleSearch(query: string) {
+    if (doingSearch === true) return
+    console.log(query)
+    setDoingSearch(true)
+    setTimeout(() => console.log(), 10000)
+    setDoingSearch(false)
+  }
 
   return (
     <SearchContainer>
@@ -28,7 +34,7 @@ export function Search() {
             <div>
               <button>
                 <input
-                  // onChange={(e) => handleSearch(e.currentTarget.value)}
+                  onChange={(e) => handleSearch(e.currentTarget.value)}
                   autoFocus
                   type="text"
                   placeholder="Search"

@@ -1,11 +1,11 @@
+'use client'
+
 import Link from 'next/link'
-import { BiMenuAltLeft, BiUser } from 'react-icons/bi'
+import { BiMenuAltLeft } from 'react-icons/bi'
 import logo from '../../../public/logo.webp'
+import { Avatar } from '../Avatar'
 import { Search } from '../Search'
 import {
-  AvatarContainer,
-  AvatarFallback,
-  AvatarImage,
   // eslint-disable-next-line prettier/prettier
   HeaderContainer
 } from './styles'
@@ -68,12 +68,7 @@ export function Header() {
 
         <div className="searchAndAvatar">
           <Link href="/" prefetch={false}>
-            <AvatarContainer>
-              <AvatarImage src="https://github.com/Felipe-Rasnheski.png" />
-              <AvatarFallback delayMs={600}>
-                <BiUser />
-              </AvatarFallback>
-            </AvatarContainer>
+            <Avatar />
           </Link>
           <Search />
         </div>

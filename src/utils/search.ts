@@ -10,5 +10,5 @@ export async function search(query: string) {
     })
     .then((response) => response.data.data)
 
-  console.log(mangasResponse)
+  return mangasResponse
 }

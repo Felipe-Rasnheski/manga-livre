@@ -1,11 +1,7 @@
-'use client'
-
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
 import { Aside } from '../components/Aside'
 import { Header } from '../components/Header'
-import { GlobalStyles } from '../styles/globals'
-import { defaultTheme } from '../styles/themes/default'
+import ThemeProvider from '../styles/ThemeProvider'
 import { LayoutContainer } from './styles'
 
 export default function RootLayout({
@@ -17,8 +13,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <ThemeProvider theme={defaultTheme}>
-          <GlobalStyles />
+        <ThemeProvider>
           <LayoutContainer>
             <Aside />
             <div className="content" id="content">
