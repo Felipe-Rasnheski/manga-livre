@@ -17,7 +17,8 @@ export async function getPopular() {
         (relation: Relation) => relation.type === 'cover_art',
       )
 
-      const { title, description, originalLanguage } = manga.attributes
+      const { title, description, originalLanguage, altTitles } =
+        manga.attributes
 
       const coverUrl = `https://uploads.mangadex.org/covers/${manga.id}/${coverData.attributes.fileName}`
 
@@ -30,7 +31,7 @@ export async function getPopular() {
       return {
         id: manga.id,
         coverUrl,
-        title: mangaTitle,
+        title: mangaTitle || altTitles[0],
         description: mangaDescription,
       }
     }),

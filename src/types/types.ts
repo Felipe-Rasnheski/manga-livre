@@ -3,6 +3,7 @@ export interface MangaBasic {
   title: string
   coverUrl: string
   description: string
+  status: string
 }
 
 export interface Tag {

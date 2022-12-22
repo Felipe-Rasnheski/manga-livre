@@ -22,7 +22,6 @@ export async function getLatestUpdates() {
       )
 
       // const mangaHasAlreadyBeenFetched = index !== array.indexOf(chapterData)
-      // console.log(mangaHasAlreadyBeenFetched)
 
       const mangaResponse = await axios(
         `https://api.mangadex.org/manga/${mangaRelation?.id}`,
