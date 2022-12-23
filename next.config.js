@@ -4,7 +4,13 @@ const nextConfig = {
   swcMinify: true,
   experimental: { appDir: true },
   images: {
-    domains: ['uploads.mangadex.org', 'github.com'],
+    domains: [
+      'uploads.mangadex.org',
+      'api.mangadex.org',
+      'github.com',
+      'uploads.mangadex.dev',
+      'api.mangadex.dev',
+    ],
   },
   compiler: {
     styledComponents: true,

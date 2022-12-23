@@ -1,19 +1,17 @@
 import axios from 'axios'
-import { AltTitle, MangaChapter, Relation } from '../types/types'
+import { AltTitle, IMangaChapter, Relation } from '../types/types'
+import { apiUrl, coversUrl } from './urls'
 
 export async function getLatestUpdates() {
-  const latestResponse: MangaChapter[] = await axios(
-    'https://api.mangadex.org/chapter',
-    {
-      params: {
-        includes: ['scanlation_group'],
-        translatedLanguage: ['en'],
-        contentRating: ['safe', 'suggestive'],
-        order: { readableAt: 'desc' },
-        limit: 10,
-      },
+  const latestResponse: IMangaChapter[] = await axios(`${apiUrl}/chapter`, {
+    params: {
+      includes: ['scanlation_group'],
+      translatedLanguage: ['en'],
+      contentRating: ['safe', 'suggestive'],
+      order: { readableAt: 'desc' },
+      limit: 10,
     },
-  ).then((response) => response.data.data)
+  }).then((response) => response.data.data)
 
   const mangas = await Promise.all(
     latestResponse.map(async (chapterData) => {
@@ -24,7 +22,7 @@ export async function getLatestUpdates() {
       // const mangaHasAlreadyBeenFetched = index !== array.indexOf(chapterData)
 
       const mangaResponse = await axios(
-        `https://api.mangadex.org/manga/${mangaRelation?.id}`,
+        `${apiUrl}/manga/${mangaRelation?.id}`,
         {
           params: {
             includes: ['cover_art', 'author', 'tag'],
@@ -60,7 +58,7 @@ export async function getLatestUpdates() {
         (relation: Relation) => relation.type === 'author',
       )
 
-      const coverUrl = `https://uploads.mangadex.org/covers/${mangaResponse.id}/${coverData.attributes.fileName}`
+      const coverUrl = `${coversUrl}/covers/${mangaResponse.id}/${coverData.attributes.fileName}`
 
       const mangaTitle = title.en || title[originalLanguage] || altTitle
 

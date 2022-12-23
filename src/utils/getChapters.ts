@@ -1,12 +1,13 @@
 import axios from 'axios'
-import { MangaChapter } from '../types/types'
-import { FilterRepeatedChapters } from './filterRepeatedChapters'
+import { IMangaChapter } from '../types/types'
+import { filterRepeatedChapters } from './filterRepeatedChapters'
 import { getScanlationGroup } from './getScanlationGroup'
 import { getUserWhoPostedChapter } from './getUserWhoPostedChapter'
+import { apiUrl } from './urls'
 
 export async function getChapters(mangaId: string) {
-  const chaptersResponse: MangaChapter[] = await axios
-    .get(`https://api.mangadex.org/manga/${mangaId}/feed`, {
+  const chaptersResponse: IMangaChapter[] = await axios
+    .get(`${apiUrl}/manga/${mangaId}/feed`, {
       params: {
         translatedLanguage: ['en'],
         order: {
@@ -19,13 +20,12 @@ export async function getChapters(mangaId: string) {
     })
     .then((response) => response.data.data)
 
-  const chaptersFiltered = FilterRepeatedChapters(chaptersResponse)
+  const chaptersFiltered = filterRepeatedChapters(chaptersResponse)
 
-  const chaptersWhithScanlationGroup: MangaChapter[] = await getScanlationGroup(
-    chaptersFiltered,
-  )
+  const chaptersWhithScanlationGroup: IMangaChapter[] =
+    await getScanlationGroup(chaptersFiltered)
 
-  const chapters: MangaChapter[] = await getUserWhoPostedChapter(
+  const chapters: IMangaChapter[] = await getUserWhoPostedChapter(
     chaptersWhithScanlationGroup,
   )
 

@@ -13,7 +13,7 @@ export const PopularContainer = styled.div`
     margin-bottom: 0.3rem;
   }
 
-  .root {
+  .carousel {
     width: inherit;
 
     ul.control-dots {

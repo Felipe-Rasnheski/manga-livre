@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { MangaBasic } from '../../types/types'
@@ -13,33 +13,42 @@ type PopularProps = { mangas: MangaBasic[] }
 export function Popular({ mangas }: PopularProps) {
   const [centerSlidePercentage, setCenterSlidePercentage] = useState(33)
 
-  if (typeof window !== 'undefined') {
-    window.onresize = () => {
-      if (window.innerWidth < 1100) {
-        setCenterSlidePercentage(33)
+  function getSlidePercentage() {
+    const carousel = document.getElementById('carouselContainer')
+
+    let slidePercentage = 33
+
+    if (typeof window !== 'undefined' && carousel) {
+      if (carousel?.clientWidth > 1100) {
+        slidePercentage = 33
       }
 
-      if (window.innerWidth < 1101 && window.innerWidth > 1000) {
-        setCenterSlidePercentage(40)
+      if (carousel?.clientWidth < 1101 && carousel?.clientWidth > 1000) {
+        slidePercentage = 40
       }
 
-      if (window.innerWidth < 1001 && window.innerWidth > 800) {
-        setCenterSlidePercentage(45)
+      if (carousel?.clientWidth < 1001 && carousel?.clientWidth > 800) {
+        slidePercentage = 45
       }
 
-      if (window.innerWidth < 801 && window.innerWidth > 600) {
-        setCenterSlidePercentage(60)
+      if (carousel?.clientWidth < 801 && carousel?.clientWidth > 600) {
+        slidePercentage = 60
       }
 
-      if (window.innerWidth < 601 && window.innerWidth > 550) {
-        setCenterSlidePercentage(70)
+      if (carousel?.clientWidth < 601 && carousel?.clientWidth > 550) {
+        slidePercentage = 70
       }
 
-      if (window.innerWidth < 551) {
-        setCenterSlidePercentage(75)
+      if (carousel?.clientWidth < 551) {
+        slidePercentage = 75
       }
     }
+    setCenterSlidePercentage(slidePercentage)
   }
+
+  window.onresize = () => getSlidePercentage()
+
+  useEffect(() => getSlidePercentage(), [])
 
   return (
     <PopularContainer id="carouselContainer">
@@ -56,7 +65,7 @@ export function Popular({ mangas }: PopularProps) {
         centerMode
         centerSlidePercentage={centerSlidePercentage}
         dynamicHeight={false}
-        className="root"
+        className="carousel"
       >
         {mangas.map((manga) => {
           return (

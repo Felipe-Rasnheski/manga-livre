@@ -1,13 +1,13 @@
 import { PageContainer } from './styles'
 
 export const dynamic = 'auto'
-export const revalidate = 60 * 60
+export const revalidate = 3600
 export const fetchCache = 'auto'
 
 export default async function HomePage() {
   // const recommendationsPromise = getRecommendations()
-  // const latestUpdatesPromise = getLatestUpdates()
-  // const popularPromise = getPopular()
+  // const latestUpdates = await getLatestUpdates()
+  // const popular = await getPopular()
   // const recentlyAddedPromise = getRecentlyAdded()
 
   // const [recommendations, latestUpdates, popular, recentlyAdded] =
@@ -20,10 +20,10 @@ export default async function HomePage() {
 
   return (
     <PageContainer id="pageContainer" data-width="shink">
-      {/* <Recommendations mangas={recommendations} />
-      <LatestUpdates mangas={latestUpdates} />
-      <Popular mangas={popular} />
-      <RecentlyAdded mangas={recentlyAdded} /> */}
+      {/* <Recommendations mangas={recommendations} /> */}
+      {/* <LatestUpdates mangas={latestUpdates} /> */}
+      {/* <Popular mangas={popular} /> */}
+      {/* <RecentlyAdded mangas={recentlyAdded} /> */}
     </PageContainer>
   )
 }

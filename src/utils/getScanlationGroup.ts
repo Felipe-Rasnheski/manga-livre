@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { MangaChapter } from '../types/types'
+import { IMangaChapter } from '../types/types'
+import { apiUrl } from './urls'
 
-export async function getScanlationGroup(chapters: MangaChapter[]) {
+export async function getScanlationGroup(chapters: IMangaChapter[]) {
   const scanFirstChapter = chapters[0].relationships.find(
     (relation) => relation.type === 'scanlation_group',
   )
@@ -25,7 +26,7 @@ export async function getScanlationGroup(chapters: MangaChapter[]) {
         }
 
         const scanlationResponse = await axios
-          .get(`https://api.mangadex.org/group/${scan?.id}`)
+          .get(`${apiUrl}/group/${scan?.id}`)
           .then((response) => response.data.data)
 
         return {
@@ -42,7 +43,7 @@ export async function getScanlationGroup(chapters: MangaChapter[]) {
   }
 
   const scanlationResponse = await axios
-    .get(`https://api.mangadex.org/group/${scanFirstChapter?.id}`)
+    .get(`${apiUrl}/group/${scanFirstChapter?.id}`)
     .then((response) => response.data.data)
 
   const fetchedScanlationGroupOneTimeForAllChapters = chapters.map(

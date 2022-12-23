@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { MangaChapter } from '../types/types'
+import { IMangaChapter } from '../types/types'
+import { apiUrl } from './urls'
 
-export async function getUserWhoPostedChapter(chapters: MangaChapter[]) {
+export async function getUserWhoPostedChapter(chapters: IMangaChapter[]) {
   const whoPostedFirstChapter = chapters[0].relationships.find(
     (relation) => relation.type === 'user',
   )
@@ -13,7 +14,7 @@ export async function getUserWhoPostedChapter(chapters: MangaChapter[]) {
   )
 
   if (chaptersPublishedByOtherUser) {
-    const chaptersWithUserWhoPosted: MangaChapter[] = await Promise.all(
+    const chaptersWithUserWhoPosted: IMangaChapter[] = await Promise.all(
       chapters.map(async (chapter) => {
         const userWhoPosted = chapter.relationships.find(
           (relation) => relation.type === 'user',
@@ -24,7 +25,7 @@ export async function getUserWhoPostedChapter(chapters: MangaChapter[]) {
         }
 
         const userResponse = await axios
-          .get(`https://api.mangadex.org/user/${userWhoPosted?.id}`)
+          .get(`${apiUrl}/user/${userWhoPosted?.id}`)
           .then((response) => response.data.data)
 
         return {
@@ -40,7 +41,7 @@ export async function getUserWhoPostedChapter(chapters: MangaChapter[]) {
     return chaptersWithUserWhoPosted
   }
   const whoPostedFirstChapterResponse = await axios
-    .get(`https://api.mangadex.org/user/${whoPostedFirstChapter?.id}`)
+    .get(`${apiUrl}/user/${whoPostedFirstChapter?.id}`)
     .then((response) => response.data.data)
 
   const chaptersWithUserWhoPosted = chapters.map((chapter) => {

@@ -1,4 +1,4 @@
-export interface MangaBasic {
+export interface IMangaBasic {
   id: string
   title: string
   coverUrl: string
@@ -6,7 +6,7 @@ export interface MangaBasic {
   status: string
 }
 
-export interface Tag {
+export interface ITag {
   id: string
   type: string
   attributes: {
@@ -20,8 +20,8 @@ export interface Tag {
 
 export type AltTitle = { en: string } | any
 
-export interface IManga extends MangaBasic {
-  tags: Tag[]
+export interface IManga extends IMangaBasic {
+  tags: ITag[]
   title: string
   status: string
   altTitle: AltTitle
@@ -32,7 +32,7 @@ export interface IManga extends MangaBasic {
 
 export type Relation = { id: string; type: string } | any
 
-export interface MangaChapter {
+export interface IMangaChapter {
   id: string
   type: 'chapter'
   attributes: {
@@ -59,7 +59,7 @@ export interface MangaChapter {
   }
 }
 
-export interface CoverArt {
+export interface ICoverArt {
   id: string
   attributes: {
     volume: string
@@ -68,7 +68,7 @@ export interface CoverArt {
   relationships: Relation[]
 }
 
-export interface CustomList {
+export interface ICustomList {
   id: string
   type: string
   attributes: {
@@ -80,7 +80,7 @@ export interface CustomList {
 }
 
 export interface ILatestUpdates {
-  tags: Tag[]
+  tags: ITag[]
   status: string
   altTitle: AltTitle
   coverUrl: string
@@ -99,7 +99,7 @@ export interface ILatestUpdates {
   }
 }
 
-export interface DirectoryItem {
+export interface IDirectoryItem {
   s: string
   i: string
   o: string

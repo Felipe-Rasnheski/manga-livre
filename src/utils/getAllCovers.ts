@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { CoverArt } from '../types/types'
+import { ICoverArt } from '../types/types'
+import { apiUrl } from './urls'
 
 export async function getAllCovers(mangaId: string) {
-  const coversResponse: CoverArt[] = await axios
-    .get(`https://api.mangadex.org/cover`, {
+  const coversResponse: ICoverArt[] = await axios
+    .get(`${apiUrl}/cover`, {
       params: {
         limit: 100,
         manga: [mangaId],

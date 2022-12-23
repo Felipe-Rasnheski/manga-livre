@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { MangaBasic, Relation } from '../types/types'
+import { IMangaBasic, Relation } from '../types/types'
+import { apiUrl, coversUrl } from './urls'
 
 export async function getPopular() {
   const mangasResponse = await axios
-    .get('https://api.mangadex.org/manga', {
+    .get(`${apiUrl}/manga`, {
       params: {
         limit: 12,
         includes: ['cover_art'],
@@ -11,7 +12,7 @@ export async function getPopular() {
     })
     .then((response) => response.data.data)
 
-  const mangas: MangaBasic[] = await Promise.all(
+  const mangas: IMangaBasic[] = await Promise.all(
     mangasResponse.map((manga: any) => {
       const coverData = manga.relationships.find(
         (relation: Relation) => relation.type === 'cover_art',
@@ -20,7 +21,7 @@ export async function getPopular() {
       const { title, description, originalLanguage, altTitles } =
         manga.attributes
 
-      const coverUrl = `https://uploads.mangadex.org/covers/${manga.id}/${coverData.attributes.fileName}`
+      const coverUrl = `${coversUrl}/covers/${manga.id}/${coverData.attributes.fileName}`
 
       const mangaTitle = title.en ? title.en : title[originalLanguage]
 

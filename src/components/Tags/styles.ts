@@ -65,7 +65,7 @@ export const TagsContainer = styled.div`
     height: fit-content;
 
     &::after {
-      content: 'More...';
+      content: 'More';
       color: ${(props) => props.theme['--khaki-web']};
       border-bottom: 1px solid ${(props) => props.theme['--khaki-web']};
     }

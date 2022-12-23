@@ -41,4 +41,9 @@ export const codes = [
   { uk: 'Ukrainian' },
   { id: 'Indonesian' },
   { vi: 'Vietnamese' },
+  { sr: 'Serbian' },
+  { lt: 'Lithuanian' },
+  { id: 'Indonesian' },
+  { fa: 'Persian' },
+  { he: 'Hebrew' },
 ]

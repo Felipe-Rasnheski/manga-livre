@@ -1,9 +1,10 @@
 import axios from 'axios'
-import { AltTitle, MangaBasic, Relation } from '../types/types'
+import { AltTitle, IMangaBasic, Relation } from '../types/types'
+import { apiUrl, coversUrl } from './urls'
 
 export async function getRecentlyAdded() {
   const mangasResponse = await axios
-    .get('https://api.mangadex.org/manga', {
+    .get(`${apiUrl}/manga`, {
       params: {
         limit: 15,
         includes: ['cover_art'],
@@ -15,12 +16,12 @@ export async function getRecentlyAdded() {
     })
     .then((response) => response.data.data)
 
-  const mangas: MangaBasic[] = mangasResponse.map((manga: any) => {
+  const mangas: IMangaBasic[] = mangasResponse.map((manga: any) => {
     const coverData = manga.relationships.find(
       (relation: Relation) => relation.type === 'cover_art',
     )
 
-    const coverUrl = `https://uploads.mangadex.org/covers/${manga.id}/${coverData.attributes.fileName}`
+    const coverUrl = `${coversUrl}/covers/${manga.id}/${coverData.attributes.fileName}`
 
     const { title, altTitles, originalLanguage } = manga.attributes
 

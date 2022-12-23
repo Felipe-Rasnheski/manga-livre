@@ -15,6 +15,12 @@ export const MangaContainer = styled.div`
     height: 18.5rem;
     filter: blur(4px);
 
+    &[data-width='shink'] {
+      max-width: calc(100vw - 15rem);
+      left: unset;
+      right: 0;
+    }
+
     div {
       width: 100%;
       height: 100%;

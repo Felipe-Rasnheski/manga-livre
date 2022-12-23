@@ -1,4 +1,5 @@
-import { AltTitle, DirectoryItem, IManga, Relation } from '../types/types'
+import { AltTitle, IDirectoryItem, IManga, Relation } from '../types/types'
+import { apiUrl, coversUrl } from './urls'
 
 export async function getRecommendations() {
   let matchedResults = []
@@ -21,11 +22,11 @@ export async function getRecommendations() {
 
     matchedResults = directory
       .sort(
-        (a: DirectoryItem, b: DirectoryItem) =>
+        (a: IDirectoryItem, b: IDirectoryItem) =>
           normalizeNumber(b.v) - normalizeNumber(a.v),
       )
       .slice(0, 15)
-      .map((v: DirectoryItem) => v.s)
+      .map((v: IDirectoryItem) => v.s)
   } catch (err) {
     throw new Error('Initial search went wrong')
   }
@@ -33,7 +34,7 @@ export async function getRecommendations() {
   const recommendations: IManga[] = await Promise.all(
     matchedResults.map(async (mangaName: string) => {
       const mangaResponse = await fetch(
-        `https://api.mangadex.org/manga?title=${mangaName}&includes[]=cover_art&includes[]=author`,
+        `${apiUrl}manga?title=${mangaName}&includes[]=cover_art&includes[]=author`,
       )
         .then((response) => response.json())
         .then((data) => data.data[0])
@@ -66,7 +67,7 @@ export async function getRecommendations() {
         (relation: Relation) => relation.type === 'author',
       )
 
-      const coverUrl = `https://uploads.mangadex.org/covers/${mangaResponse.id}/${cover.attributes.fileName}`
+      const coverUrl = `${coversUrl}/covers/${mangaResponse.id}/${cover.attributes.fileName}`
 
       let mangaTitle = title.en ? title.en : title[originalLanguage]
 

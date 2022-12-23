@@ -5,10 +5,7 @@ import { BiMenuAltLeft } from 'react-icons/bi'
 import logo from '../../../public/logo.webp'
 import { Avatar } from '../Avatar'
 import { Search } from '../Search'
-import {
-  // eslint-disable-next-line prettier/prettier
-  HeaderContainer
-} from './styles'
+import { HeaderContainer } from './styles'
 
 export function Header() {
   if (typeof window !== 'undefined') {
@@ -48,6 +45,9 @@ export function Header() {
 
     const recommendations = document.getElementById('recommendations')
     recommendations?.setAttribute('data-width', 'shink')
+
+    const bannerBackground = document.getElementById('bannerBackground')
+    bannerBackground?.setAttribute('data-width', 'shink')
   }
 
   return (

@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AiOutlineEye } from 'react-icons/ai'
@@ -9,13 +10,12 @@ import {
   // eslint-disable-next-line prettier/prettier
   BiUpload
 } from 'react-icons/bi'
-import { v4 as uuidv4 } from 'uuid'
 import { DialogReport } from '../../../components/DialogReport'
 import { MangaChapters } from '../../../components/MangaChapters'
 import { RateManga } from '../../../components/RateManga'
 import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
-import { MangaChapter } from '../../../types/types'
+import { IMangaChapter } from '../../../types/types'
 import { getManga } from '../../../utils/getManga'
 import { ChaptersContainer, MangaContainer, Status } from './styles'
 
@@ -45,9 +45,9 @@ export default async function Manga({ params }: Props) {
   //   allCoversPromise,
   // ])
 
-  const chapters: MangaChapter[] = [
+  const chapters: IMangaChapter[] = [
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -63,20 +63,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -92,20 +92,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -121,20 +121,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -150,20 +150,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -179,20 +179,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -208,20 +208,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -237,20 +237,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -266,20 +266,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -295,20 +295,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -324,20 +324,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -353,20 +353,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -382,20 +382,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -411,20 +411,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -440,20 +440,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -469,20 +469,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -498,20 +498,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -527,20 +527,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -556,20 +556,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -585,20 +585,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -614,20 +614,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -643,20 +643,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -672,20 +672,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -701,20 +701,20 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
     {
-      id: uuidv4(),
+      id: randomUUID(),
       type: 'chapter',
       attributes: {
         volume: '',
@@ -730,23 +730,29 @@ export default async function Manga({ params }: Props) {
         version: 1,
       },
       relationships: [
-        { id: uuidv4(), type: '' },
-        { id: uuidv4(), type: '' },
+        { id: randomUUID(), type: '' },
+        { id: randomUUID(), type: '' },
       ],
       scanlation: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'paradase is in the dark',
       },
       whoPosted: {
-        id: uuidv4(),
+        id: randomUUID(),
         name: 'power',
       },
     },
   ]
 
+  console.log(manga.availableTranslatedLanguages)
+
   return (
     <MangaContainer>
-      <div className="bannerBackground">
+      <div
+        className="bannerBackground"
+        data-width="shink"
+        id="bannerBackground"
+      >
         <div
           style={{
             backgroundImage: `url(${manga.coverUrl})`,
@@ -842,7 +848,7 @@ export default async function Manga({ params }: Props) {
                         (code) => Object.keys(code)[0] === language,
                       )
                       return (
-                        <Link prefetch={false} href="/" key={uuidv4()}>
+                        <Link prefetch={false} href="/" key={randomUUID()}>
                           {codes[index] && Object.values(codes[index])}
                         </Link>
                       )

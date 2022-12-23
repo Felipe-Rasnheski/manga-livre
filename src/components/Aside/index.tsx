@@ -30,6 +30,9 @@ export function Aside() {
 
     const recommendations = document.getElementById('recommendations')
     recommendations?.removeAttribute('data-width')
+
+    const bannerBackground = document.getElementById('bannerBackground')
+    bannerBackground?.removeAttribute('data-width')
   }
 
   return (

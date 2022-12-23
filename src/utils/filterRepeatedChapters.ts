@@ -1,6 +1,6 @@
 import { MangaChapter } from '../types/types'
 
-export function FilterRepeatedChapters(chapters: MangaChapter[]) {
+export function filterRepeatedChapters(chapters: MangaChapter[]) {
   const filtered = chapters.filter((chapter, index, array) => {
     if (array[index + 1] === undefined) return chapter
 
