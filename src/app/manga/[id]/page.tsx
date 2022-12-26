@@ -744,8 +744,6 @@ export default async function Manga({ params }: Props) {
     },
   ]
 
-  console.log(manga.availableTranslatedLanguages)
-
   return (
     <MangaContainer>
       <div
@@ -819,11 +817,14 @@ export default async function Manga({ params }: Props) {
                 <div className="statistics">
                   <span className="stars">
                     <BiStar size={20} />
-                    9.51
+                    {manga.rating && String(manga.rating).slice(0, 3)}
                   </span>
                   <span className="marks">
                     <BiBookmark size={20} />
-                    98k
+                    {manga.follows &&
+                      new Intl.NumberFormat('en', {
+                        maximumSignificantDigits: 3,
+                      }).format(manga.follows)}
                   </span>
                   <span className="eye">
                     <AiOutlineEye size={20} />

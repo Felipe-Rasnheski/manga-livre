@@ -47,6 +47,10 @@ export async function getManga(mangaId: string) {
     ? description.en
     : description[originalLanguage]
 
+  const statistics = await axios
+    .get(`${apiUrl}/statistics/manga/${mangaId}`)
+    .then((response) => response.data.statistics)
+
   const manga: IManga = {
     tags,
     status,
@@ -58,6 +62,8 @@ export async function getManga(mangaId: string) {
     availableTranslatedLanguages,
     description: mangaDescription,
     authorName: author.attributes.name,
+    follows: statistics[mangaId].follows,
+    rating: statistics[mangaId].rating.average,
   }
 
   return manga

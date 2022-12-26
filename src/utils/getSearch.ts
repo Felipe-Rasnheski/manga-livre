@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Relation } from '../types/types'
+import { getStatistics } from './getStatistics'
 import { apiUrl, coversUrl } from './urls'
 
 export async function getSearch(query: string) {
@@ -39,7 +40,7 @@ export async function getSearch(query: string) {
     }
   })
 
-  console.log(mangas)
+  const mangasWithStatistics = await getStatistics(mangas)
 
-  return mangas
+  return mangasWithStatistics
 }

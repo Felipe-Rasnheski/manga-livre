@@ -4,6 +4,8 @@ export interface IMangaBasic {
   coverUrl: string
   description: string
   status: string
+  rating?: number
+  follows?: number
 }
 
 export interface ITag {

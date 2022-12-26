@@ -84,11 +84,14 @@ export function Search() {
                           <div className="favorites">
                             <span>
                               <BiStar size={16} />
-                              7.85
+                              {manga.rating && String(manga.rating).slice(0, 3)}
                             </span>
                             <span>
                               <BiBookmark size={16} />
-                              703
+                              {manga.follows &&
+                                new Intl.NumberFormat('en', {
+                                  maximumSignificantDigits: 3,
+                                }).format(manga.follows)}
                             </span>
                             <span>
                               <FaRegEye size={16} />
