@@ -50,6 +50,9 @@ export function Header() {
     bannerBackground?.setAttribute('data-width', 'shink')
   }
 
+  const redirectUrl =
+    'https://auth.mangadex.org/realms/mangadex/login-actions/registration?client_id=mangadex-frontend-stable&tab_id=3LlXXtkoFWA'
+
   return (
     <HeaderContainer data-scrolly data-width="shink" id="header">
       <nav data-nav="navHidden" id="nav">
@@ -67,7 +70,7 @@ export function Header() {
         </div>
 
         <div className="searchAndAvatar">
-          <Link href="/" prefetch={false}>
+          <Link href={redirectUrl} prefetch={false}>
             <Avatar />
           </Link>
           <Search />

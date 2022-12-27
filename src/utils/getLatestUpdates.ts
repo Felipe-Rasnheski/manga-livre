@@ -9,20 +9,53 @@ export async function getLatestUpdates() {
       translatedLanguage: ['en'],
       contentRating: ['safe', 'suggestive'],
       order: { readableAt: 'desc' },
-      limit: 10,
+      limit: 20,
     },
   }).then((response) => response.data.data)
 
+  const SameMangaTogether: any = {}
+  latestResponse.forEach((chapter, index, chapters) => {
+    const moreThanOne = chapters.findIndex(
+      (ch, chIndex) =>
+        ch.id === chapter.id &&
+        index !== chIndex &&
+        SameMangaTogether[chapter.id],
+    )
+
+    if (moreThanOne >= 0) {
+      SameMangaTogether[chapter.id] = {
+        ...SameMangaTogether[chapter.id],
+
+        newChapters: `
+          ${SameMangaTogether[chapter.id].newChapters}, 
+          ${chapter.attributes.chapter}
+        `,
+      }
+    } else {
+      const { id } = chapter
+      SameMangaTogether[id] = {
+        ...chapter,
+        newChapters: chapter.attributes.chapter,
+      }
+    }
+  })
+
+  let chaptersOfTheSameMangaTogether = []
+
+  for (const chapter in SameMangaTogether) {
+    chaptersOfTheSameMangaTogether.push(SameMangaTogether[chapter])
+  }
+
+  chaptersOfTheSameMangaTogether = chaptersOfTheSameMangaTogether.slice(0, 10)
+
   const mangas = await Promise.all(
-    latestResponse.map(async (chapterData) => {
+    chaptersOfTheSameMangaTogether.map(async (chapterData) => {
       const mangaRelation = chapterData.relationships.find(
         (relation: Relation) => relation.type === 'manga',
       )
 
-      // const mangaHasAlreadyBeenFetched = index !== array.indexOf(chapterData)
-
       const mangaResponse = await axios(
-        `${apiUrl}/manga/${mangaRelation?.id}`,
+        `${apiUrl}/manga/${mangaRelation?.id} `,
         {
           params: {
             includes: ['cover_art', 'author', 'tag'],
@@ -67,7 +100,7 @@ export async function getLatestUpdates() {
 
       const { publishAt, chapter, title: chapterTitle } = chapterData.attributes
       const scanlation = chapterData.relationships.find(
-        (relation) => relation.type === 'scanlation_group',
+        (relation: Relation) => relation.type === 'scanlation_group',
       )
 
       const manga = {
@@ -91,6 +124,7 @@ export async function getLatestUpdates() {
           publishAt,
           scanlationName: scanlation ? scanlation.attributes.name : 'unknown',
         },
+        newChapters: chapterData.newChapters,
       }
 
       return manga

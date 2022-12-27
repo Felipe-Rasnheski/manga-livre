@@ -99,6 +99,7 @@ export interface ILatestUpdates {
     publishAt: string
     scanlationName: string
   }
+  newChapters?: string[]
 }
 
 export interface IDirectoryItem {
