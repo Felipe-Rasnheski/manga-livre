@@ -23,11 +23,7 @@ export function LatestUpdates({ mangas }: { mangas: ILatestUpdates[] }) {
                 <div className="title">
                   <strong>{manga.title && Object.values(manga.title)}</strong>
                   <span>
-                    ch.{' '}
-                    {manga.newChapters && manga.newChapters?.length <= 4
-                      ? manga.newChapters
-                      : `${manga.newChapters?.slice(0, 3)}...`}{' '}
-                    - {manga.chapter.title}
+                    ch. {manga.newChapters} - {manga.chapter.title}
                   </span>
                 </div>
                 <div className="scanAndDate">

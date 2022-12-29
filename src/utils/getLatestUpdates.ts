@@ -13,37 +13,33 @@ export async function getLatestUpdates() {
     },
   }).then((response) => response.data.data)
 
-  const SameMangaTogether: any = {}
-  latestResponse.forEach((chapter, index, chapters) => {
-    const moreThanOne = chapters.findIndex(
-      (ch, chIndex) =>
-        ch.id === chapter.id &&
-        index !== chIndex &&
-        SameMangaTogether[chapter.id],
+  const sameMangaTogether: any = {}
+
+  latestResponse.forEach((ch) => {
+    const manga = ch.relationships.find(
+      (relation: Relation) => relation.type === 'manga',
     )
 
-    if (moreThanOne >= 0) {
-      SameMangaTogether[chapter.id] = {
-        ...SameMangaTogether[chapter.id],
+    if (manga) {
+      if (!sameMangaTogether[manga.id]) {
+        sameMangaTogether[manga.id] = {
+          ...ch,
+          newChapters: ch.attributes.chapter,
+        }
+      } else {
+        const { newChapters } = sameMangaTogether[manga.id]
 
-        newChapters: `
-          ${SameMangaTogether[chapter.id].newChapters}, 
-          ${chapter.attributes.chapter}
-        `,
-      }
-    } else {
-      const { id } = chapter
-      SameMangaTogether[id] = {
-        ...chapter,
-        newChapters: chapter.attributes.chapter,
+        sameMangaTogether[
+          manga.id
+        ].newChapters = `${newChapters}, ${ch.attributes.chapter}`
       }
     }
   })
 
   let chaptersOfTheSameMangaTogether = []
 
-  for (const chapter in SameMangaTogether) {
-    chaptersOfTheSameMangaTogether.push(SameMangaTogether[chapter])
+  for (const chapter in sameMangaTogether) {
+    chaptersOfTheSameMangaTogether.push(sameMangaTogether[chapter])
   }
 
   chaptersOfTheSameMangaTogether = chaptersOfTheSameMangaTogether.slice(0, 10)
