@@ -1,6 +1,12 @@
 {
-  "extends": ["@rocketseat/eslint-config/react", "plugin:@next/next/recommended"],
+  "extends": [
+    "@rocketseat/eslint-config/react",
+    "plugin:@next/next/recommended"
+  ],
   "rules": {
-    "@next/next/no-html-link-for-pages": ["error", "src/app"]
+    "@next/next/no-html-link-for-pages": [
+      "error",
+      "src/app"
+    ]
   }
 }

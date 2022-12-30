@@ -10,13 +10,13 @@ import {
   // eslint-disable-next-line prettier/prettier
   BiUpload
 } from 'react-icons/bi'
-import { DialogReport } from '../../../components/DialogReport'
-import { MangaChapters } from '../../../components/MangaChapters'
-import { RateManga } from '../../../components/RateManga'
-import { Tags } from '../../../components/Tags'
 import { codes } from '../../../mangadexLanguages'
 import { IMangaChapter } from '../../../types/types'
 import { getManga } from '../../../utils/getManga'
+import { DialogReport } from './components/DialogReport'
+import { MangaChapters } from './components/MangaChapters'
+import { RateManga } from './components/RateManga'
+import { Tags } from './components/Tags'
 import { ChaptersContainer, MangaContainer, Status } from './styles'
 
 type Params = {
