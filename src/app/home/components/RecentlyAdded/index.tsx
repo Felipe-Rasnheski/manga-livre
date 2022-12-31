@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
-import { MangaBasic } from '../../types/types'
+import { IMangaBasic } from '../../../../types/types'
 import { RecentlyAddedContainer } from './styles'
 
-export function RecentlyAdded({ mangas }: { mangas: MangaBasic[] }) {
+export function RecentlyAdded({ mangas }: { mangas: IMangaBasic[] }) {
   return (
     <RecentlyAddedContainer>
       <div className="header">

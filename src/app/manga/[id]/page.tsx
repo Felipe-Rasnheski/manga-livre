@@ -27,16 +27,9 @@ type Props = {
   params: Params
 }
 
-export const dynamic = 'auto'
-export const dynamicParams = true
-export const revalidate = false
-export const fetchCache = 'auto'
-export const runtime = 'nodejs'
-export const preferredRegion = 'auto'
-
 export default async function Manga({ params }: Props) {
   const manga = await getManga(params.id)
-  // const chaptersPromise = getChapters(params.id)
+  // const chapters = await getChapters(params.id)
   // const allCoversPromise = getAllCovers(params.id)
 
   // const [manga, chapters, allCovers] = await Promise.all([

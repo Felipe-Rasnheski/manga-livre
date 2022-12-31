@@ -8,6 +8,7 @@ import {
   AvatarContainer,
   AvatarFallback,
   AvatarImage,
+  // eslint-disable-next-line prettier/prettier
   HeaderContainer
 } from './styles'
 

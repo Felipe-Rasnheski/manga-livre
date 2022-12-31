@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { IMangaChapter } from '../types/types'
-import { filterRepeatedChapters } from './filterRepeatedChapters'
 import { getScanlationGroup } from './getScanlationGroup'
 import { getUserWhoPostedChapter } from './getUserWhoPostedChapter'
 import { apiUrl } from './urls'
@@ -20,7 +19,11 @@ export async function getChapters(mangaId: string) {
     })
     .then((response) => response.data.data)
 
-  const chaptersFiltered = filterRepeatedChapters(chaptersResponse)
+  const chaptersFiltered = chaptersResponse.filter((chapter, index, array) => {
+    if (array[index + 1] === undefined) return chapter
+
+    return chapter.attributes.chapter !== array[index + 1].attributes.chapter
+  })
 
   const chaptersWhithScanlationGroup: IMangaChapter[] =
     await getScanlationGroup(chaptersFiltered)
