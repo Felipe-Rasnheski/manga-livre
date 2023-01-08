@@ -19,7 +19,6 @@ export const DialogContent = styled(Dialog.Content)`
   transform: translate(-50%, -50%);
   background: #0c090f;
   z-index: 3;
-  padding: 1rem;
   box-shadow: none;
   width: 50vw;
   border-radius: 4px;
