@@ -1,0 +1,49 @@
+@use '../globals/variables' as vars;
+@use '../mixins';
+
+.aside {
+  display: none;
+  min-width: 15rem;
+  padding: 0.5rem 1rem;
+  background-color: vars.$gray-700;
+
+  @include webkit-scrollbar;
+
+  &[data-menu="open"] {
+    display: block;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+
+    .aside__logo {
+      display: inline-block;
+      width: 170px;
+      height: 38px;
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+
+    .aside__close {
+      background: transparent;
+      margin-top: 0.25rem;
+      height: 2rem;
+      width: 2rem;
+      color: vars.$gray-200;
+
+      &:hover {
+        cursor: pointer;
+        background: vars.$gray-800;
+        border-radius: 9999px;
+      }
+    }
+  }
+
+  nav {
+    height: 110%;
+  }
+}

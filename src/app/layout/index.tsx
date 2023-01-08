@@ -1,8 +1,12 @@
 import React from 'react'
-import { Aside } from './components/Aside'
-import { Header } from './components/Header'
-import { LayoutContainer } from './styles'
-import ThemeProvider from './ThemeProvider'
+import styles from '../../css/layoutStyles.module.css'
+import '../../sass/globals/styles.scss'
+
+import { Poppins } from '@next/font/google'
+import { Aside } from './Aside'
+import { Header } from './Header'
+
+const poppins = Poppins({ weight: ['500', '700'] })
 
 export default function RootLayout({
   children,
@@ -10,18 +14,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <head />
       <body>
-        <ThemeProvider>
-          <LayoutContainer>
-            <Aside />
-            <div className="content" id="content">
-              <Header />
-              {children}
-            </div>
-          </LayoutContainer>
-        </ThemeProvider>
+        <div className={styles.grid}>
+          <Aside />
+          <div className={styles.grid__content}>
+            <h1>hello</h1>
+            <Header />
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   )

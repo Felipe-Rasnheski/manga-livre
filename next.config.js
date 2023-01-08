@@ -1,19 +1,13 @@
 /** @type {import('next').NextConfig} */
+
+const path = require('path')
+
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: { appDir: true },
-  images: {
-    domains: [
-      'uploads.mangadex.org',
-      'api.mangadex.org',
-      'github.com',
-      'uploads.mangadex.dev',
-      'api.mangadex.dev',
-    ],
+  experimental: {
+    appDir: true,
   },
-  compiler: {
-    styledComponents: true,
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 }
 

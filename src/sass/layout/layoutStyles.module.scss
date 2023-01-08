@@ -1,0 +1,13 @@
+@use '../globals/variables' as vars;
+
+@forward 'header';
+@forward 'aside';
+
+.grid {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+  
+  &__content {
+    color: vars.$red;
+  }
+}
