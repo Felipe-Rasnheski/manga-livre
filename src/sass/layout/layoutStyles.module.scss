@@ -1,7 +1,7 @@
 @use '../globals/variables' as vars;
-
 @forward 'header';
 @forward 'aside';
+@forward 'search';
 
 .grid {
   display: grid;
@@ -9,5 +9,6 @@
   
   &__content {
     color: vars.$red;
+    height: 100vh;
   }
 }

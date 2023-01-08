@@ -1,0 +1,409 @@
+.header {
+  width: 100vw;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  padding: 0.5rem 1.3rem;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.header[data-scrolly=scrollDown] {
+  background-color: #121214;
+  border-bottom: 1px solid #b6af9f;
+}
+.header[data-scrolly=scrollDownDown] {
+  background-color: #202024;
+  border-bottom: 1px solid #e5d5a7;
+}
+.header[data-width=shink] {
+  max-width: calc(100vw - 15rem);
+}
+.header__nav {
+  height: 3rem;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header__nav[data-nav=navHidden] .header__menuAndLogo {
+  display: none;
+}
+.header__nav a {
+  height: 2.5rem;
+}
+.header__menuAndLogo {
+  display: flex;
+  align-items: center;
+}
+.header__menuAndLogo .header__menu {
+  background-color: transparent;
+  margin: 0.5rem 0;
+  color: #e1e1e6;
+}
+.header__menuAndLogo .header__menu:hover {
+  cursor: pointer;
+}
+.header__menuAndLogo .header__logo {
+  display: inline-block;
+  width: 54px;
+  height: 34px;
+  margin: 0.5rem;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+.header__searchAndAvatar {
+  height: 3rem;
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.header__searchAndAvatar a:focus {
+  border-radius: 9999px;
+}
+.header__avatarContainer {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.header__avatarContainer:hover {
+  cursor: pointer;
+}
+.header__avatarContainer__avatar {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.header__avatarContainer__avatarFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #29292e;
+  color: #e1e1e6;
+  border-radius: 8px 8px 0 0;
+}
+.header__avatarContainer__avatarFallback svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+@media (min-width: 576px) {
+  .header__nav .header__menuAndLogo .header__logo {
+    width: 170px;
+    height: 38px;
+    margin: 0.5rem;
+    background-position: bottom;
+  }
+}
+@media (min-width: 668px) {
+  .header__nav form div {
+    background: #323238;
+  }
+  .header__nav form div input {
+    display: inline-block;
+    padding: 0.25rem;
+    font-size: 1.1rem;
+    background-color: transparent;
+    box-shadow: none;
+    color: #e1e1e6;
+  }
+}
+
+.aside {
+  display: none;
+  min-width: 15rem;
+  padding: 0.5rem 1rem;
+  background-color: #29292e;
+}
+.aside::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.aside::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #323238;
+  border-radius: 2px;
+}
+.aside::-webkit-scrollbar-thumb {
+  background: #323238;
+  border-radius: 2px;
+}
+.aside::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 2px #202024;
+}
+.aside[data-menu=open] {
+  display: block;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.aside header {
+  display: flex;
+  justify-content: space-between;
+}
+.aside header .aside__logo {
+  display: inline-block;
+  width: 170px;
+  height: 38px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.aside header .aside__close {
+  background: transparent;
+  margin-top: 0.25rem;
+  margin-right: -0.5rem;
+  height: 2rem;
+  width: 2rem;
+  color: #e1e1e6;
+}
+.aside header .aside__close:hover {
+  cursor: pointer;
+  background: #202024;
+  border-radius: 9999px;
+}
+.aside .nav {
+  margin: 0.75rem 0;
+}
+.aside .nav__active {
+  background: #b6af9f;
+  box-shadow: none;
+  font-weight: bold;
+}
+.aside .nav a.nav__home {
+  color: #f8f9fa;
+  font-weight: bold;
+  font-size: 1.1rem;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  margin: 0;
+}
+.aside .nav h3 {
+  margin: 0.5rem 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: #f8f9fa;
+  cursor: default;
+}
+.aside .nav h3 span {
+  margin-left: auto;
+  line-height: 0;
+  border-radius: 9999px;
+}
+.aside .nav h3 span:hover {
+  background-color: #323238;
+  cursor: pointer;
+}
+.aside .nav a {
+  text-decoration: none;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.25rem;
+  margin-left: 0.25rem;
+  border-radius: 4px;
+  color: #e1e1e6;
+}
+.aside .nav a span {
+  margin-left: auto;
+  line-height: 0;
+  border-radius: 9999px;
+}
+.aside .nav a span:hover {
+  background-color: #323238;
+}
+.aside .nav a:hover {
+  background-color: #323238;
+}
+
+.search__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 15rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  background: #29292e;
+  color: #e1e1e6;
+}
+.search__button span {
+  color: #7c7c8a;
+}
+.search__button:focus {
+  box-shadow: 0 0 0 1px #e5d5a7;
+}
+.search__button:hover {
+  cursor: pointer;
+}
+.search__overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+}
+.search__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  box-shadow: none;
+  width: 60%;
+  margin-right: 3.8rem;
+  padding: 1rem 0 3.5rem 0;
+  height: 100%;
+  background: #202024;
+}
+.search__content header {
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0;
+}
+.search__content button {
+  margin-left: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 13rem;
+  height: 2rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  background: #29292e;
+  color: #e1e1e6;
+  border-bottom: 1px solid #e5d5a7;
+}
+.search__content button:hover {
+  cursor: pointer;
+}
+.search__content input {
+  width: 100%;
+  background: transparent;
+  font-size: 1.1rem;
+  box-shadow: none;
+  color: #f8f9fa;
+}
+.search__content__mangas {
+  width: 100%;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  height: 100%;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+.search__content__mangas::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.search__content__mangas::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #323238;
+  border-radius: 2px;
+}
+.search__content__mangas::-webkit-scrollbar-thumb {
+  background: #323238;
+  border-radius: 2px;
+}
+.search__content__mangas::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 2px #202024;
+}
+.search__manga {
+  display: flex;
+  gap: 0.5rem;
+  background: #29292e;
+  color: #e1e1e6;
+  border-radius: 4px;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+.search__manga img {
+  border-radius: 4px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.search__manga__info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.search__manga__info h2 {
+  color: #f8f9fa;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.search__manga__info h2:hover {
+  text-decoration: underline;
+}
+.search__manga__info__favorites {
+  display: flex;
+  gap: 0.5rem;
+}
+.search__manga__info__favorites span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+.search__manga__info__favorites span:first-child {
+  color: #e5d5a7;
+}
+.search__manga__status {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.5rem 0.35rem 0.4rem;
+  border-radius: 4px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  line-height: 100%;
+  background: #202024;
+}
+.search__manga__status strong {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 50%;
+}
+.search__manga__status strong::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.7rem;
+}
+.search__manga__status__colorBlue {
+  background: #3294f8;
+}
+.search__manga__status__colorGreen {
+  background: #00ff7a;
+}
+.search__manga__status__colorYellow {
+  background: #ffd60a;
+}
+.search__manga__status__colorRed {
+  background: #9d0208;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 15rem 1fr;
+}
+.grid__content {
+  color: #9d0208;
+  height: 100vh;
+}/*# sourceMappingURL=layoutStyles.module.css.map */

@@ -2,8 +2,8 @@
 
 import Link from 'next/link'
 import React from 'react'
-import Logo from '../../../public/logo.webp'
-import styles from '../../css/layoutStyles.module.css'
+import logo from '../../../public/logo.webp'
+import styles from '../../sass/css/layoutStyles.module.css'
 
 import { BiBookmarkAlt, BiBookOpen, BiHome, BiPlus, BiX } from 'react-icons/bi'
 import { FaArrowAltCircleUp, FaCat, FaUserFriends } from 'react-icons/fa'
@@ -42,7 +42,7 @@ export function Aside() {
         <Link
           href="/"
           className={styles.aside__logo}
-          style={{ backgroundImage: `url(${Logo.src})` }}
+          style={{ backgroundImage: `url(${logo.src})` }}
           title="Home"
           prefetch={false}
         />
@@ -50,11 +50,12 @@ export function Aside() {
           <BiX size={32} />
         </button>
       </header>
-      <nav>
+      <nav className={styles.nav}>
         <Link
           prefetch={false}
           href="/"
-          className="home active"
+          id="home"
+          className={`${styles.nav__home} ${styles.nav__active}`}
           onClick={(e) => {
             addClassActive(e)
 

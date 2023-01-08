@@ -1,5 +1,5 @@
 @use '../globals/variables' as vars;
-@use '../mixins';
+@use '../mixins' as mix;
 
 .aside {
   display: none;
@@ -7,7 +7,7 @@
   padding: 0.5rem 1rem;
   background-color: vars.$gray-700;
 
-  @include webkit-scrollbar;
+  @include mix.webkit-scrollbar(0.5rem);
 
   &[data-menu="open"] {
     display: block;
@@ -31,6 +31,7 @@
     .aside__close {
       background: transparent;
       margin-top: 0.25rem;
+      margin-right: -0.5rem;
       height: 2rem;
       width: 2rem;
       color: vars.$gray-200;
@@ -43,7 +44,67 @@
     }
   }
 
-  nav {
-    height: 110%;
+  .nav {
+    margin: 0.75rem 0;
+
+    &__active {
+      background: vars.$primary;
+      box-shadow: none;
+      font-weight: bold;
+    }
+
+    a.nav__home {
+      color: vars.$gray-100;
+      font-weight: bold;
+      font-size: 1.1rem;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+      margin: 0;
+    }
+
+    h3 {
+      margin: 0.5rem 0;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      color: vars.$gray-100;
+      cursor: default;
+
+      span {
+        margin-left: auto;
+        line-height: 0;
+        border-radius: 9999px;
+
+        &:hover {
+          background-color: vars.$gray-600;
+          cursor: pointer;
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      padding: 0.25rem;
+      margin-left: 0.25rem;
+      border-radius: 4px;
+      color: vars.$gray-200;
+
+      span {
+        margin-left: auto;
+        line-height: 0;
+        border-radius: 9999px;
+
+        &:hover {
+          background-color: vars.$gray-600;
+        }
+      }
+
+      &:hover {
+        background-color: vars.$gray-600;
+      }
+    }
   }
 }

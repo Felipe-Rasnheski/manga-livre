@@ -1,8 +1,8 @@
-@use '../globals/variables';
+@use '../globals/variables' as vars;
 
-@mixin webkit-scrollbar {
+@mixin webkit-scrollbar($width) {
   &::-webkit-scrollbar {
-    width: 0.5rem;
+    width: $width;
   }
 
   &::-webkit-scrollbar-track {

@@ -1,3 +1,3 @@
-export default function Home() {
-  return <h1>Hello!</h1>
-}
+import { Home } from './home'
+
+export default Home
