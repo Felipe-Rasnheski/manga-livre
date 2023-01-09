@@ -1,0 +1,78 @@
+@use "../globals/variables" as vars;
+
+.tags {
+  display: flex;
+  margin-top: 0.75rem;
+  align-items: baseline;
+  overflow-wrap: break-word;
+
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 200%;
+    max-width: 95%;
+
+    span {
+      background: vars.$gray-700;
+      border-radius: 4px;
+      padding: 0.25rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+
+      &:nth-child(1) {
+        background: vars.$background;
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__cover {
+    display: none;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+
+  &[data-paragraph="more"] {
+    -webkit-line-clamp: 5;
+
+    &__cover {
+      display: inline-block;
+
+      &::after {
+        content: "...hidden";
+        color: vars.$primary;
+        border-bottom: 1px solid vars.$primary;
+      }
+    }
+  }
+
+  .more {
+    height: fit-content;
+
+    &::after {
+      content: "More";
+      color: vars.$primary;
+      border-bottom: 1px solid vars.$primary;
+    }
+
+    &[data-more="hidden"] {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.9;
+    }
+  }
+}

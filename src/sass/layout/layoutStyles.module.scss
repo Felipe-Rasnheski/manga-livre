@@ -1,14 +1,23 @@
-@use '../globals/variables' as vars;
-@forward 'header';
-@forward 'aside';
-@forward 'search';
+@use "../globals/variables" as vars;
+@use "../mixins" as mix;
+@forward "header";
+@forward "aside";
+@forward "search";
 
 .grid {
   display: grid;
   grid-template-columns: 15rem 1fr;
-  
+
   &__content {
-    color: vars.$red;
+    width: inherit;
     height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    @include mix.webkit-scrollbar(0.75rem);
+  }
+
+  &[data-menu="close"] {
+    grid-template-columns: 1fr;
   }
 }

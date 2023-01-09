@@ -1,0 +1,38 @@
+@use "../globals/variables" as vars;
+
+#recommendations {
+  .carousel.carousel-slider .control-arrow {
+    position: absolute;
+    inset: unset;
+    bottom: 0.5rem;
+    border-radius: 50%;
+    padding: 0.2rem 0.75rem 0.3rem 0.75rem;
+    opacity: 1;
+    z-index: 1;
+
+    &:hover {
+      background: vars.$gray-800;
+    }
+  }
+
+  .carousel.carousel-slider .control-next {
+    right: 0;
+    margin-right: 4rem;
+  }
+
+  .carousel.carousel-slider .control-prev {
+    right: 7rem;
+  }
+}
+
+#carouselContainer {
+  ul.control-dots {
+    margin-top: 50px;
+    position: relative;
+    margin-top: 0;
+
+    li.dot {
+      padding: 0.3rem;
+    }
+  }
+}

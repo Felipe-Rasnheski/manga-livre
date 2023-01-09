@@ -17,9 +17,9 @@ export default function RootLayout({
     <html lang="en" className={poppins.className}>
       <head />
       <body>
-        <div className={styles.grid}>
+        <div id="grid" className={styles.grid}>
           <Aside />
-          <div className={styles.grid__content}>
+          <div id="content" className={styles.grid__content}>
             <Header />
             {children}
           </div>

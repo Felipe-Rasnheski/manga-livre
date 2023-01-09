@@ -1,11 +1,11 @@
-@use '../globals/variables' as vars;
-@use '../mixins' as mix;
+@use "../globals/variables" as vars;
+@use "../mixins" as mix;
 
 .aside {
   display: none;
   min-width: 15rem;
   padding: 0.5rem 1rem;
-  background-color: vars.$gray-700;
+  background-color: vars.$gray-800;
 
   @include mix.webkit-scrollbar(0.5rem);
 

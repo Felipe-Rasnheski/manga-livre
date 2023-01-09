@@ -3,11 +3,24 @@ import { Recommendations } from './Recommendations'
 import { getRecommendations } from './util/getRecommendations'
 
 export async function Home() {
-  const mangas = await getRecommendations()
+  const recommendations = await getRecommendations()
+  // const latestUpdatesPromise = getLatestUpdates()
+  // const popularPromise = getPopular()
+  // const recentlyPromise = getRecentlyAdded()
+
+  // const [recommendations, latest, popular, recently] = await Promise.all([
+  //   recommendationsPromise,
+  //   latestUpdatesPromise,
+  //   popularPromise,
+  //   recentlyPromise,
+  // ])
 
   return (
-    <div id="home" className={styles.home} data-width="shink">
-      <Recommendations mangas={mangas} />
+    <div className={styles.home}>
+      <Recommendations mangas={recommendations} />
+      {/* <LatestUpdates mangas={latest} />
+      <Popular mangas={popular} />
+      <RecentlyAdded mangas={recently} /> */}
     </div>
   )
 }

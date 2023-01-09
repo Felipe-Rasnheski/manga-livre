@@ -32,6 +32,9 @@ export function Header() {
   }
 
   function handleToggle() {
+    const grid = document.querySelector('#grid')
+    grid?.setAttribute('data-menu', '')
+
     const aside = document.querySelector('#aside')
     aside?.setAttribute('data-menu', 'open')
 
@@ -41,23 +44,12 @@ export function Header() {
     const header = document.getElementById('header')
     header?.setAttribute('data-width', 'shink')
 
-    const page = document.getElementById('pageContainer')
-    page?.setAttribute('data-width', 'shink')
-
-    const recommendations = document.getElementById('recommendations')
-    recommendations?.setAttribute('data-width', 'shink')
-
-    const bannerBackground = document.getElementById('bannerBackground')
-    bannerBackground?.setAttribute('data-width', 'shink')
+    const banner = document.getElementById('banner')
+    banner?.setAttribute('data-width', 'shink')
   }
 
   return (
-    <header
-      id="header"
-      className={styles.header}
-      data-width="shink"
-      data-scrolly
-    >
+    <header id="header" className={styles.header} data-width="shink">
       <nav data-nav="navHidden" id="nav" className={styles.header__nav}>
         <div className={styles.header__menuAndLogo}>
           <button className={styles.header__menu} onClick={handleToggle}>

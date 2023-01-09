@@ -1,24 +1,24 @@
-@use '../globals/variables' as vars;
+@use "../globals/variables" as vars;
 
 .header {
-  width: 100vw;
+  width: 100%;
   position: fixed;
   z-index: 2;
   display: flex;
-  padding: 0.5rem 1.3rem;
+  padding: 0.5rem 1.5rem;
   transition: background-color 0.2s, border-color 0.2s;
 
-  &[data-scrolly='scrollDown'] {
+  &[data-scrolly="scrollDown"] {
     background-color: vars.$gray-900;
     border-bottom: 1px solid vars.$primary;
   }
 
-  &[data-scrolly='scrollDownDown'] {
-    background-color: vars.$gray-800;
+  &[data-scrolly="scrollDownDown"] {
+    background-color: vars.$background;
     border-bottom: 1px solid vars.$secondary;
   }
 
-  &[data-width='shink'] {
+  &[data-width="shink"] {
     max-width: calc(100vw - 15rem);
   }
 
@@ -30,7 +30,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    &[data-nav='navHidden'] {
+    &[data-nav="navHidden"] {
       .header__menuAndLogo {
         display: none;
       }
@@ -104,10 +104,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: vars.$gray-700;
+      background-color: vars.$gray-800;
       color: vars.$gray-200;
       border-radius: 8px 8px 0 0;
-    
+
       svg {
         width: 2.5rem;
         height: 2.5rem;

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { AltTitle, IMangaBasic, Relation } from '../types/types'
-import { apiUrl, coversUrl } from './urls'
+import { AltTitle, IMangaBasic, Relation } from '../../../types'
+import { apiUrl, coversUrl } from '../../../utils/urls'
 
 export async function getRecentlyAdded() {
   const mangasResponse = await axios

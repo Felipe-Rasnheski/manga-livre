@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { IMangaBasic, Relation } from '../types/types'
-import { apiUrl, coversUrl } from './urls'
+import { IMangaBasic, Relation } from '../../../types'
+import { apiUrl, coversUrl } from '../../../utils/urls'
 
 export async function getPopular() {
   const mangasResponse = await axios

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import '../../sass/css/carousel.css'
 import styles from '../../sass/css/homeStyles.module.css'
 
 import { Carousel } from 'react-responsive-carousel'
@@ -11,7 +12,7 @@ import { IManga } from '../../types'
 export function Recommendations({ mangas }: { mangas: IManga[] }) {
   return (
     <div
-      className={styles.home__recommendations}
+      className={styles.recommendations}
       id="recommendations"
       data-width="shink"
     >
@@ -33,11 +34,15 @@ export function Recommendations({ mangas }: { mangas: IManga[] }) {
             <div
               key={manga.id}
               style={{ backgroundImage: `url(${manga.coverUrl})` }}
-              className={styles.home__carousel__item}
+              className={styles.recommendations__carousel__item}
             >
-              <div className={styles.home__carousel__item__background}>
+              <div
+                className={styles.recommendations__carousel__item__background}
+              >
                 <Link href={`/manga/${manga.id}`} prefetch={false}>
-                  <div className={styles.home__carousel__item__image}>
+                  <div
+                    className={styles.recommendations__carousel__item__image}
+                  >
                     <Image
                       src={manga.coverUrl}
                       width={256}
@@ -46,7 +51,7 @@ export function Recommendations({ mangas }: { mangas: IManga[] }) {
                       alt=""
                     />
                   </div>
-                  <div className={styles.home__carousel__item__info}>
+                  <div className={styles.recommendations__carousel__item__info}>
                     <strong>{manga.title}</strong>
                     <div>
                       <span>
@@ -63,7 +68,11 @@ export function Recommendations({ mangas }: { mangas: IManga[] }) {
                       </span>
                     </div>
                     <p>{manga.description}</p>
-                    <div className={styles.home__carousel__item__info__author}>
+                    <div
+                      className={
+                        styles.recommendations__carousel__item__info__author
+                      }
+                    >
                       {manga.authorName}
                     </div>
                   </div>

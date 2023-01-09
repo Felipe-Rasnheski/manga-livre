@@ -17,6 +17,9 @@ export function Aside() {
   }
 
   function handleToggle() {
+    const grid = document.querySelector('#grid')
+    grid?.setAttribute('data-menu', 'close')
+
     const aside = document.querySelector('#aside')
     aside?.setAttribute('data-menu', '')
 
@@ -26,14 +29,8 @@ export function Aside() {
     const header = document.getElementById('header')
     header?.removeAttribute('data-width')
 
-    const page = document.getElementById('pageContainer')
-    page?.removeAttribute('data-width')
-
-    const recommendations = document.getElementById('recommendations')
-    recommendations?.removeAttribute('data-width')
-
-    const bannerBackground = document.getElementById('bannerBackground')
-    bannerBackground?.removeAttribute('data-width')
+    const banner = document.getElementById('banner')
+    banner?.removeAttribute('data-width')
   }
 
   return (
@@ -54,7 +51,6 @@ export function Aside() {
         <Link
           prefetch={false}
           href="/"
-          id="home"
           className={`${styles.nav__home} ${styles.nav__active}`}
           onClick={(e) => {
             addClassActive(e)

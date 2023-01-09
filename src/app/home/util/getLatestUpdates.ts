@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { AltTitle, IMangaChapter, Relation } from '../types/types'
-import { apiUrl, coversUrl } from './urls'
+import { AltTitle, IMangaChapter, Relation } from '../../../types'
+import { apiUrl, coversUrl } from '../../../utils/urls'
 
 export async function getLatestUpdates() {
   const latestResponse: IMangaChapter[] = await axios(`${apiUrl}/chapter`, {
