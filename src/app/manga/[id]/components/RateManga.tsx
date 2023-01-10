@@ -1,7 +1,8 @@
 'use client'
 
+import styles from '../../../../sass/css/mangaStyles.module.css'
+
 import { BiStar } from 'react-icons/bi'
-import { RateMangaContainer } from './styles'
 
 export function RateManga() {
   function handleRate() {
@@ -27,7 +28,7 @@ export function RateManga() {
   }
 
   return (
-    <RateMangaContainer>
+    <div className={styles.rate}>
       <button
         onClick={(e) => {
           e.stopPropagation()
@@ -38,7 +39,11 @@ export function RateManga() {
         <BiStar size={28} title="Rate" />
       </button>
 
-      <div className="rateOptions" id="rateOptions" data-rate-options="">
+      <div
+        className={styles.rate__options}
+        id="rateOptions"
+        data-rate-options=""
+      >
         <span>(10) Masterpiece</span>
         <span>(9) Great</span>
         <span>(8) Very Good</span>
@@ -49,8 +54,8 @@ export function RateManga() {
         <span>(3) Very Bad</span>
         <span>(2) Horrible</span>
         <span>(1) Appalling</span>
-        <span className="removeRating">Remove Rating</span>
+        <span className={styles.rate__remove}>Remove Rating</span>
       </div>
-    </RateMangaContainer>
+    </div>
   )
 }

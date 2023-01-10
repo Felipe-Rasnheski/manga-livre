@@ -2,6 +2,7 @@ import Image from 'next/image'
 import styles from '../../../sass/css/mangaStyles.module.css'
 
 import { randomUUID } from 'crypto'
+import Link from 'next/link'
 import { AiOutlineEye } from 'react-icons/ai'
 import {
   BiBookmark,
@@ -12,7 +13,13 @@ import {
   BiUpload
 } from 'react-icons/bi'
 import { IMangaChapter } from '../../../types'
+import { codes } from '../../../utils/mangadexLanguages'
+import { MangaArt } from './components/Art'
+import { MangaChapters } from './components/Chapters'
+import { DialogReport } from './components/DialogReport'
+import { RateManga } from './components/RateManga'
 import { Tags } from './components/Tags'
+import { getAllCovers } from './util/getAllCovers'
 import { getManga } from './util/getManga'
 
 type Params = {
@@ -26,7 +33,7 @@ type Props = {
 export default async function Manga({ params }: Props) {
   const manga = await getManga(params.id)
   // const chapters = await getChapters(params.id)
-  // const allCoversPromise = getAllCovers(params.id)
+  const allCovers = await getAllCovers(params.id)
 
   // const [manga, chapters, allCovers] = await Promise.all([
   //   mangaPromise,
@@ -769,20 +776,18 @@ export default async function Manga({ params }: Props) {
               <button className={styles.manga__actions__buttons__library}>
                 Add to library
               </button>
-              {/* <RateManga /> */}
+              <RateManga />
               <button>
                 <BiListPlus size={28} title="Add to list" />
               </button>
               <button>
                 <BiBookOpen size={28} title="Read" />
               </button>
-
-              {/* <DialogReport
-                  mangaId={manga.id}
-                  imageUrl={manga.coverUrl}
-                  title={manga.title}
-                /> */}
-
+              <DialogReport
+                mangaId={manga.id}
+                imageUrl={manga.coverUrl}
+                title={manga.title}
+              />
               <button>
                 <BiUpload size={28} title="Upload" />
               </button>
@@ -826,16 +831,15 @@ export default async function Manga({ params }: Props) {
               </div>
             </div>
           </div>
-
-          <div className="description">
+          <div className={styles.manga__description}>
             <p>{manga.description}</p>
           </div>
-          {/* <ChaptersContainer>
+          <div className={styles.manga__section}>
             <MangaChapters mangaChapters={chapters} />
-            <div className="languageAndArt">
-              <div className="language">
+            <div className={styles.manga__section__languageAndArt}>
+              <div className={styles.manga__section__language}>
                 <h2>Available languages</h2>
-                <div className="links">
+                <div className={styles.manga__section__links}>
                   {manga.availableTranslatedLanguages.map(
                     (language: string) => {
                       const index = codes.findIndex(
@@ -850,9 +854,9 @@ export default async function Manga({ params }: Props) {
                   )}
                 </div>
               </div>
-              {/* <MangaArt allCovers={allCovers} mangaId={manga.id} /> */}
-          {/* </div> */}
-          {/* </ChaptersContainer> */}
+              <MangaArt allCovers={allCovers} mangaId={manga.id} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

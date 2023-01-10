@@ -1,0 +1,109 @@
+@use "../globals/variables" as vars;
+
+.chapters {
+  padding: 1.6rem;
+  width: 100%;
+  flex: 2;
+
+  &__hiddenOverflow {
+    max-height: 153vh;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 1.6rem;
+
+    &[data-overflow="hidden"] {
+      border-bottom: 2px solid vars.$blue;
+    }
+
+    &[data-overflow="showall"] {
+      max-height: fit-content;
+    }
+  }
+
+  &__chapter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    color: vars.$gray-100;
+    background: vars.$gray-900;
+    text-decoration: none;
+    border-left: 2px solid vars.$secondary;
+    border-radius: 4px;
+    cursor: pointer;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      strong {
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 0.25rem;
+        }
+
+        &:nth-child(1) {
+          margin-bottom: 0.25rem;
+        }
+      }
+
+      span {
+        padding: 0.25rem;
+        color: vars.$gray-300;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: vars.$gray-800;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__timeAndUser {
+      min-width: 10rem;
+    }
+
+    &__title {
+      text-decoration: none;
+      color: vars.$gray-100;
+      box-shadow: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__showAll {
+    text-align: center;
+
+    button {
+      padding: 0.5rem;
+      background: transparent;
+      border-radius: 4px;
+      color: vars.$blue;
+      font-size: 1rem;
+      border: none;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: inset 0 0 4px vars.$blue;
+        cursor: pointer;
+        background: vars.$gray-700;
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 4px vars.$blue;
+      }
+    }
+
+    &[data-show="hidden"] {
+      display: none;
+    }
+  }
+}

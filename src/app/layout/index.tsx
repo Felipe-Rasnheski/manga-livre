@@ -6,7 +6,7 @@ import { Poppins } from '@next/font/google'
 import { Aside } from './Aside'
 import { Header } from './Header'
 
-const poppins = Poppins({ weight: ['500', '700'], subsets: ['latin'] })
+const poppins = Poppins({ weight: ['500', '700'], subsets: ['devanagari'] })
 
 export default function RootLayout({
   children,

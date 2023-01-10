@@ -36,3 +36,13 @@
     }
   }
 }
+
+.art {
+  .carousel.carousel-slider .control-arrow {
+    z-index: 1;
+  }
+
+  .carousel .carousel-status {
+    right: 2rem;
+  }
+}

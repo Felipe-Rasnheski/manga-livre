@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { ICoverArt } from '../types/types'
-import { apiUrl } from './urls'
+import { ICoverArt } from '../../../../types'
+import { apiUrl } from '../../../../utils/urls'
 
 export async function getAllCovers(mangaId: string) {
   const coversResponse: ICoverArt[] = await axios

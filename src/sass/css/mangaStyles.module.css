@@ -1,0 +1,638 @@
+.tags {
+  display: flex;
+  margin-top: 0.75rem;
+  align-items: baseline;
+  overflow-wrap: break-word;
+}
+.tags p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 200%;
+  max-width: 95%;
+}
+.tags p[data-paragraph=more] {
+  -webkit-line-clamp: 5;
+}
+.tags p[data-paragraph=more] .tags__hidden {
+  display: inline-block;
+}
+.tags p[data-paragraph=more] .tags__hidden::after {
+  content: "...hidden";
+  color: #b6af9f;
+  border-bottom: 1px solid #b6af9f;
+}
+.tags p span {
+  background: #1a1c21;
+  border-radius: 4px;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.tags p span:nth-child(1) {
+  background: #202024;
+}
+.tags p span:hover {
+  cursor: default;
+  opacity: 0.9;
+}
+.tags__hidden {
+  display: none;
+}
+.tags__hidden:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+.tags strong {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.tags strong::after {
+  content: "More";
+  color: #b6af9f;
+  border-bottom: 1px solid #b6af9f;
+}
+.tags strong[data-more=hidden] {
+  display: none;
+}
+.tags strong:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.rate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rate button {
+  height: 100%;
+  max-width: 52px;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #c0c0c0;
+  background: #323238;
+  border-radius: 4px;
+}
+.rate button:hover {
+  cursor: pointer;
+  color: #f8f9fa;
+  opacity: 0.7;
+}
+.rate__options {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100%;
+  background: #1a1c21;
+  padding: 0.25rem 0;
+  display: none;
+  transform: scaleY(0);
+}
+.rate__options span {
+  display: block;
+  white-space: nowrap;
+  padding: 0.25rem 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+.rate__options span:hover {
+  cursor: pointer;
+  background: #323238;
+}
+.rate__options[data-rate-options=show] {
+  transform: scaleY(1);
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 2;
+}
+
+.report {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  margin: 2rem;
+  padding-bottom: 3rem;
+}
+.report__content {
+  background: #0c090f;
+  box-shadow: none;
+  width: 50vw;
+  border-radius: 4px;
+  padding: 1.5rem;
+  height: 100vh;
+  overflow-y: auto;
+}
+.report__content::-webkit-scrollbar {
+  width: 0.75rem;
+}
+.report__content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px #323238;
+  border-radius: 2px;
+}
+.report__content::-webkit-scrollbar-thumb {
+  background: #323238;
+  border-radius: 2px;
+}
+.report__content::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 2px #1a1c21;
+}
+.report__close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: transparent;
+  color: #f8f9fa;
+  border-radius: 50%;
+  line-height: 0;
+  padding: 0.25rem;
+}
+.report__close:hover {
+  cursor: pointer;
+  background-color: #121214;
+}
+.report__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+.report__description span {
+  font-weight: bold;
+}
+.report__manga {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  background: #1a1c21;
+}
+.report__manga img {
+  border-radius: 4px;
+}
+.report__manga div {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.report__divider {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: #323238;
+}
+.report__reason {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.report__reason textarea {
+  padding: 1rem;
+  background: #1a1c21;
+  color: #e1e1e6;
+  font-size: 1.1rem;
+}
+.report__reason textarea::-moz-placeholder {
+  color: #c0c0c0;
+}
+.report__reason textarea:-ms-input-placeholder {
+  color: #c0c0c0;
+}
+.report__reason textarea::placeholder {
+  color: #c0c0c0;
+}
+.report__select {
+  position: relative;
+  background: #1a1c21;
+  width: 16rem;
+  border-radius: 4px 4px 0 0;
+}
+.report__select__reason {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  opacity: 0;
+}
+.report__select__reason[data-report-reason=show] {
+  font-weight: 500;
+  opacity: 1;
+}
+.report__select__button {
+  width: 100%;
+  padding: 1rem 0.5rem 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: none;
+  color: #e1e1e6;
+}
+.report__select__button:focus {
+  border: 1px solid #b6af9f;
+}
+.report__select__button__valueSelected {
+  font-weight: 500;
+}
+.report__select__button:has(.valueSelected[data-select=open]) {
+  transition: all 0.2s;
+  align-items: baseline;
+  opacity: 0.6;
+}
+.report__select__button span svg[data-icon=hidden] {
+  opacity: 0;
+  width: 0;
+  transform: scaleY(0);
+}
+.report__select__button:hover {
+  cursor: pointer;
+}
+.report__select__options {
+  position: absolute;
+  background: #1a1c21;
+  width: inherit;
+  border-radius: 0 0 4px 4px;
+  padding-bottom: 0.5rem;
+}
+.report__select__options span {
+  transition: all 0.2s;
+  font-weight: 500;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+.report__select__options span:hover {
+  cursor: pointer;
+  background: #323238;
+}
+.report__select__options span[data-option=active] {
+  background: #1a1c21;
+}
+.report__select__options[data-select=close] {
+  transform: scaleY(0);
+  display: none;
+}
+.report__cancelAndSend {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+}
+.report__cancelAndSend button {
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f8f9fa;
+}
+.report__cancelAndSend button:hover {
+  transition: background-color 0.1s;
+  cursor: pointer;
+  background: #121214;
+}
+.report__send {
+  background: #202024;
+}
+.report__cancel {
+  background: #121214;
+}
+
+.chapters {
+  padding: 1.6rem;
+  width: 100%;
+  flex: 2;
+}
+.chapters__hiddenOverflow {
+  max-height: 153vh;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 1.6rem;
+}
+.chapters__hiddenOverflow[data-overflow=hidden] {
+  border-bottom: 2px solid #3294f8;
+}
+.chapters__hiddenOverflow[data-overflow=showall] {
+  max-height: -webkit-fit-content;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+.chapters__chapter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  color: #f8f9fa;
+  background: #121214;
+  text-decoration: none;
+  border-left: 2px solid #e5d5a7;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.chapters__chapter > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.chapters__chapter > div strong {
+  display: flex;
+  align-items: center;
+}
+.chapters__chapter > div strong svg {
+  margin-right: 0.25rem;
+}
+.chapters__chapter > div strong:nth-child(1) {
+  margin-bottom: 0.25rem;
+}
+.chapters__chapter > div span {
+  padding: 0.25rem;
+  color: #c0c0c0;
+  border-radius: 4px;
+}
+.chapters__chapter > div span:hover {
+  background-color: #1a1c21;
+  cursor: pointer;
+}
+.chapters__chapter__timeAndUser {
+  min-width: 10rem;
+}
+.chapters__chapter__title {
+  text-decoration: none;
+  color: #f8f9fa;
+  box-shadow: none;
+}
+.chapters__chapter__title:hover {
+  text-decoration: underline;
+}
+.chapters__showAll {
+  text-align: center;
+}
+.chapters__showAll button {
+  padding: 0.5rem;
+  background: transparent;
+  border-radius: 4px;
+  color: #3294f8;
+  font-size: 1rem;
+  border: none;
+  box-shadow: none;
+}
+.chapters__showAll button:hover {
+  box-shadow: inset 0 0 4px #3294f8;
+  cursor: pointer;
+  background: #202024;
+}
+.chapters__showAll button:focus {
+  box-shadow: inset 0 0 4px #3294f8;
+}
+.chapters__showAll[data-show=hidden] {
+  display: none;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+.art {
+  position: relative;
+}
+.art ul {
+  position: absolute;
+  top: 0;
+  max-width: 256px;
+  max-height: 512px;
+  overflow: hidden;
+  -webkit-animation-name: slidein;
+          animation-name: slidein;
+  -webkit-animation-duration: 3s;
+          animation-duration: 3s;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
+.manga {
+  width: inherit;
+  margin-top: 5rem;
+}
+.manga__banner {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18.5rem;
+  filter: blur(4px);
+}
+.manga__banner[data-width=shink] {
+  max-width: calc(100vw - 15rem);
+  left: unset;
+  right: 0;
+}
+.manga__banner__image {
+  width: 100%;
+  height: 100%;
+  background-position: center 25%;
+  background-size: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.manga__banner__gradient {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.manga__content {
+  padding: 0 1.6rem;
+  display: flex;
+  height: 13.3rem;
+}
+.manga__content img {
+  z-index: 1;
+  border-radius: 4px;
+}
+.manga__content__titleAndAuthor {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.manga__content__titleAndAuthor h1 {
+  color: #f8f9fa;
+  font-size: 4.5rem;
+  line-height: 110%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.manga__content__titleAndAuthor strong {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  font-size: 1.2rem;
+  color: #e1e1e6;
+}
+.manga__content__titleAndAuthor strong span {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.manga__background {
+  background: #0c090f;
+  padding: 0 1.5rem;
+}
+.manga__actions {
+  padding: 0.75rem 0;
+  padding-left: 13.5rem;
+  margin-bottom: 2rem;
+}
+.manga__actions__buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 3rem;
+}
+.manga__actions__buttons button {
+  height: 100%;
+  padding: 0.5rem 0.75rem;
+  color: #e1e1e6;
+  background: #202024;
+  border-radius: 4px;
+}
+.manga__actions__buttons button:nth-child(1) {
+  background: #1a1c21;
+  color: #f8f9fa;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 15rem;
+}
+.manga__actions__buttons button:hover {
+  cursor: pointer;
+  color: #f8f9fa;
+  opacity: 0.7;
+}
+.manga__status {
+  padding: 0.25rem 0;
+  cursor: default;
+}
+.manga__status__publication {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.manga__status__publication strong {
+  font-size: 0.8rem;
+  color: #c0c0c0;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+.manga__status__publication span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+}
+.manga__status__publication span::before {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+}
+.manga__status__colorBlue {
+  background: #3294f8;
+}
+.manga__status__colorGreen {
+  background: #00ff7a;
+}
+.manga__status__colorYellow {
+  background: #ffd60a;
+}
+.manga__status__colorRed {
+  background: #9d0208;
+}
+.manga__status__statistics {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.manga__status__statistics span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.manga__status__stars {
+  color: #e5d5a7;
+}
+.manga__status__marks {
+  color: #e1e1e6;
+}
+.manga__status__eye {
+  color: #6c757d;
+}
+.manga__section {
+  display: flex;
+}
+.manga__section__languageAndArt {
+  flex: 1;
+  padding: 1.6rem;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.manga__section__language {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+.manga__section__language h2 {
+  margin-bottom: 0.5rem;
+}
+.manga__section__language a {
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  color: #c0c0c0;
+  background: #1a1c21;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+.manga__section__language a:hover {
+  border: 1px solid #e5d5a7;
+}
+.manga__section__links {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}/*# sourceMappingURL=mangaStyles.module.css.map */

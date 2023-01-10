@@ -1,5 +1,9 @@
 @use "../globals/variables" as vars;
 @forward "./tags";
+@forward "./rate";
+@forward "./report";
+@forward "./chapters";
+@forward "./art";
 
 .manga {
   width: inherit;
@@ -32,7 +36,7 @@
       display: inline-block;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.3);
     }
   }
 
@@ -174,7 +178,7 @@
     &__statistics {
       display: flex;
       gap: 0.5rem;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
 
       span {
         display: flex;
@@ -193,6 +197,43 @@
 
     &__eye {
       color: vars.$gray-400;
+    }
+  }
+
+  &__section {
+    display: flex;
+
+    &__languageAndArt {
+      flex: 1;
+      padding: 1.6rem;
+      max-width: fit-content;
+    }
+
+    &__language {
+      max-width: fit-content;
+
+      h2 {
+        margin-bottom: 0.5rem;
+      }
+
+      a {
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+        color: vars.$gray-300;
+        background: vars.$gray-800;
+        border-radius: 4px;
+        border: 1px solid transparent;
+
+        &:hover {
+          border: 1px solid vars.$secondary;
+        }
+      }
+    }
+
+    &__links {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
     }
   }
 }

@@ -62,7 +62,7 @@ export function Tags({ tags }: TagsProps) {
           return <span key={tag.id}>{Object.values(tag.attributes.name)}</span>
         })}
         <strong
-          className={styles.tags__hiden}
+          className={styles.tags__hidden}
           onClick={handleMoreTags}
         ></strong>
       </p>

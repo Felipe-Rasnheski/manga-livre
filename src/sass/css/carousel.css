@@ -25,4 +25,11 @@
 }
 #carouselContainer ul.control-dots li.dot {
   padding: 0.3rem;
+}
+
+.art .carousel.carousel-slider .control-arrow {
+  z-index: 1;
+}
+.art .carousel .carousel-status {
+  right: 2rem;
 }/*# sourceMappingURL=carousel.css.map */

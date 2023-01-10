@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Carousel } from 'react-responsive-carousel'
+import styles from '../../../../sass/css/mangaStyles.module.css'
+
 import { ICoverArt } from '../../../../types'
 
 export function MangaArt({
@@ -12,38 +13,31 @@ export function MangaArt({
   allCovers: ICoverArt[]
   mangaId: string
 }) {
+  const
+
   return (
-    <MangaArtContainer>
+    <div className={styles.art} id="art">
       <Link href="/" prefetch={false}>
         Art...
       </Link>
-      <Carousel
-        autoPlay
-        swipeable
-        infiniteLoop
-        emulateTouch
-        interval={4000}
-        showThumbs={false}
-        dynamicHeight={false}
-        showIndicators={false}
-        centerSlidePercentage={100}
-      >
+      <ul className={styles.art__slide}>
         {allCovers.map((cover) => {
           return (
-            <ContainerImage key={cover.id} className="cover">
-              <div className="background"></div>
+            <li key={cover.id} className={styles.art__content}>
+              <div className={styles.art__content__background}></div>
               <Image
                 src={`https://uploads.mangadex.org/covers/${mangaId}/${cover.attributes.fileName}`}
                 width={256}
                 height={512}
+                quality={100}
                 alt=""
-                id="carouselImage"
+                className={styles.art__content__Image}
               />
               <footer>Volume {cover.attributes.volume}</footer>
-            </ContainerImage>
+            </li>
           )
         })}
-      </Carousel>
-    </MangaArtContainer>
+      </ul>
+    </div>
   )
 }

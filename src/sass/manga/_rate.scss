@@ -1,9 +1,6 @@
-'use client'
+@use "../globals/variables" as vars;
 
-import styled from 'styled-components'
-import { poppins } from '../../../../../styles/globals'
-
-export const RateMangaContainer = styled.div`
+.rate {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11,31 +8,31 @@ export const RateMangaContainer = styled.div`
 
   button {
     height: 100%;
+    max-width: 52px;
     display: block;
     padding: 0.5rem 0.75rem;
-    color: ${(props) => props.theme['--gray-300']};
-    background: ${(props) => props.theme['--gray-600']};
+    color: vars.$gray-300;
+    background: vars.$gray-600;
     border-radius: 4px;
 
     &:hover {
       cursor: pointer;
-      color: ${(props) => props.theme['--gray-100']};
+      color: vars.$gray-100;
       opacity: 0.7;
     }
   }
 
-  .rateOptions {
+  &__options {
     position: absolute;
     display: flex;
     flex-direction: column;
     margin-top: 100%;
-    background: ${(props) => props.theme['--gray-800']};
+    background: vars.$gray-800;
     padding: 0.25rem 0;
     display: none;
     transform: scaleY(0);
 
     span {
-      font-family: ${poppins.style.fontFamily}, sans-serif;
       display: block;
       white-space: nowrap;
       padding: 0.25rem 0.5rem;
@@ -44,13 +41,13 @@ export const RateMangaContainer = styled.div`
 
       &:hover {
         cursor: pointer;
-        background: ${(props) => props.theme['--gray-700']};
+        background: vars.$gray-600;
       }
     }
 
-    &[data-rate-options='show'] {
+    &[data-rate-options="show"] {
       transform: scaleY(1);
       display: block;
     }
   }
-`
+}
