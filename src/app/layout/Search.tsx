@@ -9,7 +9,7 @@ import { useRef, useState } from 'react'
 import { BiBookmark, BiMessage, BiSearch, BiStar } from 'react-icons/bi'
 import { FaRegEye } from 'react-icons/fa'
 import { IMangaBasic } from '../../types'
-import { getSearch } from './util/getSearch'
+import { getSearch } from './utils/getSearch'
 
 export function Search() {
   const [researchedMangas, setResearchedMangas] = useState<IMangaBasic[]>([])

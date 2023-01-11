@@ -1,7 +1,7 @@
 import styles from '../../sass/css/homeStyles.module.css'
 
 import { Recommendations } from './Recommendations'
-import { getRecommendations } from './util/getRecommendations'
+import { getRecommendations } from './utils/getRecommendations'
 
 export async function Home() {
   const recommendations = await getRecommendations()

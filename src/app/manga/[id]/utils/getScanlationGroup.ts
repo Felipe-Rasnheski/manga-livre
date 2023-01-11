@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { IMangaChapter } from '../types/types'
-import { apiUrl } from './urls'
+import { IMangaChapter } from '../../../../types'
+import { apiUrl } from '../../../../utils/urls'
 
 export async function getScanlationGroup(chapters: IMangaChapter[]) {
   const scanFirstChapter = chapters[0].relationships.find(

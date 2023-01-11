@@ -41,7 +41,7 @@
   }
 
   &__content {
-    padding: 0 1.6rem;
+    padding: 0 1.5rem;
     display: flex;
     height: 13.3rem;
 
@@ -103,7 +103,7 @@
       gap: 0.5rem;
       height: 3rem;
 
-      button {
+      & > button {
         height: 100%;
         padding: 0.5rem 0.75rem;
         color: vars.$gray-200;
@@ -197,6 +197,70 @@
 
     &__eye {
       color: vars.$gray-400;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+
+    & > div {
+      border-bottom: 1px solid vars.$primary;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      max-height: 200px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      &[data-overflow="show"] {
+        max-height: fit-content;
+        padding-bottom: 1rem;
+      }
+
+      hr {
+        height: 1px;
+        background-color: vars.$gray-600;
+      }
+
+      a {
+        display: inline-block;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      ul {
+        padding: 0 1rem;
+
+        li {
+          line-height: 140%;
+        }
+      }
+    }
+
+    & > button {
+      flex: 1;
+      width: 6rem;
+      margin: 0 auto;
+      font-weight: bold;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      background: transparent;
+      color: vars.$secondary;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
+
+      &:focus {
+        box-shadow: none;
+        text-decoration: underline;
+      }
     }
   }
 

@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 import { Relation } from '../../../types'
-import { getStatistics } from '../../../utils/getStatistics'
 import { apiUrl, coversUrl } from '../../../utils/urls'
+import { getStatistics } from './getStatistics'
 
 export async function getSearch(query: string) {
   const mangasResponse = await axios

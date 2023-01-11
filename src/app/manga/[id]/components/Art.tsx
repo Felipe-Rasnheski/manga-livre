@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { BiCaretLeft, BiCaretRight } from 'react-icons/bi'
 import styles from '../../../../sass/css/mangaStyles.module.css'
@@ -48,9 +47,7 @@ export function MangaArt({
 
   return (
     <div className={styles.art} id="art">
-      <Link href="/" prefetch={false}>
-        Art...
-      </Link>
+      <h2>Art</h2>
       <div className={styles.art__content}>
         <button onClick={previous}>
           <BiCaretLeft size={22} />

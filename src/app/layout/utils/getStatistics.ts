@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { IMangaBasic } from '../types'
-import { apiUrl } from './urls'
+import { IMangaBasic } from '../../../types'
+import { apiUrl } from '../../../utils/urls'
 
 export async function getStatistics(mangas: IMangaBasic[]) {
   const ids = mangas.map((manga) => manga.id)

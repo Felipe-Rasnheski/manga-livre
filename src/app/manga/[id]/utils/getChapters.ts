@@ -1,13 +1,14 @@
 import axios from 'axios'
-import { IMangaChapter } from '../types/types'
+import { IMangaChapter } from '../../../../types'
+import { apiUrl } from '../../../../utils/urls'
 import { getScanlationGroup } from './getScanlationGroup'
 import { getUserWhoPostedChapter } from './getUserWhoPostedChapter'
-import { apiUrl } from './urls'
 
 export async function getChapters(mangaId: string) {
   const chaptersResponse: IMangaChapter[] = await axios
     .get(`${apiUrl}/manga/${mangaId}/feed`, {
       params: {
+        limit: 50,
         translatedLanguage: ['en'],
         order: {
           chapter: 'asc',

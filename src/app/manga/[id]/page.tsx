@@ -1,17 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import Markdown from 'react-markdown'
 import styles from '../../../sass/css/mangaStyles.module.css'
 
 import { randomUUID } from 'crypto'
-import Link from 'next/link'
 import { AiOutlineEye } from 'react-icons/ai'
-import {
-  BiBookmark,
-  BiBookOpen,
-  BiListPlus,
-  BiStar,
-  // eslint-disable-next-line prettier/prettier
-  BiUpload
-} from 'react-icons/bi'
+import { BiBookmark, BiBookOpen, BiListPlus, BiStar } from 'react-icons/bi'
 import { IMangaChapter } from '../../../types'
 import { codes } from '../../../utils/mangadexLanguages'
 import { MangaArt } from './components/Art'
@@ -19,8 +13,10 @@ import { MangaChapters } from './components/Chapters'
 import { DialogReport } from './components/DialogReport'
 import { RateManga } from './components/RateManga'
 import { Tags } from './components/Tags'
-import { getAllCovers } from './util/getAllCovers'
-import { getManga } from './util/getManga'
+import { ToggleDescription } from './components/ToggleDescription'
+import { getAllCovers } from './utils/getAllCovers'
+import { getChapters } from './utils/getChapters'
+import { getManga } from './utils/getManga'
 
 type Params = {
   id: string
@@ -31,17 +27,17 @@ type Props = {
 }
 
 export default async function Manga({ params }: Props) {
-  const manga = await getManga(params.id)
-  // const chapters = await getChapters(params.id)
-  const allCovers = await getAllCovers(params.id)
+  const mangaPromise = getManga(params.id)
+  const chaptersPromise = getChapters(params.id)
+  const allCoversPromise = getAllCovers(params.id)
 
-  // const [manga, chapters, allCovers] = await Promise.all([
-  //   mangaPromise,
-  //   chaptersPromise,
-  //   allCoversPromise,
-  // ])
+  const [manga, chapters, allCovers] = await Promise.all([
+    mangaPromise,
+    chaptersPromise,
+    allCoversPromise,
+  ])
 
-  const chapters: IMangaChapter[] = [
+  const chapterss: IMangaChapter[] = [
     {
       id: randomUUID(),
       type: 'chapter',
@@ -773,9 +769,7 @@ export default async function Manga({ params }: Props) {
         <div className={styles.manga__background}>
           <div className={styles.manga__actions}>
             <div className={styles.manga__actions__buttons}>
-              <button className={styles.manga__actions__buttons__library}>
-                Add to library
-              </button>
+              <button>Add to library</button>
               <RateManga />
               <button>
                 <BiListPlus size={28} title="Add to list" />
@@ -788,9 +782,6 @@ export default async function Manga({ params }: Props) {
                 imageUrl={manga.coverUrl}
                 title={manga.title}
               />
-              <button>
-                <BiUpload size={28} title="Upload" />
-              </button>
             </div>
             <Tags tags={manga.tags} />
             <div className={styles.manga__status}>
@@ -832,7 +823,10 @@ export default async function Manga({ params }: Props) {
             </div>
           </div>
           <div className={styles.manga__description}>
-            <p>{manga.description}</p>
+            <div id="contentDescription">
+              <Markdown>{manga.description}</Markdown>
+            </div>
+            <ToggleDescription />
           </div>
           <div className={styles.manga__section}>
             <MangaChapters mangaChapters={chapters} />
