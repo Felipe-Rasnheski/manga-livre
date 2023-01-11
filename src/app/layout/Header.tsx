@@ -17,7 +17,7 @@ export function Header() {
         const header = document.getElementById('header')
 
         if (content.scrollTop === 0) {
-          header?.setAttribute('data-scrolly', '')
+          header?.removeAttribute('data-scrolly')
         }
 
         if (content.scrollTop > 0 && content.scrollTop < 55) {
