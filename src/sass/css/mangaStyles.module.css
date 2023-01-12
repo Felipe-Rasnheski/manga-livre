@@ -311,20 +311,22 @@
 }
 
 .chapters {
-  padding: 1.6rem 0;
-  width: 100%;
+  padding: 1.5rem 0;
   flex: 2;
 }
-.chapters__hiddenOverflow {
+.chapters ul {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   max-height: 153vh;
   overflow: hidden;
   border-radius: 4px;
   margin-bottom: 1.6rem;
 }
-.chapters__hiddenOverflow[data-overflow=hidden] {
+.chapters ul[data-overflow=hidden] {
   border-bottom: 2px solid #3294f8;
 }
-.chapters__hiddenOverflow[data-overflow=showall] {
+.chapters ul[data-overflow=showall] {
   max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
@@ -378,10 +380,10 @@
 .chapters__chapter__title:hover {
   text-decoration: underline;
 }
-.chapters__showAll {
+.chapters__content {
   text-align: center;
 }
-.chapters__showAll button {
+.chapters__content button {
   padding: 0.5rem;
   background: transparent;
   border-radius: 4px;
@@ -390,15 +392,21 @@
   border: none;
   box-shadow: none;
 }
-.chapters__showAll button:hover {
+.chapters__content button:nth-child(1) {
+  display: none;
+}
+.chapters__content button:hover {
   box-shadow: inset 0 0 4px #3294f8;
   cursor: pointer;
   background: #212121;
 }
-.chapters__showAll button:focus {
+.chapters__content button:focus {
   box-shadow: inset 0 0 4px #3294f8;
 }
-.chapters__showAll[data-show=hidden] {
+.chapters__content[data-show=hidden] .chapters__content__showAll {
+  display: inline-block;
+}
+.chapters__content[data-show=hidden] .chapters__content__more {
   display: none;
 }
 

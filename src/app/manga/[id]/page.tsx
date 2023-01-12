@@ -27,15 +27,17 @@ type Props = {
 }
 
 export default async function Manga({ params }: Props) {
-  const mangaPromise = getManga(params.id)
-  const chaptersPromise = getChapters(params.id)
-  const allCoversPromise = getAllCovers(params.id)
+  const mangaId = params.id
 
-  const [manga, chapters, allCovers] = await Promise.all([
-    mangaPromise,
-    chaptersPromise,
-    allCoversPromise,
-  ])
+  const manga = await getManga(mangaId)
+  const chapters = await getChapters(mangaId)
+  const allCovers = await getAllCovers(mangaId)
+
+  // const [manga, chapters, allCovers] = await Promise.all([
+  //   mangaPromise,
+  //   chaptersPromise,
+  //   allCoversPromise,
+  // ])
 
   const chapterss: IMangaChapter[] = [
     {
@@ -829,7 +831,7 @@ export default async function Manga({ params }: Props) {
             <ToggleDescription />
           </div>
           <div className={styles.manga__section}>
-            <MangaChapters mangaChapters={chapters} />
+            <MangaChapters mangaChapters={chapters} mangaId={mangaId} />
             <div className={styles.manga__section__languageAndArt}>
               <div className={styles.manga__section__language}>
                 <h2>Available languages</h2>

@@ -3,67 +3,69 @@
 import Link from 'next/link'
 import styles from '../../../../sass/css/mangaStyles.module.css'
 
-import { useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineEye } from 'react-icons/ai'
 import { BiGroup, BiTime, BiUser } from 'react-icons/bi'
 import { IMangaChapter } from '../../../../types'
 import { distanceToNow } from '../../../../utils/formatterDate'
+import { getChapters } from '../utils/getChapters'
 
 export function MangaChapters({
   mangaChapters,
+  mangaId,
 }: {
   mangaChapters: IMangaChapter[]
+  mangaId: string
 }) {
-  function isOverflowing() {
-    const hiddenOverflow = document.getElementById('hiddenOverflow')
+  const [chapters, setChapters] = useState(mangaChapters)
+  const offset = useRef(0)
+
+  const isOverflowing = useCallback(() => {
+    const container = document.getElementById('container')
 
     let isOverflowing: boolean = false
 
-    if (
-      hiddenOverflow?.clientWidth !== undefined &&
-      hiddenOverflow.clientHeight !== undefined
-    ) {
-      isOverflowing =
-        hiddenOverflow.scrollHeight > hiddenOverflow.clientHeight ||
-        hiddenOverflow.scrollWidth > hiddenOverflow.clientWidth
+    if (container?.clientHeight !== undefined) {
+      isOverflowing = container.scrollHeight > container.clientHeight
     }
 
-    const showAll = document.getElementById('showAll')
+    const content = document.getElementById('chaptersContent')
 
     if (isOverflowing) {
-      hiddenOverflow?.setAttribute('data-overflow', 'hidden')
-      showAll?.setAttribute('data-show', 'all')
+      container?.setAttribute('data-overflow', 'hidden')
+      content?.setAttribute('data-show', 'hidden')
     } else {
-      hiddenOverflow?.setAttribute('data-overflow', '')
-      showAll?.setAttribute('data-show', 'hidden')
+      container?.removeAttribute('data-overflow')
+      content?.removeAttribute('data-show')
     }
-  }
+  }, [])
+
+  useEffect(() => isOverflowing(), [isOverflowing])
 
   function handleShowOverflow() {
-    const hiddenOverflow = document.getElementById('hiddenOverflow')
+    const container = document.getElementById('container')
+    container?.setAttribute('data-overflow', 'showall')
 
-    hiddenOverflow?.setAttribute('data-overflow', 'showall')
-
-    const showAll = document.getElementById('showAll')
-    showAll?.setAttribute('data-show', 'hidden')
+    const content = document.getElementById('chaptersContent')
+    content?.removeAttribute('data-show')
   }
 
-  useEffect(() => isOverflowing())
+  async function handleMoreChapters() {
+    offset.current = offset.current + 50
+    const chapters = await getChapters(mangaId, offset.current)
+    console.log(chapters)
+  }
 
-  if (typeof window !== 'undefined') {
-    window.onresize = () => isOverflowing()
+  if (MangaChapters.length === 0) {
+    return <h1>Empty</h1>
   }
 
   return (
     <div className={styles.chapters}>
-      <div
-        className={styles.chapters__hiddenOverflow}
-        id="hiddenOverflow"
-        data-overflow=""
-      >
-        {mangaChapters.map((chapter) => {
+      <ul id="container">
+        {chapters.map((chapter) => {
           return (
-            <div key={chapter.id} className={styles.chapters__chapter}>
+            <li key={chapter.id} className={styles.chapters__chapter}>
               <div>
                 <strong>
                   <AiOutlineEye size={18} />
@@ -92,12 +94,23 @@ export function MangaChapters({
                   <span>{chapter.whoPosted.name}</span>
                 </strong>
               </div>
-            </div>
+            </li>
           )
         })}
-      </div>
-      <div className={styles.chapters__showAll} id="showAll" data-show="">
-        <button onClick={handleShowOverflow}>Show All</button>
+      </ul>
+      <div className={styles.chapters__content} id="chaptersContent">
+        <button
+          onClick={handleShowOverflow}
+          className={styles.chapters__content__showAll}
+        >
+          Show All
+        </button>
+        <button
+          className={styles.chapters__content__more}
+          onClick={handleMoreChapters}
+        >
+          More
+        </button>
       </div>
     </div>
   )

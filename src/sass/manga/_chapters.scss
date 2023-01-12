@@ -1,11 +1,11 @@
 @use "../globals/variables" as vars;
 
 .chapters {
-  padding: 1.6rem 0;
-  width: 100%;
+  padding: 1.5rem 0;
   flex: 2;
 
-  &__hiddenOverflow {
+  ul {
+    height: fit-content;
     max-height: 153vh;
     overflow: hidden;
     border-radius: 4px;
@@ -79,7 +79,7 @@
     }
   }
 
-  &__showAll {
+  &__content {
     text-align: center;
 
     button {
@@ -90,6 +90,10 @@
       font-size: 1rem;
       border: none;
       box-shadow: none;
+
+      &:nth-child(1) {
+        display: none;
+      }
 
       &:hover {
         box-shadow: inset 0 0 4px vars.$blue;
@@ -103,7 +107,13 @@
     }
 
     &[data-show="hidden"] {
-      display: none;
+      .chapters__content__showAll {
+        display: inline-block;
+      }
+
+      .chapters__content__more {
+        display: none;
+      }
     }
   }
 }
