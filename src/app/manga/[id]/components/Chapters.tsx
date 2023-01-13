@@ -13,9 +13,11 @@ import { getChapters } from '../utils/getChapters'
 export function MangaChapters({
   mangaChapters,
   mangaId,
+  links,
 }: {
   mangaChapters: IMangaChapter[]
   mangaId: string
+  links: any
 }) {
   const [chapters, setChapters] = useState(mangaChapters)
   const offset = useRef(0)
@@ -53,11 +55,15 @@ export function MangaChapters({
   async function handleMoreChapters() {
     offset.current = offset.current + 50
     const chapters = await getChapters(mangaId, offset.current)
-    console.log(chapters)
   }
 
-  if (MangaChapters.length === 0) {
-    return <h1>Empty</h1>
+  if (mangaChapters.length === 0) {
+    return (
+      <div className={styles.chapters}>
+        <h1>Available on:</h1>
+        <Link href={links.engtl}>Manga Plus</Link>
+      </div>
+    )
   }
 
   return (

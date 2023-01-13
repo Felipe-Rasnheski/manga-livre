@@ -17,6 +17,7 @@ export async function getManga(mangaId: string) {
 
   const {
     tags,
+    links,
     title,
     status,
     createdAt,
@@ -53,6 +54,7 @@ export async function getManga(mangaId: string) {
 
   const manga: IManga = {
     tags,
+    links,
     status,
     altTitle,
     coverUrl,

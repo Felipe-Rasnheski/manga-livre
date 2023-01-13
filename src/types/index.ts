@@ -24,6 +24,7 @@ export type AltTitle = { en: string } | any
 
 export interface IManga extends IMangaBasic {
   tags: ITag[]
+  links: any
   title: string
   status: string
   altTitle: AltTitle

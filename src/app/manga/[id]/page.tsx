@@ -831,7 +831,11 @@ export default async function Manga({ params }: Props) {
             <ToggleDescription />
           </div>
           <div className={styles.manga__section}>
-            <MangaChapters mangaChapters={chapters} mangaId={mangaId} />
+            <MangaChapters
+              mangaChapters={chapters}
+              mangaId={mangaId}
+              links={manga.links}
+            />
             <div className={styles.manga__section__languageAndArt}>
               <div className={styles.manga__section__language}>
                 <h2>Available languages</h2>
