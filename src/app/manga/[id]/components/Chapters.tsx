@@ -5,7 +5,7 @@ import styles from '../../../../sass/css/mangaStyles.module.css'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineEye } from 'react-icons/ai'
-import { BiGroup, BiTime, BiUser } from 'react-icons/bi'
+import { BiGroup, BiSort, BiTime, BiUser } from 'react-icons/bi'
 import { IMangaChapter } from '../../../../types'
 import { distanceToNow } from '../../../../utils/formatterDate'
 import { getChapters } from '../utils/getChapters'
@@ -54,20 +54,32 @@ export function MangaChapters({
 
   async function handleMoreChapters() {
     offset.current = offset.current + 50
-    const chapters = await getChapters(mangaId, offset.current)
+    const moreChapters = await getChapters(mangaId, offset.current)
+    setChapters([...chapters, ...moreChapters])
+  }
+
+  async function handleRevertOrder() {
+    const chaptersResponse = await getChapters(mangaId, 0, 'desc')
+    setChapters(chaptersResponse)
   }
 
   if (mangaChapters.length === 0) {
     return (
       <div className={styles.chapters}>
         <h1>Available on:</h1>
-        <Link href={links.engtl}>Manga Plus</Link>
+        {links.engtl && <Link href={links.engtl}>{links.engtl}</Link>}
       </div>
     )
   }
 
   return (
     <div className={styles.chapters}>
+      <div className={styles.chapters__header}>
+        <h2>Chapters</h2>
+        <button onClick={handleRevertOrder}>
+          <BiSort size={22} />
+        </button>
+      </div>
       <ul id="container">
         {chapters.map((chapter) => {
           return (

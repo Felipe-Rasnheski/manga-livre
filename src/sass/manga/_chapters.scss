@@ -4,6 +4,25 @@
   padding: 1.5rem 0;
   flex: 2;
 
+  &__header {
+    display: flex;
+    padding-bottom: 1rem;
+    gap: 0.5rem;
+    justify-content: space-between;
+
+    button {
+      background: vars.$gray-800;
+      color: vars.$primary;
+      border-radius: 4px;
+      padding: 0 0.25rem;
+
+      &:hover {
+        cursor: pointer;
+        color: vars.$secondary;
+      }
+    }
+  }
+
   ul {
     height: fit-content;
     max-height: 153vh;

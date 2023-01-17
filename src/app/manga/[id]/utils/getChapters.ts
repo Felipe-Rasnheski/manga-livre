@@ -4,7 +4,7 @@ import { apiUrl } from '../../../../utils/urls'
 import { getScanlationGroup } from './getScanlationGroup'
 import { getUserWhoPostedChapter } from './getUserWhoPostedChapter'
 
-export async function getChapters(mangaId: string, offset = 0) {
+export async function getChapters(mangaId: string, offset = 0, order = 'asc') {
   const chaptersResponse: IMangaChapter[] = await axios
     .get(`${apiUrl}/manga/${mangaId}/feed`, {
       params: {
