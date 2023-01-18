@@ -15,7 +15,6 @@ import { RateManga } from './components/RateManga'
 import { Tags } from './components/Tags'
 import { ToggleDescription } from './components/ToggleDescription'
 import { getAllCovers } from './utils/getAllCovers'
-import { getChapters } from './utils/getChapters'
 import { getManga } from './utils/getManga'
 
 type Params = {
@@ -30,7 +29,7 @@ export default async function Manga({ params }: Props) {
   const mangaId = params.id
 
   const manga = await getManga(mangaId)
-  const chapters = await getChapters(mangaId)
+  // const chapters = await getChapters(mangaId)
   const allCovers = await getAllCovers(mangaId)
 
   // const [manga, chapters, allCovers] = await Promise.all([
@@ -39,7 +38,7 @@ export default async function Manga({ params }: Props) {
   //   allCoversPromise,
   // ])
 
-  const chapterss: IMangaChapter[] = [
+  const chapters: IMangaChapter[] = [
     {
       id: randomUUID(),
       type: 'chapter',

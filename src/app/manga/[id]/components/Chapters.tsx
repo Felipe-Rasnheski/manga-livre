@@ -21,6 +21,7 @@ export function MangaChapters({
 }) {
   const [chapters, setChapters] = useState(mangaChapters)
   const offset = useRef(0)
+  const order = useRef('asc')
 
   const isOverflowing = useCallback(() => {
     const container = document.getElementById('container')
@@ -59,7 +60,14 @@ export function MangaChapters({
   }
 
   async function handleRevertOrder() {
-    const chaptersResponse = await getChapters(mangaId, 0, 'desc')
+    let chaptersResponse
+
+    if (order.current === 'asc') {
+      chaptersResponse = await getChapters(mangaId, 0, 'desc')
+    } else {
+      chaptersResponse = await getChapters(mangaId, 0, 'asc')
+    }
+
     setChapters(chaptersResponse)
   }
 

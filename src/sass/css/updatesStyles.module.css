@@ -1,0 +1,9 @@
+.updates {
+  margin: 5rem 1.5rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5rem 1rem;
+}
+.updates__manga {
+  position: relative;
+}/*# sourceMappingURL=updatesStyles.module.css.map */

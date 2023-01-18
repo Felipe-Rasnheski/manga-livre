@@ -12,10 +12,10 @@ export async function getChapters(mangaId: string, offset = 0, order = 'asc') {
         offset,
         translatedLanguage: ['en'],
         order: {
-          chapter: 'asc',
-          volume: 'asc',
-          updatedAt: 'asc',
-          createdAt: 'asc',
+          chapter: order,
+          volume: order,
+          updatedAt: order,
+          createdAt: order,
         },
       },
     })

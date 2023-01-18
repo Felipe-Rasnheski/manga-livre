@@ -69,7 +69,7 @@ export function Aside() {
           <h3>
             <BiBookmarkAlt size={24} /> Follows
           </h3>
-          <Link prefetch={false} href="/" onClick={addClassActive}>
+          <Link prefetch={false} href="/updates" onClick={addClassActive}>
             updates
           </Link>
           <Link prefetch={false} href="/" onClick={addClassActive}>

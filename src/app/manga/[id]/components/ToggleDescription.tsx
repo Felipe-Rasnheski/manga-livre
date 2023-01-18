@@ -1,9 +1,25 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export function ToggleDescription() {
   const [overflowStatus, setOverflowStatus] = useState('hidden')
+
+  const isOverflowing = useCallback(() => {
+    const container = document.getElementById('contentDescription')
+
+    let isOverflowing: boolean = false
+
+    if (container?.clientHeight !== undefined) {
+      isOverflowing = container.scrollHeight > container.clientHeight
+    }
+
+    if (!isOverflowing) {
+      const content = document.getElementById('contentDescription')
+      content?.setAttribute('data-overflow', 'isNotOverflowing')
+      setOverflowStatus('')
+    }
+  }, [])
 
   function handleShowAll() {
     const content = document.getElementById('contentDescription')
@@ -16,6 +32,8 @@ export function ToggleDescription() {
     content?.removeAttribute('data-overflow')
     setOverflowStatus('hidden')
   }
+
+  useEffect(() => isOverflowing(), [isOverflowing])
 
   return (
     <>
