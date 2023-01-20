@@ -1,12 +1,85 @@
 @use "../globals/variables" as vars;
 
 .updates {
-  margin: 5rem 1.5rem 2rem;
+  margin: 5rem 1.5rem 1.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 5rem 1rem;
+  gap: 1rem;
 
   &__manga {
     position: relative;
+    color: vars.$gray-200;
+    text-decoration: none;
+
+    &__content {
+      position: absolute;
+      top: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      max-width: 200px;
+      width: 200px;
+      height: 100px;
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
+      padding: 0 0.25rem 0.15rem;
+      justify-content: flex-end;
+      transition: all 0.1s linear;
+
+      strong {
+        max-width: 200px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      span {
+        max-width: 200px;
+        color: vars.$gray-300;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    &:hover {
+      .updates__manga__content {
+        padding: 0 0.25rem 0.5rem;
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0));
+      }
+
+      .updates__manga__footer {
+        background: linear-gradient(rgba(0, 0, 0), rgba(0, 0, 0, 0.2));
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      max-width: 200px;
+      border-top: 1px solid vars.$primary;
+      background: linear-gradient(rgba(0, 0, 0), rgba(0, 0, 0, 0));
+
+      strong {
+        max-width: 200px;
+        color: vars.$gray-200;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      span {
+        max-width: 200px;
+        color: vars.$gray-400;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
   }
 }

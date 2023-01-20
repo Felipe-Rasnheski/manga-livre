@@ -16,12 +16,16 @@ export default async function Updates() {
             key={manga.id}
             className={styles.updates__manga}
           >
-            <div className={styles.updates__manga__image}>
+            <div>
               <Image src={manga.coverUrl} width={200} height={300} alt="" />
+              <div className={styles.updates__manga__content}>
+                <strong>{manga.title}</strong>
+                <span>{manga.authorName}</span>
+              </div>
             </div>
             <footer className={styles.updates__manga__footer}>
-              <div></div>
-              <div></div>
+              <strong>ch. {manga.newChapters}</strong>
+              <span>{manga.chapter.title}</span>
             </footer>
           </Link>
         )
